@@ -1,0 +1,32 @@
+.page {
+  text-align: center;
+  display: flex;
+  height: 100vh;
+  background-color: rgb(75, 75, 75);
+  text-align: center;
+  color: white;
+  -webkit-user-select: none;
+  font-family: "Baloo Bhai 2", cursive;
+}
+
+.Title {
+  font-size: 200%;
+  font-family: "Luckiest Guy", cursive;
+}
+
+.div1 , .div2 {
+    position: absolute;
+    background-color: black;
+    border-radius: 15px;
+    width: 30px;
+    height: 30px;
+  
+}
+.div1 {
+    top: 200px;
+    left: 100px;
+ }
+.div2 {
+   top: 300px;
+  left: 300px;
+}

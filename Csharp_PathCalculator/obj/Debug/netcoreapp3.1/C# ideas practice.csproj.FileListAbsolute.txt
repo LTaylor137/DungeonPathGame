@@ -1,0 +1,4 @@
+C:\Users\Lach\Desktop\Schoolwork Swinburne\DungeonPathGame\C ideas practice\obj\Debug\netcoreapp3.1\C# ideas practice.csprojAssemblyReference.cache
+C:\Users\Lach\Desktop\Schoolwork Swinburne\DungeonPathGame\C ideas practice\obj\Debug\netcoreapp3.1\C# ideas practice.AssemblyInfoInputs.cache
+C:\Users\Lach\Desktop\Schoolwork Swinburne\DungeonPathGame\C ideas practice\obj\Debug\netcoreapp3.1\C# ideas practice.AssemblyInfo.cs
+C:\Users\Lach\Desktop\Schoolwork Swinburne\DungeonPathGame\C ideas practice\obj\Debug\netcoreapp3.1\C# ideas practice.csproj.CoreCompileInputs.cache

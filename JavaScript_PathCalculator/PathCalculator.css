@@ -1,0 +1,11 @@
+.page {
+    text-align: center;
+    display: flex;
+    height: 100vh;
+    background-color: rgb(75, 75, 75);
+    text-align: center;
+    color: white;
+    -webkit-user-select: none;
+    font-family: 'Baloo Bhai 2', cursive;
+    
+}
