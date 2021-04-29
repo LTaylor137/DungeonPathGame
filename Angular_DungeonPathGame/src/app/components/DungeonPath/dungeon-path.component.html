@@ -11,31 +11,42 @@
       <!---------------------//draw rooms ------------------------>
       <div *ngFor="let room of level.roomList">
 
+         <!-- draw a random gap -->
          <div *ngIf="room.roomNo === 0">
-            <div [ngClass]="{'randomgap': DungeonPathService.showDevInfo === true}" *ngIf="DungeonPathService.showDevInfo == true">
+            <div [ngClass]="{'randomgap': DungeonPathService.showDevInfo === true}"
+               *ngIf="DungeonPathService.showDevInfo == true">
                lv {{room.levelNo}} <br>
                rm {{room.roomNo}}<br>
                {{ room.roomType}}
             </div>
          </div>
 
-         <div class="room" *ngIf="room.roomNo !== 0">
-            <div *ngIf="DungeonPathService.showDevInfo == true">
-               lv {{room.levelNo}} <br>
-               rm {{room.roomNo}}<br>
-               {{room.roomType}}
+         <!-- draw a room -->
+         <div class="flexrow">
+            <div class="room" *ngIf="room.roomNo !== 0">
+               <div *ngIf="DungeonPathService.showDevInfo === true && room.roomNo !== 0">
+                  lv {{room.levelNo}} <br>
+                  rm {{room.roomNo}}<br>
+                  {{room.roomType}}
+               </div>
+            </div>
+            <div class="nextroominfo" *ngIf="DungeonPathService.showDevInfo === true && room.roomNo !== 0">
+                  {{room.nextRoomNo}} <br>
+                  {{room.nextRoomNoExtr}}
             </div>
          </div>
-
+         
       </div>
 
    </div>
 
+</div>
 
 
 
 
-   <!-- 
+
+<!-- 
 <div class="DPContainer">
 
    <div class="section">
