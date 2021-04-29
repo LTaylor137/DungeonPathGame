@@ -24,7 +24,7 @@ export class LevelComponent implements OnInit {
 
   // thisLevelNo: number | null;
 
-  thisLevelNo = this.DungeonPathService.currentLevel
+  thisLevelNo = this.DungeonPathService.currentLevelNo
 
 }
 

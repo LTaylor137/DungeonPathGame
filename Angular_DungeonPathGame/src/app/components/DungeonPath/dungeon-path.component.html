@@ -7,7 +7,9 @@
 
    <!---------------------//draw levels ------------------------>
    <div class="level" *ngFor="let level of DungeonPathService.levelList">
-
+      <div *ngIf="DungeonPathService.showDevInfo == true">
+         Level {{ this.level.levelNo }}
+      </div>
       <!---------------------//draw rooms ------------------------>
       <div *ngFor="let room of level.roomList">
 
@@ -31,11 +33,11 @@
                </div>
             </div>
             <div class="nextroominfo" *ngIf="DungeonPathService.showDevInfo === true && room.roomNo !== 0">
-                  {{room.nextRoomNo}} <br>
-                  {{room.nextRoomNoExtr}}
+               {{room.nextRoomNo}} <br>
+               {{room.nextRoomNoExtr}}
             </div>
          </div>
-         
+
       </div>
 
    </div>
