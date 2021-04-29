@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Lach\\Desktop\\Schoolwork Swinburne\\CertIV2020\\DungeonPathGame\\Csharp_PathCalculator\\PathCalculator.csproj",
+      "projectUniqueName": "C:\\Users\\Lach\\Desktop\\Personal Projects\\DungeonPathGame\\Csharp_PathCalculator\\PathCalculator.csproj",
       "projectName": "PathCalculator",
-      "projectPath": "C:\\Users\\Lach\\Desktop\\Schoolwork Swinburne\\CertIV2020\\DungeonPathGame\\Csharp_PathCalculator\\PathCalculator.csproj",
+      "projectPath": "C:\\Users\\Lach\\Desktop\\Personal Projects\\DungeonPathGame\\Csharp_PathCalculator\\PathCalculator.csproj",
       "packagesPath": "C:\\Users\\Lach\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Lach\\Desktop\\Schoolwork Swinburne\\CertIV2020\\DungeonPathGame\\Csharp_PathCalculator\\obj\\",
+      "outputPath": "C:\\Users\\Lach\\Desktop\\Personal Projects\\DungeonPathGame\\Csharp_PathCalculator\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lach\\AppData\\Roaming\\NuGet\\NuGet.Config",

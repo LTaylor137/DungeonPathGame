@@ -8,13 +8,7 @@ export class Room {
      nextRoomNo: number;
      nextRoomNoExtr: number;
 
-     constructor(
-          _LevelNo: number,
-          _RoomNo: number,
-          _RoomType: string,
-          _NextRoomNo: number,
-          _NextRoomNoExtr: number
-          ) 
+     constructor(_LevelNo: number, _RoomNo: number, _RoomType: string, _NextRoomNo: number, _NextRoomNoExtr: number) 
           
           {
           this.levelNo = _LevelNo;

@@ -24,3 +24,16 @@ C:\Users\Lach\Desktop\Schoolwork Swinburne\CertIV2020\DungeonPathGame\Csharp_Pat
 C:\Users\Lach\Desktop\Schoolwork Swinburne\CertIV2020\DungeonPathGame\Csharp_PathCalculator\obj\Debug\netcoreapp3.1\PathCalculator.dll
 C:\Users\Lach\Desktop\Schoolwork Swinburne\CertIV2020\DungeonPathGame\Csharp_PathCalculator\obj\Debug\netcoreapp3.1\PathCalculator.pdb
 C:\Users\Lach\Desktop\Schoolwork Swinburne\CertIV2020\DungeonPathGame\Csharp_PathCalculator\obj\Debug\netcoreapp3.1\PathCalculator.genruntimeconfig.cache
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\bin\Debug\netcoreapp3.1\PathCalculator.exe
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\bin\Debug\netcoreapp3.1\PathCalculator.deps.json
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\bin\Debug\netcoreapp3.1\PathCalculator.runtimeconfig.json
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\bin\Debug\netcoreapp3.1\PathCalculator.runtimeconfig.dev.json
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\bin\Debug\netcoreapp3.1\PathCalculator.dll
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\bin\Debug\netcoreapp3.1\PathCalculator.pdb
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\obj\Debug\netcoreapp3.1\PathCalculator.csprojAssemblyReference.cache
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\obj\Debug\netcoreapp3.1\PathCalculator.AssemblyInfoInputs.cache
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\obj\Debug\netcoreapp3.1\PathCalculator.AssemblyInfo.cs
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\obj\Debug\netcoreapp3.1\PathCalculator.csproj.CoreCompileInputs.cache
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\obj\Debug\netcoreapp3.1\PathCalculator.dll
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\obj\Debug\netcoreapp3.1\PathCalculator.pdb
+C:\Users\Lach\Desktop\Personal Projects\DungeonPathGame\Csharp_PathCalculator\obj\Debug\netcoreapp3.1\PathCalculator.genruntimeconfig.cache

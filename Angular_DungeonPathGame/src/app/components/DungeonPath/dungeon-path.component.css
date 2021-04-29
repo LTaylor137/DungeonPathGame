@@ -1,45 +1,43 @@
 
-
-
-
 .DPContainer{
-
-width: 100%;
-height: 50vh;
-background-color: beige;
-display: flex;
-flex-direction: row;
-justify-content: space-around;
-vertical-align: middle;
-
-}
-
-.section{
-
+    width: 100%;
+    height: 70vh;
+    background-color: rgb(187, 148, 126);
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    vertical-align: middle;
+    }
+    
+.level{
     width: 100px;
     height: 100%;
-    background-color: rgb(214, 214, 193);
+    background-color: rgb(240, 231, 230);
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    justify-content:space-around;
+    align-items: center; 
+}
 
+.randomgap{
+    width: 100px;
+    height: 50px;
+    background-color: rgb(194, 220, 228);
+    color: white;
+    text-align: center;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center; 
 }
 
 .room{
-
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
     background-color: black;
     color: white;
     text-align: center;
-
-}
-
-.filler{
-
-    width: 100%;
-    background-color: rgb(202, 118, 118);
-
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center; 
 }

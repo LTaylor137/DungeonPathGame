@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Level } from '../models/Level';
+import { Level } from '../components/Level/Level';
+import { Room } from '../components/Room/Room';
 
 @Injectable({
   providedIn: 'root'
@@ -9,13 +10,16 @@ import { Level } from '../models/Level';
 export class DungeonPathService {
 
   mapSize: number | null;
-  maxroomscurrentlevel: number | null;
-  maxroomsofnextlevel: number | null;
+  levelList: Level[] = [];
+
+  maxThisLevel: number | null;
+  maxNextLevel: number | null;
   currentLevel: number | null;
   nextlevelroom: number | null;
-  maxreached: boolean | false;
-  tooclosetoMax: boolean | false;
-  mapList: Level[] = [];
+
+  maxreached: boolean = false;
+  tooclosetoMax: boolean = false;
+  showDevInfo: boolean = true;
 
   constructor() { }
 
@@ -26,27 +30,55 @@ export class DungeonPathService {
     this.mapSize = 5;
   }
 
-  generateMap() {
-
-    while (this.currentLevel != this.mapSize) {
-      alert(this.currentLevel);
-      this.currentLevel = 1;
-    }
-
+  wipeList() {
+    this.levelList.splice(0, this.levelList.length)
   }
 
-  //   PrintTheMap();
+  toggleDevInfo() {
+    if (this.showDevInfo === false) {
+      this.showDevInfo = true;
+    } else {
+      this.showDevInfo = false;
+    }
+  }
 
-  //      void PrintTheMap()
-  // {
-  //     foreach(var level in this.mapList)
-  //     {
-  //         int x = level.RoomList.Count;
-  //         int y = level.LevelNo;
-  //         TheGapBefore(x, y);
+  generateMap() {
+    this.wipeList();
+    this.setMapSize();
+    this.currentLevel = 1;
+    this.maxThisLevel = 1;
 
-  //     }
-  //   }
+    //-----------------------create level------------------------
+    while (this.currentLevel <= this.mapSize) {
+      let thislevel: Level = new Level(this.currentLevel)
+      var roomNo: number = 1;
+      
+      //-----------------------create rooms------------------------
+      while (roomNo <= this.maxThisLevel) {
+        if (Math.random() > 0.5) {
+          thislevel.roomList.push(new Room(this.currentLevel, 0, "gap", roomNo, 0))
+        }
+        if (roomNo < this.currentLevel) {
+          thislevel.roomList.push(new Room(this.currentLevel, roomNo, "1", roomNo, 0))
+          roomNo = roomNo + 1;
+          thislevel.roomList.push(new Room(this.currentLevel, roomNo, "2", roomNo, 0))
+          roomNo = roomNo + 1;
+        } else {
+          thislevel.roomList.push(new Room(this.currentLevel, roomNo, "room", roomNo, 0))
+          roomNo = roomNo + 1;
+        }
+      }
+
+      this.levelList.push(thislevel);
+      console.log(this.levelList)
+      
+      this.maxThisLevel = this.maxThisLevel + 1;
+      this.currentLevel = this.currentLevel + 1;
+
+    }
+  }
+}
+
 
   //     // RoomsAsLists();
   //     OrganicMethod() {
@@ -222,7 +254,7 @@ export class DungeonPathService {
   //                 break;
   //         }
 
-}
+
 
 
 

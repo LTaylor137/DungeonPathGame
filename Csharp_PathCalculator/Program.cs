@@ -14,7 +14,7 @@ namespace PathCalculator
             static void OrganicMethod()
 
             {
-                int MapSize = 3;
+                int MapSize = 5;
                 int maxroomscurrentlevel = 1;
                 int maxroomsofnextlevel = 1;
                 int CurrentLevel = 0;
