@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Component, Inject, OnInit } from '@angular/core';
-import {DOCUMENT} from "@angular/common";
+import { DOCUMENT } from "@angular/common";
 import { Level } from '../components/Level/Level';
 import { Room } from '../components/Room/Room';
 import { LeaderLineComponent } from "../components/leaderline/leaderline.component"
+import { Element } from '@angular/compiler';
 
 declare let LeaderLine: any;
 
@@ -32,8 +33,9 @@ export class DungeonPathService {
   showDevInfo: boolean = true;
   showRoomGaps: boolean = true;
   line1;
+  ConnectionsList: string[] = [];
 
-  constructor(@Inject(DOCUMENT) private document){
+  constructor(@Inject(DOCUMENT) private document) {
   }
 
   ngOnInit(): void {
@@ -63,25 +65,51 @@ export class DungeonPathService {
     }
   }
 
-  generateLeaderLines(){
-     this.line1 = new LeaderLine(
-      this.document.getElementById('Location'+'11'),
-      this.document.getElementById('Location'+'21')
-    );
-    // this.line = new LeaderLine(
-    //   this.document.getElementById('Location'+'11'),
-    //   this.document.getElementById('Location'+'22')
+  generateLeaderLines() {
+    // let k = 'line';
+    // let i = 1;
+
+    // //   for(i = 1; i < 5; i++) {
+    // //     this.leaderLineList.push(eval('var ' + k + i + '= ' + i + ';'));
+    // // }
+    // this.ConnectionsList.push("")
+
+    // var [h] = new LeaderLine(
+    //   this.document.getElementById('Location' + '011'),
+    //   this.document.getElementById('Location' + '101')
     // );
+
+    // this.ConnectionsList.forEach(element => console.log(element));
+    this.makeConnections();
   }
 
-  deleteLeaderLines(){
+  deleteLeaderLines() {
     this.line1.remove()
   }
 
-  createAnID(LvlNo: number, RmNo: number)
-  {
+  makeConnections() {
 
-let ID: string = (LvlNo.toString() + RmNo.toString());
+    console.log("connections")
+    this.levelList.forEach(element => {
+      // console.log(Object.entries(element.roomList));
+      element.roomList.forEach(Room => {
+        var X = (Room.levelNo.toString())+(Room.roomNo.toString())+
+        (Room.nextRoomNo.toString())+(Room.nextRoomNoExtr.toString());
+        if (X.length === 4){
+          X = "0" + X;
+        }
+        this.ConnectionsList.push(X);
+      }); 
+    });
+    console.log(this.ConnectionsList)
+  }
+
+
+  createID(LvlNo: number, RmNo: number) {
+    let ID: string = ((LvlNo.toString()) + RmNo.toString());
+    if (ID.length <3){
+      ID = ("0" + ID);
+    }
     return ID;
   }
 
@@ -92,14 +120,12 @@ let ID: string = (LvlNo.toString() + RmNo.toString());
     this.maxThisLevel = 1;
     this.maxNextLevel = 1;
 
-
     //-----------------------create levels------------------------
-
     while (this.currentLevelNo <= this.mapSize) {
 
       let thislevel: Level = new Level(this.currentLevelNo)
       var roomNo: number = 1;
-      var nextLevelRoomNo = 1;
+      var ConnectionRoomNo = 1;
       this.maxThisLevel = this.maxNextLevel;
 
       // grow
@@ -119,29 +145,33 @@ let ID: string = (LvlNo.toString() + RmNo.toString());
 
         // this room will create first
         if (roomNo === 1 && this.currentLevelNo === 1) {
-          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "first", nextLevelRoomNo, nextLevelRoomNo + 1, this.createAnID(this.currentLevelNo, roomNo)))
+          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "first", ConnectionRoomNo,
+            ConnectionRoomNo + 1, this.createID(this.currentLevelNo, roomNo)))
           roomNo += 1;
-          nextLevelRoomNo += 1;
+          ConnectionRoomNo += 1;
           this.maxNextLevel = 2;
           break;
         } else {
           // dont split if nearing max, but allow for splits on last room. 
           // set map width / num rooms per level here.
           if ((this.maxThisLevel >= (this.mapSize / 4))) {
-            thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "max", nextLevelRoomNo, 0, this.createAnID(this.currentLevelNo, roomNo)))
+            thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "max",
+              ConnectionRoomNo, 0, this.createID(this.currentLevelNo, roomNo)))
             roomNo += 1;
-            nextLevelRoomNo += 1;
+            ConnectionRoomNo += 1;
           } else {
             // split - 
             if (Math.random() > 0.5) {
-              thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "split", nextLevelRoomNo, nextLevelRoomNo + 1, this.createAnID(this.currentLevelNo, roomNo)))
+              thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "split",
+                ConnectionRoomNo, ConnectionRoomNo + 1, this.createID(this.currentLevelNo, roomNo)))
               roomNo += 1;
-              nextLevelRoomNo += 2;
+              ConnectionRoomNo += 2;
               this.maxNextLevel += 1;
             } else {
-              thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "room", nextLevelRoomNo, 0, this.createAnID(this.currentLevelNo, roomNo)))
+              thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "room",
+                ConnectionRoomNo, 0, this.createID(this.currentLevelNo, roomNo)))
               roomNo += 1;
-              nextLevelRoomNo += 1;
+              ConnectionRoomNo += 1;
             }
           }
         }
@@ -159,7 +189,7 @@ let ID: string = (LvlNo.toString() + RmNo.toString());
 
         // create a gap
         if (Math.random() > 0.5 && this.showRoomGaps === true) {
-          thislevel.roomList.push(new Room(this.currentLevelNo, 0, "gap", nextLevelRoomNo, 0, ""))
+          thislevel.roomList.push(new Room(this.currentLevelNo, 0, "gap", ConnectionRoomNo, 0, ""))
         }
 
         console.log("shrink mode")
@@ -167,27 +197,27 @@ let ID: string = (LvlNo.toString() + RmNo.toString());
         console.log("currentLevelNo  " + this.currentLevelNo)
         console.log("maxThisLevel  " + this.maxThisLevel)
         console.log("maxNextLevel  " + this.maxNextLevel)
-        
+
         // add 1 room on first level >50% of map. I don't know why this is needed but it is.
         if (this.currentLevelNo === 6 && roomNo === 1) {
-          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "first", nextLevelRoomNo, 0, this.createAnID(this.currentLevelNo, roomNo)))
+          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "first", ConnectionRoomNo, 0, this.createID(this.currentLevelNo, roomNo)))
           roomNo += 1;
-          nextLevelRoomNo += 1;
+          ConnectionRoomNo += 1;
           this.maxNextLevel += 1;
-         }
+        }
 
-          //join
-        if ((this.currentLevelNo >= (this.mapSize-2) && roomNo == 2) ||
-            (this.currentLevelNo >= (this.mapSize-2) && roomNo == 4) || 
-            (Math.random() > 0.70 && roomNo !== 1 && joined === false)) {
-          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "join", nextLevelRoomNo - 1, nextLevelRoomNo - 1, this.createAnID(this.currentLevelNo, roomNo)))
+        //join
+        if ((this.currentLevelNo >= (this.mapSize - 2) && roomNo == 2) ||
+          (this.currentLevelNo >= (this.mapSize - 2) && roomNo == 4) ||
+          (Math.random() > 0.70 && roomNo !== 1 && joined === false)) {
+          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "join", ConnectionRoomNo - 1, ConnectionRoomNo - 1, this.createID(this.currentLevelNo, roomNo)))
           roomNo += 1;
           this.maxNextLevel -= 1;
           joined = true;
         } else {
-          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "room", nextLevelRoomNo, 0, this.createAnID(this.currentLevelNo, roomNo)))
+          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "room", ConnectionRoomNo, 0, this.createID(this.currentLevelNo, roomNo)))
           roomNo += 1;
-          nextLevelRoomNo += 1;
+          ConnectionRoomNo += 1;
           joined = false;
         }
         this.maxThisLevel -= 1;
