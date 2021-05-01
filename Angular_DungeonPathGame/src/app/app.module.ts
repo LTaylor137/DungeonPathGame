@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { DungeonPathComponent } from './components/DungeonPath/dungeon-path.component';
 import { LevelComponent } from './components/Level/level.component';
 import { RoomComponent } from './components/Room/room.component';
+import { LeaderLineComponent } from './components/leaderline/leaderline.component';
+import { TestdivsComponent } from './components/testdivs/testdivs.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DungeonPathComponent,
     LevelComponent,
-    RoomComponent
+    RoomComponent,
+    LeaderLineComponent,
+    TestdivsComponent
   ],
   imports: [
     BrowserModule,

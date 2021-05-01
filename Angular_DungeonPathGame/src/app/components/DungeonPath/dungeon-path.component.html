@@ -1,7 +1,10 @@
-<!--  -->
+
 
 <button id="button" (click)="Generate()">click to generate map</button>
+<button id="button" (click)="generateLeaderLines()">Generate LeaderLines</button>
+<button id="button" (click)="deleteLeaderLines()">delete LeaderLines</button>
 <button id="button" (click)="toggleDevInfo()">Toggle Dev Info</button>
+<button id="button" (click)="toggleRoomGaps()">Toggle Room Gaps</button>
 
 <div class="DPContainer" id="DPContainer">
 
@@ -11,13 +14,13 @@
          Level {{ this.level.levelNo }}
       </div>
       <!---------------------//draw rooms ------------------------>
-      <div *ngFor="let room of level.roomList">
+      <div *ngFor="let room of level.roomList" attr.id="Location{{room.roomID}}">
 
          <!-- draw a random gap -->
          <div *ngIf="room.roomNo === 0">
             <div [ngClass]="{'randomgap': DungeonPathService.showDevInfo === true}"
                *ngIf="DungeonPathService.showDevInfo == true">
-               lv {{room.levelNo}} <br>
+               <!-- lv {{room.levelNo}} <br> -->
                rm {{room.roomNo}}<br>
                {{ room.roomType}}
             </div>
@@ -27,8 +30,9 @@
          <div class="flexrow">
             <div class="room" *ngIf="room.roomNo !== 0">
                <div *ngIf="DungeonPathService.showDevInfo === true && room.roomNo !== 0">
-                  lv {{room.levelNo}} <br>
+                  <!-- lv {{room.levelNo}} <br> -->
                   rm {{room.roomNo}}<br>
+                  {{room.roomID}}<br>
                   {{room.roomType}}
                </div>
             </div>
@@ -44,59 +48,3 @@
 
 </div>
 
-
-
-
-
-<!-- 
-<div class="DPContainer">
-
-   <div class="section">
-      <div class="room">
-         A
-      </div>
-   </div>
-
-   <div class="section">
-      <div class="filler">
-         filler
-      </div>
-      <div class="room">
-         B-1
-      </div>
-      <div class="room">
-         B-2
-      </div>
-      <div class="filler">
-         filler
-      </div>
-   </div>
-
-   <div class="section">
-      <div class="room">
-         C-1
-      </div>
-      <div class="room">
-         C-2
-      </div>
-      <div class="room">
-         C-3
-      </div>
-   </div>
-
-   <div class="section">
-      <div class="room">
-         D-1
-      </div>
-      <div class="room">
-         D-2
-      </div>
-   </div>
-
-   <div class="section">
-      <div class="room">
-         E-1
-      </div>
-   </div>
-
-</div> -->

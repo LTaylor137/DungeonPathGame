@@ -1,7 +1,18 @@
 import { Injectable } from '@angular/core';
-
+import { Component, Inject, OnInit } from '@angular/core';
+import {DOCUMENT} from "@angular/common";
 import { Level } from '../components/Level/Level';
 import { Room } from '../components/Room/Room';
+import { LeaderLineComponent } from "../components/leaderline/leaderline.component"
+
+declare let LeaderLine: any;
+
+@Component({
+  selector: 'app-leaderline',
+  templateUrl: '../components/leaderline/leaderline.component.html',
+  // template: '<div id="d1">div 1</div><div style="height:500px"><!-- JUST SOME SPACE --></div><div id="d2"> Connect me</div>',
+  styleUrls: ['../components/leaderline/leaderline.component.css']
+})
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +30,11 @@ export class DungeonPathService {
   maxreached: boolean = false;
   tooclosetoMax: boolean = false;
   showDevInfo: boolean = true;
+  showRoomGaps: boolean = true;
+  line1;
 
-  constructor() { }
+  constructor(@Inject(DOCUMENT) private document){
+  }
 
   ngOnInit(): void {
   }
@@ -39,6 +53,36 @@ export class DungeonPathService {
     } else {
       this.showDevInfo = false;
     }
+  }
+
+  toggleRoomGaps() {
+    if (this.showRoomGaps === false) {
+      this.showRoomGaps = true;
+    } else {
+      this.showRoomGaps = false;
+    }
+  }
+
+  generateLeaderLines(){
+     this.line1 = new LeaderLine(
+      this.document.getElementById('Location'+'11'),
+      this.document.getElementById('Location'+'21')
+    );
+    // this.line = new LeaderLine(
+    //   this.document.getElementById('Location'+'11'),
+    //   this.document.getElementById('Location'+'22')
+    // );
+  }
+
+  deleteLeaderLines(){
+    this.line1.remove()
+  }
+
+  createAnID(LvlNo: number, RmNo: number)
+  {
+
+let ID: string = (LvlNo.toString() + RmNo.toString());
+    return ID;
   }
 
   generateMap() {
@@ -63,38 +107,39 @@ export class DungeonPathService {
       while (roomNo <= this.maxThisLevel && (this.currentLevelNo <= this.mapSize / 2)) {
 
         console.log("grow mode")
-        console.log("this.currentLevelNo   = " + this.currentLevelNo)
         console.log("this.mapSize   =  " + this.mapSize)
         console.log("currentLevelNo  " + this.currentLevelNo)
         console.log("maxThisLevel  " + this.maxThisLevel)
         console.log("maxNextLevel  " + this.maxNextLevel)
 
         // create a gap 
-        // if (Math.random() > 0.5) {
-        //   thislevel.roomList.push(new Room(this.currentLevelNo, 0, "gap", 0, 0))
-        // }
+        if (Math.random() > 0.5 && this.showRoomGaps === true) {
+          thislevel.roomList.push(new Room(this.currentLevelNo, 0, "gap", 0, 0, ""))
+        }
+
         // this room will create first
         if (roomNo === 1 && this.currentLevelNo === 1) {
-          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "first", nextLevelRoomNo, nextLevelRoomNo + 1))
+          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "first", nextLevelRoomNo, nextLevelRoomNo + 1, this.createAnID(this.currentLevelNo, roomNo)))
           roomNo += 1;
           nextLevelRoomNo += 1;
           this.maxNextLevel = 2;
           break;
         } else {
-          // dont split if nearing max, but allow for splits on last room.
-          if ((this.maxThisLevel >= (this.mapSize / 3))) {
-            thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "max", nextLevelRoomNo, 0))
+          // dont split if nearing max, but allow for splits on last room. 
+          // set map width / num rooms per level here.
+          if ((this.maxThisLevel >= (this.mapSize / 4))) {
+            thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "max", nextLevelRoomNo, 0, this.createAnID(this.currentLevelNo, roomNo)))
             roomNo += 1;
             nextLevelRoomNo += 1;
           } else {
             // split - 
-            if (Math.random() > 0.75) {
-              thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "split", nextLevelRoomNo, nextLevelRoomNo + 1))
+            if (Math.random() > 0.5) {
+              thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "split", nextLevelRoomNo, nextLevelRoomNo + 1, this.createAnID(this.currentLevelNo, roomNo)))
               roomNo += 1;
               nextLevelRoomNo += 2;
               this.maxNextLevel += 1;
             } else {
-              thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "room", nextLevelRoomNo, 0))
+              thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "room", nextLevelRoomNo, 0, this.createAnID(this.currentLevelNo, roomNo)))
               roomNo += 1;
               nextLevelRoomNo += 1;
             }
@@ -111,36 +156,39 @@ export class DungeonPathService {
       // shrink
       //-----------------------create rooms------------------------
       while (this.maxThisLevel > 1 && (this.currentLevelNo > this.mapSize / 2)) {
+
         // create a gap
-        // if (Math.random() > 0.5) {
-        //   thislevel.roomList.push(new Room(this.currentLevelNo, 0, "gap", nextLevelRoomNo, 0))
-        // }
+        if (Math.random() > 0.5 && this.showRoomGaps === true) {
+          thislevel.roomList.push(new Room(this.currentLevelNo, 0, "gap", nextLevelRoomNo, 0, ""))
+        }
+
         console.log("shrink mode")
         console.log("this.mapSize " + this.mapSize / 2)
-        console.log("this.currentLevelNo " + this.currentLevelNo)
         console.log("currentLevelNo  " + this.currentLevelNo)
         console.log("maxThisLevel  " + this.maxThisLevel)
         console.log("maxNextLevel  " + this.maxNextLevel)
         
-
+        // add 1 room on first level >50% of map. I don't know why this is needed but it is.
         if (this.currentLevelNo === 6 && roomNo === 1) {
-          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "first", nextLevelRoomNo, 0))
+          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "first", nextLevelRoomNo, 0, this.createAnID(this.currentLevelNo, roomNo)))
           roomNo += 1;
           nextLevelRoomNo += 1;
           this.maxNextLevel += 1;
          }
 
           //join
-        if (Math.random() > 0.50 && roomNo !== 1 && joined === false) {
-          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "join", nextLevelRoomNo - 1, nextLevelRoomNo - 1))
+        if ((this.currentLevelNo >= (this.mapSize-2) && roomNo == 2) ||
+            (this.currentLevelNo >= (this.mapSize-2) && roomNo == 4) || 
+            (Math.random() > 0.70 && roomNo !== 1 && joined === false)) {
+          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "join", nextLevelRoomNo - 1, nextLevelRoomNo - 1, this.createAnID(this.currentLevelNo, roomNo)))
           roomNo += 1;
-          // nextLevelRoomNo -= 1;
           this.maxNextLevel -= 1;
           joined = true;
         } else {
-          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "room", nextLevelRoomNo, 0))
+          thislevel.roomList.push(new Room(this.currentLevelNo, roomNo, "room", nextLevelRoomNo, 0, this.createAnID(this.currentLevelNo, roomNo)))
           roomNo += 1;
           nextLevelRoomNo += 1;
+          joined = false;
         }
         this.maxThisLevel -= 1;
       }
@@ -156,190 +204,6 @@ export class DungeonPathService {
   }
 
 }
-
-
-
-  //       while (this.maxreached == false) // num levels
-  //       {
-
-
-  //     }
-
-  //         // grow =========================================================
-  //         while (maxreached == false) // num levels
-  //         {
-  //             currentLevelNo++;
-  //             Level List = new Level(currentLevelNo);
-  //             maxroomscurrentLevelNo = maxroomsofnextlevel;
-  //             nextLevelRoomNo = 1;
-  //             if (maxreached == true) // break if 5 or 6
-  //             {
-  //                 System.Console.WriteLine("break");
-  //                 break;
-  //             }
-  //             for (int CurrentRoom = 1; CurrentRoom <= maxroomscurrentLevelNo; CurrentRoom++) // num rooms
-  //             {
-  //                 if (nextLevelRoomNo >= MapSize) // check if 5 or 6
-  //                 {
-  //                     maxreached = true;
-  //                     System.Console.WriteLine("maxreached");
-  //                 }
-  //                 int thisrandom = GetRandom(currentLevelNo);
-  //                 if (thisrandom >= 2 && nextLevelRoomNo < MapSize - 1 && tooclosetoMax == false) // add a room that joins onto 2 of next level. increase next level room count by 1.
-  //                 {
-  //                     room rm = new room(currentLevelNo, CurrentRoom, nextLevelRoomNo, (nextLevelRoomNo + 1));
-  //                     maxroomsofnextlevel++;
-  //                     nextLevelRoomNo += 2;
-  //                     List.add(rm);
-  //                     System.Console.WriteLine($"nextLevelRoomNo: {nextLevelRoomNo}");
-  //                     if (maxroomscurrentLevelNo >= MapSize - 1) {
-  //                         tooclosetoMax = true;
-  //                         System.Console.WriteLine($"tooclosetoMax {tooclosetoMax}");
-  //                     }
-  //                 }
-  //                 else {
-  //                     room rm = new room(currentLevelNo, CurrentRoom, nextLevelRoomNo, (nextLevelRoomNo));
-  //                     nextLevelRoomNo += 1;
-  //                     List.add(rm);
-  //                     System.Console.WriteLine($"nextLevelRoomNo: {nextLevelRoomNo}");
-  //                 }
-  //             }
-  //             MapList.Add(List);
-  //         }
-
-  //         //stay===========================================================
-  //         for (int x = 1; x <= 1; x++) // num levels
-  //         {
-  //             currentLevelNo++;
-  //             Level List = new Level(currentLevelNo);
-  //             maxroomscurrentLevelNo = maxroomsofnextlevel;
-  //             nextLevelRoomNo = 1;
-
-  //             for (int CurrentRoom = 1; CurrentRoom <= maxroomscurrentLevelNo; CurrentRoom++) // num rooms
-  //             {
-  //                 room rm = new room(currentLevelNo, CurrentRoom, nextLevelRoomNo, (nextLevelRoomNo));
-  //                 nextLevelRoomNo += 1;
-  //                 List.add(rm);
-  //             }
-  //             MapList.Add(List);
-  //         }
-
-  //         //shrink========================================================
-  //         while (maxroomscurrentLevelNo > 1) {
-  //             currentLevelNo++;
-  //             Level List = new Level(currentLevelNo);
-  //             maxroomscurrentLevelNo = maxroomsofnextlevel;
-
-  //             System.Console.WriteLine(maxroomscurrentLevelNo);
-
-  //             for (int CurrentRoom = 1; CurrentRoom <= maxroomscurrentLevelNo; CurrentRoom++) // num rooms
-  //             {
-  //                 int thisrandom = GetRandom(currentLevelNo);
-  //                 if (thisrandom >= 3 && CurrentRoom > 1) // add a room that joins onto 2 of next level. increase next level room count by 1.
-  //                 {
-  //                     room rm = new room(currentLevelNo, CurrentRoom, CurrentRoom - 1, (CurrentRoom - 1));
-  //                     maxroomsofnextlevel = CurrentRoom - 1;
-  //                     List.add(rm);
-  //                 }
-  //                 else {
-  //                     room rm = new room(currentLevelNo, CurrentRoom, CurrentRoom, (CurrentRoom));
-  //                     maxroomsofnextlevel = CurrentRoom;
-  //                     List.add(rm);
-  //                 }
-  //             }
-  //             MapList.Add(List);
-  //         }
-  //         System.Console.WriteLine("end");
-
-
-  //      static int GetRandom(int takecurrentLevelNo) {
-  //         Random random = new Random();
-  //         int GetRandom = random.Next(0, takecurrentLevelNo);
-  //         if (takecurrentLevelNo == 1) {
-  //             GetRandom = 2;
-  //         }
-  //         return GetRandom;
-  //     }
-
-
-  //     // print and end =================================================
-  //     PrintTheMap();
-
-  //      void PrintTheMap()
-  // {
-  //     foreach(var level in MapList)
-  //     {
-  //         int x = level.RoomList.Count;
-  //         int y = level.LevelNo;
-  //         TheGapBefore(x, y);
-
-  //         foreach(var room in level.RoomList)
-  //         {
-  //             if (y >= 10) {
-  //                 System.Console.Write($"[L{room.LevelNo}/R{room.RoomNo}]  ");
-  //             }
-  //             else {
-  //                 System.Console.Write($"[L{room.LevelNo}/R{room.RoomNo}]   ");
-  //             }
-  //         }
-
-  //         System.Console.WriteLine();
-  //         TheGapBefore(x, 1);
-
-  //         foreach(var room in level.RoomList)
-  //         {
-  //             System.Console.Write($"[ {room.NextRoomNo}/{room.NextRoomNoExtr} ]   ");
-  //         }
-
-  //         System.Console.WriteLine();
-  //     }
-  // }
-
-  // void TheGapBefore(int x, int y)
-  // {
-  //     if (y <= 9) {
-  //         switch (x) {
-  //             case 1:
-  //                 System.Console.Write("                    ");
-  //                 break;
-  //             case 2:
-  //                 System.Console.Write("               ");
-  //                 break;
-  //             case 3:
-  //                 System.Console.Write("          ");
-  //                 break;
-  //             case 4:
-  //                 System.Console.Write("     ");
-  //                 break;
-  //         }
-  //     }
-  //     else if (y >= 10) {
-  //         switch (x) {
-  //             case 1:
-  //                 System.Console.Write("                    ");
-  //                 break;
-  //             case 2:
-  //                 System.Console.Write("               ");
-  //                 break;
-  //             case 3:
-  //                 System.Console.Write("          ");
-  //                 break;
-  //             case 4:
-  //                 System.Console.Write("     ");
-  //                 break;
-  //         }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

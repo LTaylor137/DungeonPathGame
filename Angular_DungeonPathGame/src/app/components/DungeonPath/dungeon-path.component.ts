@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DungeonPathService } from "../../services/DungeonPath.service";
+import { LeaderLineComponent } from "../leaderline/leaderline.component"
 import { Level } from '../Level/Level';
 import { Room } from '../Room/Room';
 
@@ -16,8 +17,15 @@ export class DungeonPathComponent implements OnInit {
     }
 
     Generate() {
-        console.log("clickgenerate");
         this.DungeonPathService.generateMap()
+    }
+
+    generateLeaderLines() {
+        this.DungeonPathService.generateLeaderLines()
+    }
+
+    deleteLeaderLines() {
+        this.DungeonPathService.deleteLeaderLines()
     }
 
     randomMath() {
@@ -27,5 +35,10 @@ export class DungeonPathComponent implements OnInit {
     toggleDevInfo() {
         this.DungeonPathService.toggleDevInfo()
     }
+
+    toggleRoomGaps() {
+        this.DungeonPathService.toggleRoomGaps()
+    }
+
 
 }
