@@ -7,7 +7,7 @@ import { DungeonPathComponent } from './components/DungeonPath/dungeon-path.comp
 import { LevelComponent } from './components/Level/level.component';
 import { RoomComponent } from './components/Room/room.component';
 import { LeaderLineComponent } from './components/leaderline/leaderline.component';
-import { TestdivsComponent } from './components/testdivs/testdivs.component';
+
 
 @NgModule({
   declarations: [
@@ -15,8 +15,8 @@ import { TestdivsComponent } from './components/testdivs/testdivs.component';
     DungeonPathComponent,
     LevelComponent,
     RoomComponent,
-    LeaderLineComponent,
-    TestdivsComponent
+    LeaderLineComponent
+   
   ],
   imports: [
     BrowserModule,

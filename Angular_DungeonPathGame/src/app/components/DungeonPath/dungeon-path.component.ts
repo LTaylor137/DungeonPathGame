@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DungeonPathService } from "../../services/DungeonPath.service";
+import { PlayerService } from "../../services/player.service";
 import { LeaderLineComponent } from "../leaderline/leaderline.component"
 import { Level } from '../Level/Level';
 import { Room } from '../Room/Room';
@@ -11,7 +12,7 @@ import { Room } from '../Room/Room';
 })
 export class DungeonPathComponent implements OnInit {
 
-    constructor(public DungeonPathService: DungeonPathService) { }
+    constructor(public DungeonPathService: DungeonPathService, public PlayerService: PlayerService) { }
 
     ngOnInit(): void {
     }
@@ -20,14 +21,22 @@ export class DungeonPathComponent implements OnInit {
         this.DungeonPathService.generateMap()
     }
 
+    makeConnections() {
+        this.DungeonPathService.makeConnections()
+    }
+
     generateLeaderLines() {
         this.DungeonPathService.generateLeaderLines()
     }
 
-    deleteLeaderLines() {
-        this.DungeonPathService.deleteLeaderLines()
+    resetPlayer() {
+        this.DungeonPathService.resetPlayer()
     }
 
+    movehere(x){
+        this.DungeonPathService.movehere(x)
+    }
+    
     randomMath() {
         return Math.random();
     }
@@ -40,5 +49,9 @@ export class DungeonPathComponent implements OnInit {
         this.DungeonPathService.toggleRoomGaps()
     }
 
+    reduceBlocks(){
+        console.log("reduceBlocks vlicked")
+        // this.DungeonPathService.reduceBlocks()
+    }
 
 }
