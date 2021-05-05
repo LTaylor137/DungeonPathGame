@@ -19,14 +19,14 @@
       <div *ngFor="let room of level.roomList" attr.id="Location{{room.roomID}}">
 
          <!-- draw a random gap -->
-         <!-- <div *ngIf="room.roomNo === 0">
+         <div *ngIf="room.roomNo === 0">
             <div [ngClass]="{'randomgap': DungeonPathService.showDevInfo === true}"
-               *ngIf="DungeonPathService.showDevInfo == true"> -->
-         <!-- lv {{room.levelNo}} <br> -->
-         <!-- rm {{room.roomNo}}<br>
+               *ngIf="DungeonPathService.showDevInfo == true"> 
+         lv {{room.levelNo}} <br>
+         rm {{room.roomNo}}<br>
                {{ room.roomType}}
             </div>
-         </div> -->
+         </div> 
 
          <!-- draw a room -->
          <div class="flexrow">
@@ -39,7 +39,7 @@
                </div>
 
                <button *ngIf="room.roomID === (DungeonPathService.nextID1) || room.roomID === (DungeonPathService.nextID2)"
-                  class="rmButton" id="button" (click)="movehere(room.roomID)"></button>
+                  class="rmButton" id="button" (click)="movePlayer(room.roomID)"></button>
 
                <div class="player" *ngIf="room.roomID === DungeonPathService.posID"></div>
 

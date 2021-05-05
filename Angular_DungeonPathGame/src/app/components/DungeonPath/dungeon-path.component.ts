@@ -33,8 +33,8 @@ export class DungeonPathComponent implements OnInit {
         this.DungeonPathService.resetPlayer()
     }
 
-    movehere(x){
-        this.DungeonPathService.movehere(x)
+    movePlayer(x){
+        this.DungeonPathService.movePlayer(x)
     }
     
     randomMath() {
