@@ -6,7 +6,6 @@
 <button id="button" (click)="toggleRoomGaps()">Toggle Room Gaps</button>
  Enter map length here: <input id="mapLengthInput">
 
- <button id="button" (click)="reduceBlocks()">reduceBlocks</button>
  
 
 <div class="DPContainer" id="DPContainer">
@@ -22,9 +21,7 @@
          <div *ngIf="room.roomNo === 0">
             <div [ngClass]="{'randomgap': DungeonPathService.showDevInfo === true}"
                *ngIf="DungeonPathService.showDevInfo == true"> 
-         lv {{room.levelNo}} <br>
-         rm {{room.roomNo}}<br>
-               {{ room.roomType}}
+        <p> lv {{room.levelNo}} rm {{room.roomNo}} type {{ room.roomType}}</p>
             </div>
          </div> 
 
@@ -32,10 +29,10 @@
          <div class="flexrow">
             <div class="room" *ngIf="room.roomNo !== 0">
                <div *ngIf="DungeonPathService.showDevInfo === true && room.roomNo !== 0">
-                  <!-- lv {{room.levelNo}} <br> -->
+                  lv {{room.levelNo}} <br>
                   rm {{room.roomNo}}<br>
                   {{room.roomID}}<br>
-                  {{room.roomType}}
+                  {{room.conxType}}
                </div>
 
                <button *ngIf="room.roomID === (DungeonPathService.nextID1) || room.roomID === (DungeonPathService.nextID2)"
@@ -45,8 +42,8 @@
 
             </div>
             <div class="nextroominfo" *ngIf="DungeonPathService.showDevInfo === true && room.roomNo !== 0">
-               {{room.nextRoomNo}} <br>
-               {{room.nextRoomNoExtr}}
+               {{room.conxRm1}} <br>
+               {{room.conxRm2}}
             </div>
          </div>
 

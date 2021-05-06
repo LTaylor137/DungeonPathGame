@@ -2,19 +2,19 @@
 export class Room {
      levelNo: number;
      roomNo: number;
-     roomType: string;
-     nextRoomNo: number;
-     nextRoomNoExtr: number;
+     conxRm1: number;
+     conxRm2: number;
+     conxType: string;
      roomID: string;
 
-     constructor(_LevelNo: number, _RoomNo: number, _RoomType: string, _NextRoomNo: number, _NextRoomNoExtr: number, _roomID: string) 
+     constructor(_levelNo: number, _roomNo: number, _conxRm1: number, _conxRm2: number, _conxType: string, _roomID: string) 
           
           {
-          this.levelNo = _LevelNo;
-          this.roomNo = _RoomNo;
-          this.roomType = _RoomType;
-          this.nextRoomNo = _NextRoomNo;
-          this.nextRoomNoExtr = _NextRoomNoExtr;
+          this.levelNo = _levelNo;
+          this.roomNo = _roomNo;
+          this.conxRm1 = _conxRm1;
+          this.conxRm2 = _conxRm2;
+          this.conxType = _conxType;
           this.roomID = _roomID;
           }
 
