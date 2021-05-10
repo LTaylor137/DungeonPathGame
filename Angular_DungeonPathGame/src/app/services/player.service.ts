@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Component, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from "@angular/common";
-import { Level } from '../components/Level/Level';
-import { Room } from '../components/Room/Room';
-import { Connection } from '../components/leaderline/Connection';
+import { Level } from '../components/Classes/Level';
+import { Room } from '../components/Classes/Room';
+import { Connection } from '../components/Classes/Connection';
 import { DungeonPathService } from '../services/DungeonPath.service';
 // import { resourceLimits } from 'node:worker_threads';
 
@@ -11,6 +11,7 @@ import { DungeonPathService } from '../services/DungeonPath.service';
 @Injectable({
   providedIn: 'root'
 })
+
 export class PlayerService {
 
   // posID: string = "11";

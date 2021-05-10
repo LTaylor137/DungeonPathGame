@@ -1,4 +1,4 @@
-import { Room } from '../Room/Room';
+import { Room } from './Room';
 
 export class Level {
     levelNo: number;

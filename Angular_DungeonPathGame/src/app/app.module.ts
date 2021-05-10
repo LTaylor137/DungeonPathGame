@@ -4,18 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DungeonPathComponent } from './components/DungeonPath/dungeon-path.component';
-import { LevelComponent } from './components/Level/level.component';
-import { RoomComponent } from './components/Room/room.component';
-import { LeaderLineComponent } from './components/leaderline/leaderline.component';
+import { RoomEventComponent } from './components/room-event/room-event.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DungeonPathComponent,
-    LevelComponent,
-    RoomComponent,
-    LeaderLineComponent
+    RoomEventComponent
    
   ],
   imports: [

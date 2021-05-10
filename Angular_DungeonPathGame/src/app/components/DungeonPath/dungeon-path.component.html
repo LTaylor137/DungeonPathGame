@@ -1,14 +1,12 @@
 <button id="button" (click)="Generate()">click to generate map</button>
-<!-- <button id="button" (click)="makeConnections()">makeConnections</button> -->
-<!-- <button id="button" (click)="generateLeaderLines()">Generate LeaderLines</button> -->
 <button id="button" (click)="resetPlayer()">Reset Player</button>
 <button id="button" (click)="toggleDevInfo()">Toggle Dev Info</button>
 <button id="button" (click)="toggleRoomGaps()">Toggle Room Gaps</button>
- Enter map length here: <input id="mapLengthInput">
+Enter map length here: <input id="mapLengthInput">
 
- 
 
 <div class="DPContainer" id="DPContainer">
+
    <!---------------------//draw levels ------------------------>
    <div class="level" *ngFor="let level of DungeonPathService.levelList">
       <!-- <div *ngIf="DungeonPathService.showDevInfo == true"> -->
@@ -20,35 +18,52 @@
          <!-- draw a random gap -->
          <div *ngIf="room.roomNo === 0">
             <div [ngClass]="{'randomgap': DungeonPathService.showDevInfo === true}"
-               *ngIf="DungeonPathService.showDevInfo == true"> 
-        <p> lv {{room.levelNo}} rm {{room.roomNo}} type {{ room.roomType}}</p>
+               *ngIf="DungeonPathService.showDevInfo == true">
+               <p> lv {{room.levelNo}} rm {{room.roomNo}} type {{ room.roomType}}</p>
             </div>
-         </div> 
+         </div>
 
          <!-- draw a room -->
          <div class="flexrow">
+
             <div class="room" *ngIf="room.roomNo !== 0">
+
                <div *ngIf="DungeonPathService.showDevInfo === true && room.roomNo !== 0">
                   lv {{room.levelNo}} <br>
                   rm {{room.roomNo}}<br>
                   {{room.roomID}}<br>
                   {{room.conxType}}
+                  {{room.roomType}}
                </div>
 
-               <button *ngIf="room.roomID === (DungeonPathService.nextID1) || room.roomID === (DungeonPathService.nextID2)"
-                  class="rmButton" id="button" (click)="movePlayer(room.roomID)"></button>
+               <button
+                  *ngIf="room.roomID === (DungeonPathService.nextID1) || room.roomID === (DungeonPathService.nextID2)"
+                  class="rmButton" id="button" (click)="movePlayer(room.roomID)">
+               </button>
 
                <div class="player" *ngIf="room.roomID === DungeonPathService.posID"></div>
 
+               <div *ngIf="DungeonPathService.showDevInfo === false && room.roomNo !== 0">
+                  <span *ngIf="room.roomType === 'm'" class=" iconify" data-icon="ri-skull-2-line" data-inline="false">
+                  </span>
+                  <span *ngIf="room.roomType === 'B'" class=" iconify" color="orange" data-icon="ri-skull-2-line"
+                     data-inline="false"></span>
+                  <span *ngIf="room.roomType === 'FB'" class=" iconify" color="red" data-icon="ri-skull-2-line"
+                     data-inline="false"></span>
+                  <span *ngIf="room.roomType === '$'" class=" iconify" color="gold" data-icon="mdi-treasure-chest"
+                     data-inline="false"></span>
+                  <span *ngIf="room.roomType === 'f'" class=" iconify" color="red" data-icon="majesticons:fire"
+                     data-inline="false"></span>
+
+               </div>
+               <div class="nextroominfo" *ngIf="DungeonPathService.showDevInfo === true && room.roomNo !== 0">
+                  {{room.conxRm1}} <br>
+                  {{room.conxRm2}}
+               </div>
             </div>
-            <div class="nextroominfo" *ngIf="DungeonPathService.showDevInfo === true && room.roomNo !== 0">
-               {{room.conxRm1}} <br>
-               {{room.conxRm2}}
-            </div>
+
          </div>
 
       </div>
 
    </div>
-
-</div>

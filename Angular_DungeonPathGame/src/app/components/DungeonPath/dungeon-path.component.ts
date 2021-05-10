@@ -1,15 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DungeonPathService } from "../../services/DungeonPath.service";
 import { PlayerService } from "../../services/player.service";
-import { LeaderLineComponent } from "../leaderline/leaderline.component"
-import { Level } from '../Level/Level';
-import { Room } from '../Room/Room';
+// import { LeaderLineComponent } from "../leaderline/leaderline.component"
+import { Level } from '../Classes/Level';
+import { Room } from '../Classes/Room';
 
 @Component({
     selector: 'app-dungeon-path',
     templateUrl: './dungeon-path.component.html',
     styleUrls: ['./dungeon-path.component.css']
 })
+
+
+
 export class DungeonPathComponent implements OnInit {
 
     constructor(public DungeonPathService: DungeonPathService, public PlayerService: PlayerService) { }
@@ -52,6 +55,11 @@ export class DungeonPathComponent implements OnInit {
     reduceBlocks(){
         console.log("reduceBlocks vlicked")
         // this.DungeonPathService.reduceBlocks()
+    }
+
+    getMapSize (){
+        var x = document.getElementById("mapLengthInput");
+        this.DungeonPathService.getMapSize(x);
     }
 
 }

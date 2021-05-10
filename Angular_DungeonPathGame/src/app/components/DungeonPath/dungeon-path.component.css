@@ -1,6 +1,6 @@
 .DPContainer {
   width: 100%;
-  height: 90vh;
+  height: 60vh;
   background-color: rgb(116, 102, 58);
   display: flex;
   flex-direction: row;
@@ -43,20 +43,34 @@
   text-align: center;
   display: flex;
   align-items: center;
+  /* margin: 25px; */
   z-index: 5;
+}
+
+.iconify {
+  width: 50px;
+  height: 50px;
+  z-index: 4;
+  user-select: none;
+  /* border-radius: 20px;
+  border-style:double;
+  border-width: 20px;
+  border-color: chartreuse;
+  background-color: rgb(8, 53, 14); */
+  /* color: red; */
 }
 
 .rmButton {
   width: 50px;
   height: 50px;
   border-radius: 20px;
-  border-width: 17px;
+  border-width: 3px;
   border-style: solid;
-  border-color: rgb(0, 0, 0);
-  background-color: rgb(82, 82, 82);
-  text-align: center;
-  z-index: 6;
+  border-color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 7;
   cursor: pointer;
+  position:absolute;
   transition: .25s;
 }
 
@@ -64,13 +78,12 @@
   width: 50px;
   height: 50px;
   border-radius: 20px;
-  border-width: 4px;
+  border-width: 5px;
   border-style: solid;
-  border-color: rgb(0, 0, 0);
-  background-color: rgb(255, 255, 255);
-  text-align: center;
+  border-color: rgb(255, 255, 255);
+  background-color: rgba(0, 0, 0, 0);
   z-index: 6;
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 .nextroominfo {
@@ -94,8 +107,8 @@
   margin-left: 5px;
   background-color: rgb(199, 160, 31);
   /* color: white; */
+  position:absolute;
   text-align: center;
- 
   z-index: 10;
 }
 
