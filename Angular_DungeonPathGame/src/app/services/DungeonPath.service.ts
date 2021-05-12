@@ -46,12 +46,12 @@ export class DungeonPathService {
   ngOnInit(): void {
   }
 
-  getMapSize(x){
-this.mapSize = x;
+  getMapSize(x) {
+    this.mapSize = x;
   }
 
   setMapSize() {
-    this.mapSize =10;
+    this.mapSize = 10;
   }
 
   wipeLists() {
@@ -132,14 +132,21 @@ this.mapSize = x;
     setTimeout(() => { this.generateLeaderLines(); }, 0);
   }
 
+getRoomType(){
+
+x = this.l
+
+
+}
+
   generateLeaderLines() {
     this.connectionsList.forEach(connex => {
       let line = new LeaderLine(
         LeaderLine.pointAnchor(this.document.getElementById("Location" + connex.start.toString())),
         LeaderLine.pointAnchor(this.document.getElementById("Location" + connex.end.toString())),
         {
-          color: 'black', 
-          size: 15, 
+          color: 'black',
+          size: 15,
           path: "straight",
           startPlug: "behind",
           endPlug: "disc"
@@ -157,31 +164,33 @@ this.mapSize = x;
     });
   }
 
-  // this creates random connections between standard rooms to promote more path choices.
-  getRoomType(lvl: number, rmNo: number) {
+  // this assigns room types 
+  setRoomType(lvl: number, rmNo: number) {
 
     if (Math.random() > 0.85 &&
-     lvl !== (this.mapSize / 2 + 1) &&
-     lvl !== (this.mapSize - 1) &&
-     lvl !== (this.mapSize)) {
+      lvl !== (this.mapSize / 2 + 1) &&
+      lvl !== (this.mapSize - 1) &&
+      lvl !== (this.mapSize)) {
       lvl = 20;
     } else if (Math.random() > 0.9 &&
-     lvl !== (this.mapSize / 2 + 1) &&
-     lvl !== (this.mapSize - 1) &&
-     lvl !== (this.mapSize)) {
+      lvl !== (this.mapSize / 2 + 1) &&
+      lvl !== (this.mapSize - 1) &&
+      lvl !== (this.mapSize)) {
       lvl = this.mapSize - 1;
     }
 
     switch (lvl) {
       case 1:
         return "x";
+      case 666:
+        return "used";
       case 20:
         return "$";
       case (this.mapSize / 2 + 1):
         return "B";
       case this.mapSize:
         return "FB";
-        case this.mapSize - 1:
+      case this.mapSize - 1:
         return "f";
       default:
         return "m";
@@ -274,13 +283,13 @@ this.mapSize = x;
 
         // if room below lvl 3 increase split rate.
         if (this.LevelNo === 1) {
-          thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, ConnectionRoomNo + 1, "first", this.getRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
+          thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, ConnectionRoomNo + 1, "first", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
           roomNo += 1;
           ConnectionRoomNo += 2;
           this.maxRmNextLevel += 1;
           this.splitBlock = true;
         } else if ((Math.random() > 0.3) && this.LevelNo === 2 || this.maxRmThisLevel < (this.mapSize / 5)) {
-          thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, ConnectionRoomNo + 1, "splithi%", this.getRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
+          thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, ConnectionRoomNo + 1, "splithi%", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
           roomNo += 1;
           ConnectionRoomNo += 2;
           this.maxRmNextLevel += 1;
@@ -292,13 +301,13 @@ this.mapSize = x;
           if (this.maxRmThisLevel >= (this.mapSize / 2)) {
             // join - or stay
             if ((this.LevelNo > this.mapSize / 6) && roomNo !== 1 && Math.random() > 0.8 && this.joinBlock === false) {
-              thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo - 1, 0, "join1", this.getRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
+              thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo - 1, 0, "join1", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
               roomNo += 1;
               this.maxRmNextLevel -= 1;
               this.joinBlock = true;
             } else {
               thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo,
-                this.randomJoin(this.LevelNo, roomNo, ConnectionRoomNo, this.maxRmThisLevel), "Smax", this.getRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
+                this.randomJoin(this.LevelNo, roomNo, ConnectionRoomNo, this.maxRmThisLevel), "Smax", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
               roomNo += 1;
               ConnectionRoomNo += 1;
 
@@ -309,7 +318,7 @@ this.mapSize = x;
             if (Math.random() > 0.8 && this.splitBlock === false) {
               //add gap
               // thislevel.roomList.push(new Room(this.LevelNo, 0, "gap", 0, 0, ""))
-              thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, ConnectionRoomNo + 1, "split", this.getRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
+              thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, ConnectionRoomNo + 1, "split", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
 
               roomNo += 1;
               ConnectionRoomNo += 2;
@@ -317,7 +326,7 @@ this.mapSize = x;
               this.splitBlock = true;
             } else {
               thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo,
-                this.randomJoin(this.LevelNo, roomNo, ConnectionRoomNo, this.maxRmThisLevel), "Sroom", this.getRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
+                this.randomJoin(this.LevelNo, roomNo, ConnectionRoomNo, this.maxRmThisLevel), "Sroom", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
               roomNo += 1;
               ConnectionRoomNo += 1;
               this.splitBlock = false;
@@ -338,19 +347,19 @@ this.mapSize = x;
 
         // join all rooms to final room
         if (this.LevelNo === (this.mapSize - 1)) {
-          thislevel.roomList.push(new Room(this.LevelNo, roomNo, 1, 0, "2ndlast", this.getRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
+          thislevel.roomList.push(new Room(this.LevelNo, roomNo, 1, 0, "2ndlast", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
           roomNo += 1;
           ConnectionRoomNo += 1;
           this.maxRmNextLevel = 1;
 
           //join
         } else if (Math.random() > 0.65 && roomNo !== 1 && this.joinBlock === false) {
-          thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo - 1, 0, "join2", this.getRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
+          thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo - 1, 0, "join2", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
           roomNo += 1;
           this.maxRmNextLevel -= 1;
           this.joinBlock = true;
         } else {
-          thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, 0, "Jroom", this.getRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
+          thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, 0, "Jroom", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
           roomNo += 1;
           ConnectionRoomNo += 1;
 
@@ -364,7 +373,7 @@ this.mapSize = x;
         for (let i = ((this.mapSize / 3) - (this.maxRmThisLevel)); i >= 0; i--)
           thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "", ""))
       }
-     
+
       this.LevelNo += 1;
 
       console.log("================ end of level ================")

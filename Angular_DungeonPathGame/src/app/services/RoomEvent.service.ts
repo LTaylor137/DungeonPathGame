@@ -25,7 +25,10 @@ export class RoomEventService {
   constructor(public DungeonPathService: DungeonPathService, public PlayerService: PlayerService) { }
 
   ngOnInit(): void {
-    // this.roomType = this.DungeonPathService.
+    
   }
+
+  this.roomType = this.DungeonPathService.
+
 
 }
