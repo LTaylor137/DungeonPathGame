@@ -40,6 +40,7 @@ export class DungeonPathService {
   nextID1: string;
   nextID2: string;
 
+  
   constructor(@Inject(DOCUMENT) private document) {
   }
 
@@ -134,8 +135,7 @@ export class DungeonPathService {
 
 getRoomType(){
 
-x = this.l
-
+// x = this.l
 
 }
 

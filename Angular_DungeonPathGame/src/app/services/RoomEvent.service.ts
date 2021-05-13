@@ -21,6 +21,7 @@ export class RoomEventService {
   roomType: string | null;
   LevelNo: number | null;
   roomNo: number | null;
+  PosID: string | null;
 
   constructor(public DungeonPathService: DungeonPathService, public PlayerService: PlayerService) { }
 
@@ -28,7 +29,19 @@ export class RoomEventService {
     
   }
 
-  this.roomType = this.DungeonPathService.
+  setRoom(){
 
+  this.PosID = this.DungeonPathService.posID;
+  // this.roomType = this.DungeonPathService.
+
+  this.DungeonPathService.levelList.forEach(level => {
+    level.roomList.forEach(room => {
+    if ( room.roomID === this.PosID) {
+      console.log(room.roomType)
+    }
+    });
+  });
+
+  }
 
 }
