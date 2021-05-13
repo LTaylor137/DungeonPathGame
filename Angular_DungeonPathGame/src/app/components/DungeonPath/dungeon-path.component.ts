@@ -1,9 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DungeonPathService } from "../../services/DungeonPath.service";
-import { PlayerService } from "../../services/player.service";
-// import { LeaderLineComponent } from "../leaderline/leaderline.component"
-import { Level } from '../Classes/Level';
-import { Room } from '../Classes/Room';
 
 @Component({
     selector: 'app-dungeon-path',
@@ -15,7 +11,7 @@ import { Room } from '../Classes/Room';
 
 export class DungeonPathComponent implements OnInit {
 
-    constructor(public DungeonPathService: DungeonPathService, public PlayerService: PlayerService) { }
+    constructor(public DungeonPathService: DungeonPathService) { }
 
     ngOnInit(): void {
     }

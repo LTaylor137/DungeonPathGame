@@ -4,6 +4,7 @@ import { DOCUMENT } from "@angular/common";
 import { Level } from '../components/Classes/Level';
 import { Room } from '../components/Classes/Room';
 import { Connection } from '../components/Classes/Connection';
+import { RoomEventService } from "../services/RoomEvent.service";
 
 declare let LeaderLine: any;
 
@@ -40,7 +41,7 @@ export class DungeonPathService {
   nextID1: string;
   nextID2: string;
 
-  
+
   constructor(@Inject(DOCUMENT) private document) {
   }
 
@@ -92,6 +93,13 @@ export class DungeonPathService {
     this.nextID1 = "00";
     this.nextID2 = "00";
     this.updateMoveOptions();
+    // this.Injector.setRoom();
+    this.levelList.forEach(level => {
+      level.forEach(level.roomList => {
+      
+      });
+      
+    });
   }
 
   resetPlayer() {
@@ -133,11 +141,11 @@ export class DungeonPathService {
     setTimeout(() => { this.generateLeaderLines(); }, 0);
   }
 
-getRoomType(){
+  getRoomType() {
 
-// x = this.l
+    // x = this.l
 
-}
+  }
 
   generateLeaderLines() {
     this.connectionsList.forEach(connex => {

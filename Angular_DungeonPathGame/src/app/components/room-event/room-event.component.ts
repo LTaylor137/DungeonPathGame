@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DungeonPathService } from "../../services/DungeonPath.service";
-import { PlayerService } from "../../services/player.service";
 import { RoomEventService } from "../../services/RoomEvent.service";
 
 
@@ -15,7 +14,7 @@ export class RoomEventComponent implements OnInit {
   LevelNo: number | null;
   roomNo: number | null;
 
-  constructor(public DungeonPathService: DungeonPathService, public PlayerService: PlayerService, public RoomEventService: RoomEventService) { }
+  constructor(public DungeonPathService: DungeonPathService, public RoomEventService: RoomEventService) { }
 
   ngOnInit(): void {
     this.setRoom();

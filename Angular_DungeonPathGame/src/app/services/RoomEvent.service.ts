@@ -7,7 +7,7 @@ import { Room } from '../components/Classes/Room';
 import { Connection } from '../components/Classes/Connection';
 
 import { DungeonPathService } from "../services/DungeonPath.service";
-import { PlayerService } from "../services/player.service";
+
 
 
 
@@ -23,7 +23,7 @@ export class RoomEventService {
   roomNo: number | null;
   PosID: string | null;
 
-  constructor(public DungeonPathService: DungeonPathService, public PlayerService: PlayerService) { }
+  constructor(public DungeonPathService: DungeonPathService) { }
 
   ngOnInit(): void {
     
@@ -37,7 +37,8 @@ export class RoomEventService {
   this.DungeonPathService.levelList.forEach(level => {
     level.roomList.forEach(room => {
     if ( room.roomID === this.PosID) {
-      console.log(room.roomType)
+      console.log(room.roomType);
+      this.roomType = room.roomType
     }
     });
   });
