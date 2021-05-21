@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DungeonPathService } from "../../services/DungeonPath.service";
+import { RoomEventService } from "../../services/RoomEvent.service";
 
 @Component({
     selector: 'app-dungeon-path',
@@ -7,55 +8,17 @@ import { DungeonPathService } from "../../services/DungeonPath.service";
     styleUrls: ['./dungeon-path.component.css']
 })
 
-
-
 export class DungeonPathComponent implements OnInit {
 
-    constructor(public DungeonPathService: DungeonPathService) { }
+    constructor(public DungeonPathService: DungeonPathService, public RoomEventService: RoomEventService) { }
 
     ngOnInit(): void {
     }
 
-    Generate() {
-        this.DungeonPathService.generateMap()
-    }
-
-    makeConnections() {
-        this.DungeonPathService.makeConnections()
-    }
-
-    generateLeaderLines() {
-        this.DungeonPathService.generateLeaderLines()
-    }
-
-    resetPlayer() {
-        this.DungeonPathService.resetPlayer()
-    }
-
     movePlayer(x){
         this.DungeonPathService.movePlayer(x)
+        this.RoomEventService.setRoom()
     }
     
-    randomMath() {
-        return Math.random();
-    }
-
-    toggleDevInfo() {
-        this.DungeonPathService.toggleDevInfo()
-    }
-
-    toggleRoomGaps() {
-        this.DungeonPathService.toggleRoomGaps()
-    }
-
-    reduceBlocks(){
-        console.log("reduceBlocks vlicked")
-        // this.DungeonPathService.reduceBlocks()
-    }
-
-    getMapSize (){
-        var x = document.getElementById("mapLengthInput");
-        this.DungeonPathService.getMapSize(x);
-    }
-
+ 
 }

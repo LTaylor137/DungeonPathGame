@@ -6,6 +6,7 @@ export class Room {
      conxRm2: number;
      conxType: string;
      roomType: string;
+     used: boolean = false;
      roomID: string;
 
      constructor(_levelNo: number, _roomNo: number, _conxRm1: number, _conxRm2: number, _conxType: string, _roomType:string, _roomID: string) 

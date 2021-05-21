@@ -43,21 +43,29 @@
   text-align: center;
   display: flex;
   align-items: center;
-  /* margin: 25px; */
   z-index: 5;
 }
 
 .iconify {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   z-index: 4;
   user-select: none;
-  /* border-radius: 20px;
-  border-style:double;
-  border-width: 20px;
-  border-color: chartreuse;
-  background-color: rgb(8, 53, 14); */
-  /* color: red; */
+  margin: 2.5px;
+}
+
+.used {
+  width: 50px;
+  height: 50px;
+  border-radius: 20px;
+  border-style: none;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  z-index: 9;
+  position: absolute;
+  user-select: none;
+  background-color: rgba(32, 32, 32, 0.726);
 }
 
 .rmButton {
@@ -70,7 +78,7 @@
   background-color: rgba(0, 0, 0, 0);
   z-index: 7;
   cursor: pointer;
-  position:absolute;
+  position:fixed;
   transition: .25s;
 }
 
@@ -102,12 +110,13 @@
 .player {
   width: 40px;
   height: 40px;
-  border-radius: 15px;
-  border-style: none;
-  margin-left: 5px;
-  background-color: rgb(199, 160, 31);
-  /* color: white; */
-  position:absolute;
+  border-radius: 20px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgb(0, 0, 0);
+  color: aliceblue;
+  background-color: rgb(24, 209, 55);
+  position: absolute;
   text-align: center;
   z-index: 10;
 }

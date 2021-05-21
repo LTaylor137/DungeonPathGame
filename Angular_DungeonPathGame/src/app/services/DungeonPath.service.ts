@@ -48,9 +48,6 @@ export class DungeonPathService {
   ngOnInit(): void {
   }
 
-  getMapSize(x) {
-    this.mapSize = x;
-  }
 
   setMapSize() {
     this.mapSize = 10;
@@ -77,29 +74,38 @@ export class DungeonPathService {
     }
   }
 
-  updateMoveOptions() {
-    let x = this.connectionsList.filter(conx => conx.start === this.posID)
-    this.nextID1 = x[0].end
-    console.log(this.nextID1);
-    if (x.length > 1) {
-      this.nextID2 = x[1].end
-      console.log(this.nextID2);
-    }
-    console.log(x);
-  }
-
   movePlayer(x) {
+    // change a room to used when leaving.
+    this.levelList.forEach(level => {
+      level.roomList.forEach(room => {
+        if (room.roomID === this.posID) {
+          room.used = true;
+        }
+      });
+    });
+    //then move the player icon.
     this.posID = x;
     this.nextID1 = "00";
     this.nextID2 = "00";
+
     this.updateMoveOptions();
-    // this.Injector.setRoom();
-    this.levelList.forEach(level => {
-      level.forEach(level.roomList => {
-      
-      });
-      
-    });
+
+  }
+
+  updateMoveOptions() {
+    if (this.posID !== "101") {
+      let x = this.connectionsList.filter(conx => conx.start === this.posID)
+      this.nextID1 = x[0].end
+      console.log(this.nextID1);
+      if (x.length > 1) {
+        this.nextID2 = x[1].end
+        console.log(this.nextID2);
+      }
+      console.log(x);
+    } else {
+      console.log("final room reached.")
+    }
+
   }
 
   resetPlayer() {
@@ -116,7 +122,6 @@ export class DungeonPathService {
 
   // this creates a list of all connections between rooms, to be used by leaderline
   makeConnections() {
-    // console.log("connections")
     this.levelList.forEach(element => {
       if (element.levelNo === (this.levelList.length)) {
         // do nothing
@@ -137,14 +142,7 @@ export class DungeonPathService {
         });
       }
     });
-    // console.log(this.connectionsList);
     setTimeout(() => { this.generateLeaderLines(); }, 0);
-  }
-
-  getRoomType() {
-
-    // x = this.l
-
   }
 
   generateLeaderLines() {
@@ -175,7 +173,9 @@ export class DungeonPathService {
   // this assigns room types 
   setRoomType(lvl: number, rmNo: number) {
 
-    if (Math.random() > 0.85 &&
+    if (lvl === 1) {
+      lvl = 1;
+    } else if (Math.random() > 0.85 &&
       lvl !== (this.mapSize / 2 + 1) &&
       lvl !== (this.mapSize - 1) &&
       lvl !== (this.mapSize)) {
@@ -189,22 +189,19 @@ export class DungeonPathService {
 
     switch (lvl) {
       case 1:
-        return "x";
-      case 666:
-        return "used";
+        return "start";
       case 20:
-        return "$";
+        return "treasure";
       case (this.mapSize / 2 + 1):
-        return "B";
+        return "boss";
       case this.mapSize:
-        return "FB";
+        return "finalboss";
       case this.mapSize - 1:
-        return "f";
+        return "fire";
       default:
-        return "m";
+        return "monster";
     }
   }
-
 
   // create random connections between standard rooms to promote more path choices.
   randomJoin(lvl: number, rmNo: number, conxRm1: number, maxRm: number) {
@@ -217,7 +214,7 @@ export class DungeonPathService {
     }
 
     if (this.rmBlockList.includes(rmNo)) {
-      console.log("skip this connection " + lvl + rmNo)
+      // console.log("skip this connection " + lvl + rmNo)
     } else if (lvl > 3) {
       // TODO //if Rm = 1 then add a +1 join, and then block a join afterwards.
       if (Math.random() > 0.5 && rmNo === 1) {
@@ -286,7 +283,7 @@ export class DungeonPathService {
         // create a gap 
         if (roomNo === 1 && this.showRoomGaps === true) {
           for (let i = ((this.mapSize / 3) - (this.maxRmThisLevel)); i >= 0; i--)
-            thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "", ""))
+            thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "GAP1", ""))
         }
 
         // if room below lvl 3 increase split rate.
@@ -340,7 +337,11 @@ export class DungeonPathService {
               this.splitBlock = false;
             }
           }
+
         }
+
+
+
 
       }
 
@@ -353,11 +354,18 @@ export class DungeonPathService {
         // console.log("maxRmThisLevel  " + this.maxRmThisLevel)
         // console.log("maxRmNextLevel  " + this.maxRmNextLevel)
 
+        // create a gap before first room levels -3 - max level
+        if (roomNo === 1 && this.showRoomGaps === true) {
+          for (let i = ((this.mapSize / 3) - (this.maxRmThisLevel)); i >= 0; i--)
+            thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "FR9", ""))
+        }
+
         // join all rooms to final room
         if (this.LevelNo === (this.mapSize - 1)) {
           thislevel.roomList.push(new Room(this.LevelNo, roomNo, 1, 0, "2ndlast", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
           roomNo += 1;
           ConnectionRoomNo += 1;
+
           this.maxRmNextLevel = 1;
 
           //join
@@ -371,25 +379,42 @@ export class DungeonPathService {
           roomNo += 1;
           ConnectionRoomNo += 1;
 
+
+
           this.joinBlock = false;
         }
+
+
+
+        // // create a gap after last room final level.
+        if (this.LevelNo >= (this.mapSize-3) && this.showRoomGaps === true) {
+          for (let i = ((this.mapSize / 3) - (this.maxRmThisLevel)); i >= 0; i--)
+            thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "LR9", ""))
+        }
+
         this.maxRmThisLevel -= 1;
+
       }
 
-      // create a gap 
+      // create a gap last rooms of level 1-3
       if (roomNo - 1 === this.maxRmThisLevel && this.showRoomGaps === true) {
         for (let i = ((this.mapSize / 3) - (this.maxRmThisLevel)); i >= 0; i--)
-          thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "", ""))
+          thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "LR1", ""))
       }
 
       this.LevelNo += 1;
 
-      console.log("================ end of level ================")
+      console.log("================ end of level "+this.LevelNo+"================")
       this.levelList.push(thislevel);
       console.log(this.levelList)
+      console.log("this.maxRmThisLevel")
+      console.log(this.maxRmThisLevel)
 
     }
+
     console.log("================ end of map draw ================")
+   
+
     console.log(this.levelList)
 
     this.makeConnections();

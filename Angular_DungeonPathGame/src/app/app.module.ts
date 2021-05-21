@@ -5,13 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DungeonPathComponent } from './components/DungeonPath/dungeon-path.component';
 import { RoomEventComponent } from './components/room-event/room-event.component';
+import { OptionsComponent } from './components/options/options.component';
+import { InventoryComponent } from './components/inventory/inventory.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DungeonPathComponent,
-    RoomEventComponent
+    RoomEventComponent,
+    OptionsComponent,
+    InventoryComponent
    
   ],
   imports: [
