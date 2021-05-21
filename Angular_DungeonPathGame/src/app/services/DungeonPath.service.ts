@@ -175,12 +175,12 @@ export class DungeonPathService {
 
     if (lvl === 1) {
       lvl = 1;
-    } else if (Math.random() > 0.85 &&
+    } else if (Math.random() > 0.6 &&
       lvl !== (this.mapSize / 2 + 1) &&
       lvl !== (this.mapSize - 1) &&
       lvl !== (this.mapSize)) {
       lvl = 20;
-    } else if (Math.random() > 0.9 &&
+    } else if (Math.random() > 0.8 &&
       lvl !== (this.mapSize / 2 + 1) &&
       lvl !== (this.mapSize - 1) &&
       lvl !== (this.mapSize)) {
@@ -208,30 +208,33 @@ export class DungeonPathService {
 
     let newconxRm2: number = 0;
 
-    if (lvl === 6) {
+    // wipe the blocklist of all entries at level 6
+    // if (lvl === this.mapSize) {
       this.rmBlockList = [];
-      return newconxRm2;
-    }
+    //   return newconxRm2;
+    // }
 
+    // skip if room included in block list.
     if (this.rmBlockList.includes(rmNo)) {
-      // console.log("skip this connection " + lvl + rmNo)
+
     } else if (lvl > 3) {
-      // TODO //if Rm = 1 then add a +1 join, and then block a join afterwards.
-      if (Math.random() > 0.5 && rmNo === 1) {
+
+      // if Rm = 1 then add a +1 join, and then block a join afterwards.
+      if (Math.random() > 0.3 && rmNo === 1) {
         newconxRm2 = conxRm1 + 1;  //    +
         this.rmBlockList.push(rmNo);
         this.crossbackBlock = true;
         this.joinBlock = true;
         return newconxRm2;
         // If Rm = Max then add a -1 join, but only if a +1 was not just added.
-      } else if (Math.random() > 0.5 && rmNo === maxRm) {
+      } else if (Math.random() > 0.3 && rmNo === maxRm) {
         if (this.crossbackBlock === false) {
           this.rmBlockList.push(rmNo);
           newconxRm2 = conxRm1 - 1   //    -
           return newconxRm2;
         }
         // if rmNo > 1 && < maxRm, then add a +1 or -1 
-      } else if (Math.random() > 0.5 && rmNo > 1 && rmNo < maxRm) {
+      } else if (Math.random() > 0.3 && rmNo > 1 && rmNo < maxRm) {
         if (Math.random() > 0.5) {
           this.rmBlockList.push(rmNo);
           newconxRm2 = conxRm1 + 1   //    +
@@ -268,6 +271,7 @@ export class DungeonPathService {
       var roomNo: number = 1;
       var ConnectionRoomNo = 1;
       this.maxRmThisLevel = this.maxRmNextLevel;
+      let gapAfterAmount = 0;
 
       // ===================== create rooms =====================
       // ========================= grow =========================
@@ -293,7 +297,7 @@ export class DungeonPathService {
           ConnectionRoomNo += 2;
           this.maxRmNextLevel += 1;
           this.splitBlock = true;
-        } else if ((Math.random() > 0.3) && this.LevelNo === 2 || this.maxRmThisLevel < (this.mapSize / 5)) {
+        } else if ((Math.random() > 0.6) && this.LevelNo === 2 || this.maxRmThisLevel < (this.mapSize / 5)) {
           thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, ConnectionRoomNo + 1, "splithi%", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
           roomNo += 1;
           ConnectionRoomNo += 2;
@@ -305,7 +309,7 @@ export class DungeonPathService {
           // use this to set map max width
           if (this.maxRmThisLevel >= (this.mapSize / 2)) {
             // join - or stay
-            if ((this.LevelNo > this.mapSize / 6) && roomNo !== 1 && Math.random() > 0.8 && this.joinBlock === false) {
+            if ((this.LevelNo > this.mapSize / 6) && roomNo !== 1 && Math.random() > 0.6 && this.joinBlock === false) {
               thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo - 1, 0, "join1", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
               roomNo += 1;
               this.maxRmNextLevel -= 1;
@@ -315,16 +319,12 @@ export class DungeonPathService {
                 this.randomJoin(this.LevelNo, roomNo, ConnectionRoomNo, this.maxRmThisLevel), "Smax", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
               roomNo += 1;
               ConnectionRoomNo += 1;
-
             }
 
           } else {
             // split - or stay
-            if (Math.random() > 0.8 && this.splitBlock === false) {
-              //add gap
-              // thislevel.roomList.push(new Room(this.LevelNo, 0, "gap", 0, 0, ""))
+            if (Math.random() > 0.6 && this.splitBlock === false) {
               thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, ConnectionRoomNo + 1, "split", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
-
               roomNo += 1;
               ConnectionRoomNo += 2;
               this.maxRmNextLevel += 1;
@@ -337,27 +337,23 @@ export class DungeonPathService {
               this.splitBlock = false;
             }
           }
-
         }
-
-
-
-
       }
 
       // ========================= shrink =========================
       while (this.maxRmThisLevel > 0 && (this.LevelNo > this.mapSize - 4)) {
 
-        // console.log("shrink mode")
-        // console.log("this.mapSize " + this.mapSize)
-        // console.log("LevelNo  " + this.LevelNo)
-        // console.log("maxRmThisLevel  " + this.maxRmThisLevel)
-        // console.log("maxRmNextLevel  " + this.maxRmNextLevel)
+        console.log("shrink mode")
+        console.log("LevelNo  " + this.LevelNo)
+        console.log("maxRmThisLevel  " + this.maxRmThisLevel)
+        console.log("maxRmNextLevel  " + this.maxRmNextLevel)
 
         // create a gap before first room levels -3 - max level
         if (roomNo === 1 && this.showRoomGaps === true) {
-          for (let i = ((this.mapSize / 3) - (this.maxRmThisLevel)); i >= 0; i--)
-            thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "FR9", ""))
+          for (let i = ((this.mapSize / 3) - (this.maxRmThisLevel)); i >= 0; i--) {
+            thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "FR9", ""));
+            gapAfterAmount = gapAfterAmount + 1;
+          }
         }
 
         // join all rooms to final room
@@ -365,11 +361,9 @@ export class DungeonPathService {
           thislevel.roomList.push(new Room(this.LevelNo, roomNo, 1, 0, "2ndlast", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
           roomNo += 1;
           ConnectionRoomNo += 1;
-
           this.maxRmNextLevel = 1;
-
-          //join
-        } else if (Math.random() > 0.65 && roomNo !== 1 && this.joinBlock === false) {
+          // join
+        } else if (Math.random() > 0.6 && roomNo !== 1 && this.joinBlock === false) {
           thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo - 1, 0, "join2", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
           roomNo += 1;
           this.maxRmNextLevel -= 1;
@@ -378,17 +372,13 @@ export class DungeonPathService {
           thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, 0, "Jroom", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
           roomNo += 1;
           ConnectionRoomNo += 1;
-
-
-
           this.joinBlock = false;
         }
 
-
-
         // // create a gap after last room final level.
-        if (this.LevelNo >= (this.mapSize-3) && this.showRoomGaps === true) {
-          for (let i = ((this.mapSize / 3) - (this.maxRmThisLevel)); i >= 0; i--)
+        if (gapAfterAmount > 0 && this.maxRmThisLevel === 1 && this.showRoomGaps === true) {
+          console.log("maxRmThisLevel 9           " + this.maxRmThisLevel)
+          for (let i = (gapAfterAmount); i >= 1; i--)
             thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "LR9", ""))
         }
 
@@ -398,13 +388,14 @@ export class DungeonPathService {
 
       // create a gap last rooms of level 1-3
       if (roomNo - 1 === this.maxRmThisLevel && this.showRoomGaps === true) {
+        console.log("maxRmThisLevel 1          " + this.maxRmThisLevel)
         for (let i = ((this.mapSize / 3) - (this.maxRmThisLevel)); i >= 0; i--)
           thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "LR1", ""))
       }
 
       this.LevelNo += 1;
 
-      console.log("================ end of level "+this.LevelNo+"================")
+      console.log("================ end of level " + this.LevelNo + "================")
       this.levelList.push(thislevel);
       console.log(this.levelList)
       console.log("this.maxRmThisLevel")
@@ -413,19 +404,10 @@ export class DungeonPathService {
     }
 
     console.log("================ end of map draw ================")
-   
-
     console.log(this.levelList)
-
     this.makeConnections();
     this.updateMoveOptions();
 
   }
 
-
-
 }
-
-
-
-

@@ -1,38 +1,20 @@
 .REContainer {
-   
-    
-    background-color: rgb(30, 101, 128);
-   
-width: 49.35vw;
-    height: 35vh;
+  background-color: rgb(30, 101, 128);
 
-    flex-grow: 1;
-  }
+  width: 49.5vw;
+  height: 35vh;
 
-  .flexrow {
-    display: flex;
-    flex-direction: row;
-    background-color: rgba(61, 54, 54, 0.003);
-  }
+  flex-grow: 1;
+}
 
+.flexrow {
+  display: flex;
+  flex-direction: row;
+  background-color: rgba(61, 54, 54, 0.003);
+}
 
-  .text {
-   
-    background-color: black;
-    color: white;
-    text-align: center;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.text {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
