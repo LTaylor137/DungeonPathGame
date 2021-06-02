@@ -19,7 +19,7 @@ export class PlayerService {
 
   gainHealth(heal: number) {
     console.log("player health a " + this.playerHealth)
-    this.playerHealth += heal;
+    this.playerHealth = (this.playerHealth + heal)
     console.log("player health b " + this.playerHealth)
   }
 

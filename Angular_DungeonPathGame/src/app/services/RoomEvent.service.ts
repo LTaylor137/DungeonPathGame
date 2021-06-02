@@ -38,7 +38,7 @@ export class RoomEventService {
           }
           if (room.roomType === "fire") {
             this.healAmount = 2;
-            this.getHealthFromFire()
+            // this.getHealthFromFire()
           }
 
 
@@ -76,10 +76,10 @@ export class RoomEventService {
     console.log("player hit enemy for " + this.PlayerService.playerAttack + " damage, taking health down to " + this.monsterHealth)
   }
 
-  getHealthFromFire()
-  {
-this.healAmount = Math.floor(Math.random() * 3) + 1;
- this.PlayerService.gainHealth(this.healAmount)
-  }
+//   getHealthFromFire()
+//   {
+// this.healAmount = Math.floor(Math.random() * 3) + 1;
+//  this.PlayerService.gainHealth(this.healAmount)
+//   }
 
 }

@@ -19,7 +19,6 @@ import { RoomEventService } from './services/RoomEvent.service';
     RoomEventComponent,
     OptionsComponent,
     InventoryComponent
-   
   ],
   imports: [
     BrowserModule,

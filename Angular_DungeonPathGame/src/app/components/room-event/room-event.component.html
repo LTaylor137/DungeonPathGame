@@ -28,7 +28,7 @@
     </div>
 
     <div *ngIf="this.RoomEventService.roomType === 'fire'">
-        health +{{this.RoomEventService.healAmount}}
+        <button id="button" (click)="gainHealth()">click to gain health</button>
     </div>
 
     <div *ngIf="this.RoomEventService.roomType === 'start'">
