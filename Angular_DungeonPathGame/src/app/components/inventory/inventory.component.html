@@ -1,18 +1,49 @@
-
 <div class="InvContainer">
 
+    <div></div>
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <div class="flexrow">
+        <div></div>
+        <div class="slot">
+            {{this.PlayerService.helm}}
+        </div>
+        <div></div>
+    </div>
+
+    <div class="flexrow">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div class="slot" (click)="Attack()">
+            {{ this.PlayerService.weapon }}
+        </div>
+        <div class="slot">
+            {{this.PlayerService.armour}}
+        </div>
+        <div class="slot">
+            {{this.PlayerService.offhand}}
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="flexrow">
+        <div class="statbox">
+            <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
+            <span class="stattext"> {{this.PlayerService.playerAttack}}</span>
+        </div>
+        <div class="statbox">
+            <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
+            <span class="stattext"> {{ this.PlayerService.playerHealth }}</span>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
 </div>

@@ -1,0 +1,20 @@
+.OptionsContainer {
+  margin: 1vw;
+  display: flex;
+  vertical-align: middle;
+}
+
+button, input {
+  color: black;
+  padding: 5px 10px 5px 10px;
+  margin: 0px 5px 0px 5px;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+input {
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+}

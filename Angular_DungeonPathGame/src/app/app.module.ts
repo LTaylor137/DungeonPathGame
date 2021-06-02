@@ -7,6 +7,9 @@ import { DungeonPathComponent } from './components/DungeonPath/dungeon-path.comp
 import { RoomEventComponent } from './components/room-event/room-event.component';
 import { OptionsComponent } from './components/options/options.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
+import { PlayerService } from "./services/Player.service";
+import { DungeonPathService } from './services/DungeonPath.service';
+import { RoomEventService } from './services/RoomEvent.service';
 
 
 @NgModule({
@@ -22,7 +25,7 @@ import { InventoryComponent } from './components/inventory/inventory.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [PlayerService, DungeonPathService, RoomEventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

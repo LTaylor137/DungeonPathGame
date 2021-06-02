@@ -1,20 +1,39 @@
 <div class="REContainer">
 
 
-<div class="text">
-{{this.RoomEventService.roomType}}
-</div>
+    <div class="info">
+        {{this.RoomEventService.roomType}} <br>
+        currentLevel = {{this.RoomEventService.currentLevel}} <br>
+        currentRoom = {{this.RoomEventService.currentRoom}}
+    </div>
 
+    <div *ngIf="this.RoomEventService.roomType === 'monster' || this.RoomEventService.roomType === 'boss' || this.RoomEventService.roomType === 'finalboss'">
+        <div class="flexrow">
+            <div class="statbox">
+                <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
+                <span class="stattext"> {{this.RoomEventService.monsterAttack}}</span>
+            </div>
+            <div class="statbox">
+                <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
 
+                <div> <a href="https://www.flaticon.com/" title="Flaticon"></a></div>
+                
+                <span class="stattext"> {{this.RoomEventService.monsterHealth}}</span>
+            </div>
+        </div>
+    </div>
 
+    <div *ngIf="this.RoomEventService.roomType === 'treasure'">
+        treasure
+    </div>
 
+    <div *ngIf="this.RoomEventService.roomType === 'fire'">
+        health +{{this.RoomEventService.healAmount}}
+    </div>
 
-
-
-
-
-
-
+    <div *ngIf="this.RoomEventService.roomType === 'start'">
+        start
+    </div>
 
 
 

@@ -1,10 +1,5 @@
-
 .flexrow {
     display: flex;
     flex-direction: row;
-   
-    /* direction: row; */
-    
-    background-color: rgb(221, 221, 221);
-    width: 99vw;
+    /* width: 70vw; */
   }

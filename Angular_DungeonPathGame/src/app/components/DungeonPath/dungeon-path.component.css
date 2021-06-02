@@ -1,7 +1,8 @@
 .DPContainer {
-  width: 99vw;
-  height: 60vh;
-  background-color: rgb(116, 102, 58);
+  width: 96vw;
+  height: 54.5vh;
+  margin: 1vw;
+  background-color: rgb(175, 144, 41);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -15,7 +16,7 @@
 }
 
 .level {
-  width: 100px;
+  width: 7vw;
   height: 100%;
   background-color: rgba(224, 214, 157, 0.411);
   display: flex;
