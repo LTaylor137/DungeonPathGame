@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DungeonPathService } from "../../services/DungeonPath.service";
 import { RoomEventService } from "../../services/RoomEvent.service";
-
+import { PlayerService } from "../../services/Player.service";
 
 @Component({
   selector: 'app-room-event',
@@ -22,6 +22,11 @@ export class RoomEventComponent implements OnInit {
     this.RoomEventService.setRoom();
   }
 
+  monAttack()
+  {
 
+    this.RoomEventService.monsterAttack();
+
+  }
 
 }

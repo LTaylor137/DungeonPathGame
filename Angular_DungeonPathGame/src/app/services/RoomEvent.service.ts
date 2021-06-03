@@ -3,9 +3,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from "@angular/common";
 import { Level } from '../components/Classes/Level';
 import { Room } from '../components/Classes/Room';
+import { Item } from '../components/Classes/Item';
 import { Connection } from '../components/Classes/Connection';
 import { DungeonPathService } from "../services/DungeonPath.service";
-import { PlayerService } from "../services/player.service";
+import { PlayerService } from "../services/Player.service";
+import { element } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +21,10 @@ export class RoomEventService {
   currentLevel: number | null;
   currentRoom: number | null;
 
-  monsterAttack: number | null;
-  monsterHealth: number | null;
+  monsterAttackValue: number | null;
+  monsterHealthValue: number | null;
 
-  healAmount: number | null;
+  roomLootList: Item[] = [];
 
   setRoom() {
     this.DungeonPathService.levelList.forEach(level => {
@@ -32,15 +34,19 @@ export class RoomEventService {
           this.roomType = room.roomType
           this.currentLevel = room.levelNo
           this.currentRoom = room.roomNo
+
           if (room.roomType === "monster" || room.roomType === "boss" || room.roomType === "finalboss") {
-            this.monsterAttack = this.setMonsterAttack()
-            this.monsterHealth = this.setMonsterHealth()
+            this.monsterAttackValue = this.setMonsterAttack()
+            this.monsterHealthValue = this.setMonsterHealth()
           }
+
           if (room.roomType === "fire") {
-            this.healAmount = 2;
             this.getHealthFromFire()
           }
 
+          if (room.roomType === "treasure") {
+            this.searchForLoot()
+          }
 
         }
       });
@@ -72,14 +78,49 @@ export class RoomEventService {
   }
 
   playerAttack() {
-    this.monsterHealth = (this.monsterHealth - this.PlayerService.playerAttack)
-    console.log("player hit enemy for " + this.PlayerService.playerAttack + " damage, taking health down to " + this.monsterHealth)
+    this.monsterHealthValue = (this.monsterHealthValue - this.PlayerService.playerAttack)
+    console.log("player hit enemy for " + this.PlayerService.playerAttack + " damage, taking health down to " + this.monsterHealthValue)
   }
 
-  getHealthFromFire()
-  {
-this.healAmount = Math.floor(Math.random() * 3) + 1;
- this.PlayerService.gainHealth(this.healAmount)
+  monsterAttack() {
+    let dmg = this.monsterAttackValue
+    this.PlayerService.loseHealth(dmg)
+  }
+
+  getHealthFromFire() {
+    let healAmount = Math.floor(Math.random() * 3) + 1;
+    this.PlayerService.gainHealth(healAmount)
+  }
+
+  searchForLoot() {
+
+    this.roomLootList = []
+    let templist = [];
+
+    // create a new list based on tier level 
+    if (this.roomType === "treasure") {
+      this.PlayerService.lootList.forEach(element => {
+        if (element.itemTier >= 2) {
+          templist.push(element);
+        }
+      }
+      );
+      console.log(templist);
+    }
+
+    // select only 3 items from that list.
+    while (this.roomLootList.length <= 2) {
+      let randomItem = Math.floor(Math.random() * templist.length);
+      console.log("the item chosen is  = =  " + randomItem, templist[randomItem])
+      // only add the item if it's not already in the list of items offered.
+      if (this.roomLootList.includes(templist[randomItem])) {
+        // do nothihg
+      } else {
+        this.roomLootList.push(templist[randomItem])
+      }
+      console.log("the item list =  " + this.roomLootList)
+    }
+
   }
 
 }

@@ -10,7 +10,7 @@
   margin: 1vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .flexrow {
@@ -35,6 +35,28 @@
   text-align: center;
   width: 20vw;
   align-self: center;
+}
+
+.slotrow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.slot, .slotspace{
+  width: 10vh;
+  height: 10vh;
+  background-color: rgba(255, 255, 255, 0.26);
+  font-size: 1.7vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.slotspace{
+  width: 15vh;
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .statcont {
