@@ -28,8 +28,17 @@
   background-color: rgba(187, 11, 11, 0.76);
 }
 
+.centre {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: white;
+  text-align: center;
+  /* vertical-align: middle; */
+}
+
 .info {
-  margin-top: 15vh;
+  /* margin-top: 15vh; */
   background-color: black;
   color: white;
   text-align: center;
@@ -67,3 +76,4 @@
   position: absolute;
   user-select: none;
 }
+

@@ -2,12 +2,12 @@
 
 
     <div class="info">
-        {{this.RoomEventService.roomType}} <br>
-        currentLevel = {{this.RoomEventService.currentLevel}} <br>
-        currentRoom = {{this.RoomEventService.currentRoom}}
+        {{this.RoomEventService.roomType}} at level {{this.RoomEventService.currentLevel}}, room
+        {{this.RoomEventService.currentRoom}}
     </div>
 
-    <div *ngIf="this.RoomEventService.roomType === 'monster' || this.RoomEventService.roomType === 'boss' || this.RoomEventService.roomType === 'finalboss'">
+    <div
+        *ngIf="this.RoomEventService.roomType === 'monster' || this.RoomEventService.roomType === 'boss' || this.RoomEventService.roomType === 'finalboss'">
         <div class="flexrow">
             <div class="statbox">
                 <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
@@ -17,7 +17,7 @@
                 <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
 
                 <div> <a href="https://www.flaticon.com/" title="Flaticon"></a></div>
-                
+
                 <span class="stattext"> {{this.RoomEventService.monsterHealth}}</span>
             </div>
         </div>
@@ -28,13 +28,20 @@
     </div>
 
     <div *ngIf="this.RoomEventService.roomType === 'fire'">
-        <button id="button" (click)="gainHealth()">click to gain health</button>
+        <div class="centre">
+            <div class="slot" (click)="gainHealth()">click to gain health</div>
+        </div>
+       
     </div>
 
     <div *ngIf="this.RoomEventService.roomType === 'start'">
-        start
+        <div class="centre">
+            <div class="slot" (click)="gainHealth()">click to gain health</div>
+        </div>
+        
+     
     </div>
-
+    <div></div>
 
 
 </div>

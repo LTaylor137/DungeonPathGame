@@ -5,7 +5,7 @@ import { Level } from '../components/Classes/Level';
 import { Room } from '../components/Classes/Room';
 import { Connection } from '../components/Classes/Connection';
 import { DungeonPathService } from "../services/DungeonPath.service";
-import { PlayerService } from "../services/player.service";
+import { PlayerService } from "../services/Player.service";
 
 @Injectable({
   providedIn: 'root'
