@@ -16,7 +16,7 @@ export class RoomEventComponent implements OnInit {
 
   // monsterAttack: number | null;
 
-  constructor(public DungeonPathService: DungeonPathService, public RoomEventService: RoomEventService) { }
+  constructor(public DungeonPathService: DungeonPathService, public RoomEventService: RoomEventService, public PlayerService: PlayerService) { }
 
   ngOnInit(): void {
     this.RoomEventService.setRoom();
@@ -24,9 +24,15 @@ export class RoomEventComponent implements OnInit {
 
   monAttack()
   {
-
     this.RoomEventService.monsterAttack();
+  }
+
+  takeLoot(itemName)
+  {
+
+    this.PlayerService.takeLoot(itemName)
 
   }
+
 
 }

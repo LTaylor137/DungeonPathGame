@@ -6,6 +6,7 @@ export class Item {
      itemTier: number;
      itemAttackValue: number;
      itemDefenceValue: number;
+     // itemImage: any;
 
      constructor(
           _itemType: string,

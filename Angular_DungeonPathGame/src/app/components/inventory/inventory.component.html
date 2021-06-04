@@ -17,8 +17,9 @@
         </div>
         <div class="slot">
             {{ this.PlayerService.armour.itemName }}
+            <span class="stattext"> {{ this.PlayerService.playerDefence }}</span>
         </div>
-        <div class="slot">
+        <div class="slot" (click)="Block()">
             {{ this.PlayerService.offhand.itemName }}
         </div>
         <div class="slotspace"></div>
@@ -28,6 +29,10 @@
         <div class="statbox">
             <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
             <span class="stattext"> {{this.PlayerService.playerAttack}}</span>
+        </div>
+        <div class="statbox" *ngIf="this.PlayerService.isBlockActive === true">
+            <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
+            <span class="stattext"> {{ this.PlayerService.playerBlockAmount }}</span>
         </div>
         <div class="statbox">
             <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>

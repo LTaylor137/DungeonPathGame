@@ -25,4 +25,8 @@ export class InventoryComponent implements OnInit {
 this.RoomEventService.playerAttack();
   }
 
+
+  Block(){
+    this.PlayerService.playerBlock();
+  }
 }

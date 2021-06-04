@@ -26,6 +26,8 @@ export class RoomEventService {
 
   roomLootList: Item[] = [];
 
+  healAmount: number = 0;
+
   setRoom() {
     this.DungeonPathService.levelList.forEach(level => {
       level.roomList.forEach(room => {
@@ -84,12 +86,12 @@ export class RoomEventService {
 
   monsterAttack() {
     let dmg = this.monsterAttackValue
-    this.PlayerService.loseHealth(dmg)
+    this.PlayerService.takeDamage(dmg)
   }
 
   getHealthFromFire() {
-    let healAmount = Math.floor(Math.random() * 3) + 1;
-    this.PlayerService.gainHealth(healAmount)
+    this.healAmount = Math.floor(Math.random() * 3) + 1;
+    this.PlayerService.gainHealth(this.healAmount)
   }
 
   searchForLoot() {

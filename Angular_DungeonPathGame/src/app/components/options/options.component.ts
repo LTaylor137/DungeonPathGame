@@ -10,7 +10,7 @@ import { PlayerService } from "../../services/Player.service";
 })
 export class OptionsComponent implements OnInit {
 
-  constructor(public DungeonPathService: DungeonPathService, public RoomEventService: RoomEventService) { }
+  constructor(public DungeonPathService: DungeonPathService, public RoomEventService: RoomEventService, public PlayerService: PlayerService) { }
 
   ngOnInit(): void {
   }
@@ -26,14 +26,24 @@ export class OptionsComponent implements OnInit {
   Generate() {
     this.DungeonPathService.generateMap()
     this.RoomEventService.setRoom()
-}
+  }
 
-resetPlayer() {
+  resetPlayerPos() {
     this.DungeonPathService.resetPlayer()
     this.RoomEventService.setRoom()
-}
+  }
 
-
+  Reset() {
+    this.PlayerService.isBlockActive = false;
+    this.PlayerService.assignBasicLoot();
+    this.PlayerService.playerAttack = 1;
+    this.PlayerService.playerDefence = 0;
+    this.PlayerService.playerBlockAmount = 0;
+    this.PlayerService.playerHealth = 5;
+    this.DungeonPathService.generateMap()
+    this.DungeonPathService.resetPlayer()
+    this.RoomEventService.setRoom()
+  }
 
 
 
