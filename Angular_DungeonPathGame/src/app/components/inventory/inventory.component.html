@@ -27,16 +27,19 @@
 
     <div class="flexrow">
         <div class="statbox">
-            <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
+            <span class="iconify" color="silver" data-icon="mdi:sword" data-inline="false"></span>
             <span class="stattext"> {{this.PlayerService.playerAttack}}</span>
         </div>
-        <div class="statbox" *ngIf="this.PlayerService.isBlockActive === true">
-            <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
-            <span class="stattext"> {{ this.PlayerService.playerBlockAmount }}</span>
-        </div>
-        <div class="statbox">
-            <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
-            <span class="stattext"> {{ this.PlayerService.playerHealth }}</span>
+
+        <div class="flexrow">
+            <div class="statbox" *ngIf="this.PlayerService.isBlockActive === true">
+                <span class="iconify" color="grey" data-icon="bx-bxs-shield" data-inline="false"></span>
+                <span class="stattext"> {{ this.PlayerService.playerBlockAmount }}</span>
+            </div>
+            <div class="statbox">
+                <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
+                <span class="stattext"> {{ this.PlayerService.playerHealth }}</span>
+            </div>
         </div>
     </div>
 

@@ -282,13 +282,13 @@ export class DungeonPathService {
         console.log("grow mode")
         console.log("LevelNo  " + this.LevelNo + " RoomNo = " + roomNo)
         console.log("this.maxRmThisLevel " + this.maxRmThisLevel)
-     
+
         // create a gap 
         if (roomNo === 1 && this.LevelNo <= this.mapSize / 2.5 && this.showRoomGaps === true) {
           for (let i = ((this.mapSize / 4) - (this.maxRmThisLevel)); i >= 0; i--)
             thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "GAP1", ""))
         }
-       
+
         // if room below lvl 3 increase split rate.
         if (this.LevelNo === 1) {
           thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, ConnectionRoomNo + 1, "first", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
@@ -383,8 +383,8 @@ export class DungeonPathService {
 
         // create a gap after last rooms of final levels.
         if (this.maxRmThisLevel === 1 && this.LevelNo >= this.mapSize / 2 && this.showRoomGaps === true) {
-          for (let i = ((this.mapSize / 4) - roomNo+1); i >= 0; i--){
-          console.log("i1 =  "  + i);
+          for (let i = ((this.mapSize / 4) - roomNo + 1); i >= 0; i--) {
+            console.log("i1 =  " + i);
             thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "GAP4", ""));
           }
         }
@@ -392,7 +392,7 @@ export class DungeonPathService {
         this.maxRmThisLevel -= 1;
 
       }
-  
+
       console.log(" ******** the end of level number " + this.LevelNo)
       console.log(this.levelList)
       console.log("this.maxRmThisLevel " + this.maxRmThisLevel)

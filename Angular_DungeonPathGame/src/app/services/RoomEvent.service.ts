@@ -40,6 +40,7 @@ export class RoomEventService {
           if (room.roomType === "monster" || room.roomType === "boss" || room.roomType === "finalboss") {
             this.monsterAttackValue = this.setMonsterAttack()
             this.monsterHealthValue = this.setMonsterHealth()
+            this.searchForLoot()
           }
 
           if (room.roomType === "fire") {
@@ -96,11 +97,13 @@ export class RoomEventService {
 
   searchForLoot() {
 
+    this.PlayerService.isLootTaken = false;
+
     this.roomLootList = []
     let templist = [];
 
     // create a new list based on tier level 
-    if (this.roomType === "treasure") {
+    if (this.roomType === "treasure" || this.roomType === "boss") {
       this.PlayerService.lootList.forEach(element => {
         if (element.itemTier >= 2) {
           templist.push(element);
@@ -108,6 +111,13 @@ export class RoomEventService {
       }
       );
       console.log(templist);
+    } else if (this.roomType === "monster" || this.roomType === "finalboss") {
+      this.PlayerService.lootList.forEach(element => {
+        if (element.itemTier <= 2) {
+          templist.push(element);
+        }
+      }
+      );
     }
 
     // select only 3 items from that list.

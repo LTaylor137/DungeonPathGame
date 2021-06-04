@@ -40,6 +40,7 @@ export class OptionsComponent implements OnInit {
     this.PlayerService.playerDefence = 0;
     this.PlayerService.playerBlockAmount = 0;
     this.PlayerService.playerHealth = 5;
+    this.RoomEventService.roomLootList = []
     this.DungeonPathService.generateMap()
     this.DungeonPathService.resetPlayer()
     this.RoomEventService.setRoom()

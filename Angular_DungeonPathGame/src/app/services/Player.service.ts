@@ -21,6 +21,7 @@ export class PlayerService {
   lootList: Item[] = [];
 
   isBlockActive: boolean = false;
+  isLootTaken: boolean = false;
 
   constructor() { }
 
@@ -34,7 +35,7 @@ export class PlayerService {
     if (this.isBlockActive === true) {
       this.playerBlockAmount -= dmg;
       if (this.playerBlockAmount <= 0) {
-        if ( (this.playerBlockAmount + this.playerDefence) <= 0 ){
+        if ((this.playerBlockAmount + this.playerDefence) <= 0) {
           this.playerHealth += (this.playerBlockAmount + this.playerDefence);
         }
         this.playerBlockAmount = 0;
@@ -46,9 +47,14 @@ export class PlayerService {
   }
 
   populateLootPool() {
+    //foods
 
-    // weapons
-    this.lootList.push(new Item("weapon", "Fist", "Just wail on 'em", 1, 1, 0)),
+    this.lootList.push(new Item("food", "Apple", "Juicy, heals for 1 health", 0, 0, 1)),
+      this.lootList.push(new Item("food", "Cupcake", "How did this get down here? Heals for 1 health", 0, 0, 1)),
+      this.lootList.push(new Item("food", "A Green Mushroom", "Heals for 1 health", 0, 0, 1)),
+
+      // weapons
+      this.lootList.push(new Item("weapon", "Fist", "Just wail on 'em", 1, 1, 0)),
       this.lootList.push(new Item("weapon", "Fork", "May be better off using your fists", 1, 1, 0)),
       this.lootList.push(new Item("weapon", "Butter Knife", "It's blunt", 1, 1, 0)),
       this.lootList.push(new Item("weapon", "Brick", "A brick you found on the floor", 1, 1, 0)),
@@ -79,8 +85,13 @@ export class PlayerService {
 
 
   assignBasicLoot() {
+
     this.helm = this.lootList.find(element => element.itemName === "Beanie")
-    this.weapon = this.lootList.find(element => element.itemName === "Fist")
+
+    let t1Weps: Item[] = this.lootList.filter(element => element.itemType === "weapon" && element.itemTier === 1);
+    let randomNo = Math.floor(Math.random() * t1Weps.length);
+    this.weapon = (t1Weps[randomNo])
+
     this.armour = this.lootList.find(element => element.itemName === "Potato Sack")
     this.offhand = this.lootList.find(element => element.itemName === "Wooden Buckler")
   }
@@ -105,6 +116,12 @@ export class PlayerService {
       this.armour = itemGained;
       this.playerDefence = itemGained.itemDefenceValue
     }
+    if (itemGained.itemType === "food") {
+      this.playerHealth += itemGained.itemDefenceValue
+    }
+
+    this.isLootTaken = true;
+
   }
 
   playerBlock() {
