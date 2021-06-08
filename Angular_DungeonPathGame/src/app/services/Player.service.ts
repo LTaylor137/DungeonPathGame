@@ -23,46 +23,60 @@ export class PlayerService {
   isBlockActive: boolean = false;
   isLootTaken: boolean = false;
 
+  healthChange: number;
+
   constructor() { }
 
   gainHealth(heal: number) {
-    console.log("player health a " + this.playerHealth)
-    this.playerHealth += heal;
-    console.log("player health b " + this.playerHealth)
+    setTimeout(() => {
+      let div = document.getElementById('monsterDiv');
+      this.playerHealth += heal;
+    this.healthChange = heal
+    }, 300);
+    setTimeout(() => {
+      this.healthChange = 0;
+    }, 1000);
   }
 
   takeDamage(dmg: number) {
     if (this.isBlockActive === true) {
       this.playerBlockAmount -= dmg;
+      
       if (this.playerBlockAmount <= 0) {
         if ((this.playerBlockAmount + this.playerDefence) <= 0) {
           this.playerHealth += (this.playerBlockAmount + this.playerDefence);
+          
+        } else if (this.playerBlockAmount > 0) {
+          console.log("attack did not break block")
         }
         this.playerBlockAmount = 0;
         this.isBlockActive = false;
-      }
+      } 
+
     } else if (this.isBlockActive === false) {
       this.playerHealth -= (dmg - this.playerDefence);
     }
+    this.healthChange = -(dmg - this.playerDefence);
   }
 
   populateLootPool() {
-    //foods
 
-    this.lootList.push(new Item("food", "Apple", "Juicy, heals for 1 health", 0, 0, 1)),
-      this.lootList.push(new Item("food", "Cupcake", "How did this get down here? Heals for 1 health", 0, 0, 1)),
-      this.lootList.push(new Item("food", "A Green Mushroom", "Heals for 1 health", 0, 0, 1)),
+    //foods
+    this.lootList.push(new Item("food", "Painkillers", "You're in a computer game, Max... Heals for 1 health", 0, 0, 1)),
+      this.lootList.push(new Item("food", "Heart Container", "Listen! Heals for 1 health", 0, 0, 1)),
+      this.lootList.push(new Item("food", "Mushroom", "Heals for 1 health", 0, 0, 1)),
+      this.lootList.push(new Item("food", "Phoenix Down", "Heals for 1 health", 0, 0, 1)),
+      this.lootList.push(new Item("food", "Rations", "“A name means nothing on the battlefield.” Heals for 1 health", 0, 0, 1)),
+
 
       // weapons
       this.lootList.push(new Item("weapon", "Fist", "Just wail on 'em", 1, 1, 0)),
-      this.lootList.push(new Item("weapon", "Fork", "May be better off using your fists", 1, 1, 0)),
-      this.lootList.push(new Item("weapon", "Butter Knife", "It's blunt", 1, 1, 0)),
-      this.lootList.push(new Item("weapon", "Brick", "A brick you found on the floor", 1, 1, 0)),
+      this.lootList.push(new Item("weapon", "Splade", "Is it splade, or spork?", 1, 1, 0)),
+      this.lootList.push(new Item("weapon", "Rock", "A sizable rock you found on the floor", 1, 1, 0)),
 
       // t2
-      this.lootList.push(new Item("weapon", "Small Dagger", "weapon", 2, 1, 0)),
       this.lootList.push(new Item("weapon", "Board with a nail in it", "Swing the nail bit at the enemy", 2, 2, 0)),
-      this.lootList.push(new Item("weapon", "Sword", "A Sword", 2, 2, 0)),
+      this.lootList.push(new Item("weapon", "Meat Cleaver", "A Sword", 2, 2, 0)),
       this.lootList.push(new Item("weapon", "Axe", "An Sword", 2, 2, 0)),
 
       //t3
@@ -76,13 +90,15 @@ export class PlayerService {
     this.lootList.push(new Item("armour", "Steel Plate", "its crap", 3, 0, 2))
 
     // offhands
-    this.lootList.push(new Item("offhand", "Wooden Buckler", "small, able to block 1 damage for 1 turn, will stun enemy on successful block", 1, 1, 1))
+    this.lootList.push(new Item("offhand", "Wooden Buckler", "small, able to block 1 damage for 1 turn, will stun enemy on successful block", 1, 0, 1))
+    this.lootList.push(new Item("offhand", "Tower Shield", "Large Shield, able to block 2 damage for 1 turn, will stun enemy on successful block", 2, 0, 2))
+    this.lootList.push(new Item("offhand", "Handgun", "Allows you to shoot first when entering a room", 3, 1, 0))
 
     // helms
     this.lootList.push(new Item("helm", "Beanie", "keeps you warm, has a pom-pom!", 1, 0, 0))
+    this.lootList.push(new Item("helm", "Soup Pot", "It covers your whole skull! Adds +1 Defence", 2, 0, 1))
 
   }
-
 
   assignBasicLoot() {
 
@@ -108,13 +124,17 @@ export class PlayerService {
     }
     if (itemGained.itemType === "offhand") {
       this.offhand = itemGained;
+      if (itemGained.itemAttackValue > 0) {
+        this.playerAttack = itemGained.itemAttackValue
+      }
     }
     if (itemGained.itemType === "helm") {
       this.helm = itemGained;
+      this.playerDefence += itemGained.itemDefenceValue
     }
     if (itemGained.itemType === "armour") {
       this.armour = itemGained;
-      this.playerDefence = itemGained.itemDefenceValue
+      this.playerDefence += itemGained.itemDefenceValue
     }
     if (itemGained.itemType === "food") {
       this.playerHealth += itemGained.itemDefenceValue
@@ -123,12 +143,5 @@ export class PlayerService {
     this.isLootTaken = true;
 
   }
-
-  playerBlock() {
-    this.isBlockActive = true;
-    this.playerBlockAmount += this.offhand.itemDefenceValue;
-  }
-
-
 
 }

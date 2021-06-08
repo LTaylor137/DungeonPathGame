@@ -13,11 +13,15 @@
   justify-content: space-between;
 }
 
-.flexrow {
+.flexrow,
+.statrow {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* background-color: rgba(54, 60, 61, 0.212); */
+}
+
+.statrow {
+  background-color: rgb(0, 0, 0);
 }
 
 .flexcol {
@@ -41,9 +45,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  justify-self: center;
 }
 
-.slot, .slotspace{
+.slot,
+.slotspace {
   width: 10vh;
   height: 10vh;
   background-color: rgba(255, 255, 255, 0.26);
@@ -54,7 +60,7 @@
   justify-content: center;
 }
 
-.slotspace{
+.slotspace {
   width: 5vh;
   background-color: rgba(255, 255, 255, 0);
 }
@@ -65,8 +71,8 @@
 }
 
 .statbox {
-  width: 10vh;
-  height: 10vh;
+  width: 8vh;
+  height: 8vh;
   background-color: black;
   display: flex;
   flex-direction: row;
@@ -75,15 +81,44 @@
 }
 
 .iconify {
-  /* position: absolute; */
   /* z-index: 1; */
-  font-size: 10vh;
+  font-size: 7vh;
   /* justify-self: center; */
+  /* animation-name: xxx;
+  animation-duration: .5s;
+  animation-iteration-count: infinite; */
+}
+
+.monster {
+  z-index: 1;
+  justify-self: center;
+  animation-name: monsterAttack;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+@keyframes monsterAttack {
+  /* 0% {
+    right: 0vw;
+    position: relative;
+  }
+  15% {
+    right: 5vw;
+    position: relative;
+  }
+  35% {
+    right: 18vw;
+    position: relative;
+  }
+  100% {
+    right: 0vw;
+    position: relative;
+  } */
 }
 
 .stattext {
   color: cornsilk;
-  font-size: 7vh;
+  font-size: 4.5vh;
   margin-top: 0.8vh;
   font-weight: 800;
   z-index: 2;

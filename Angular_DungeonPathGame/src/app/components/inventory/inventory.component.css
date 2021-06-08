@@ -17,7 +17,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /* background-color: rgba(54, 60, 61, 0.212); */
+  background-color: rgb(0, 0, 0);
+  align-content: flex-end;
 }
 
 .flexcol {
@@ -37,12 +38,14 @@
 .slotrow {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
-.slot, .slotspace{
-  width: 10vh;
-  height: 10vh;
+.slot,
+.slotspace {
+  width: 8vh;
+  height: 8vh;
+  border-radius: 1vh;
   background-color: rgba(255, 255, 255, 0.26);
   font-size: 1.7vh;
   display: flex;
@@ -52,14 +55,16 @@
   user-select: none;
 }
 
-.slotspace{
+.slotspace {
   width: 5vh;
   background-color: rgba(255, 255, 255, 0);
 }
 
-.statbox {
-  width: 10vh;
-  height: 10vh;
+.statbox,
+.statboxplus,
+.statboxarm {
+  width: 8vh;
+  height: 8vh;
   background-color: black;
   display: flex;
   flex-direction: row;
@@ -67,18 +72,68 @@
   z-index: 0;
 }
 
+.statboxplus {
+  width: 1vw;
+  z-index: 5;
+}
+
+.healthChange, .healthPos, .healthNeg {
+  width: 8vh;
+  height: 8vh;
+  display: flex;
+  justify-content: center;
+  color: cornsilk;
+  font-size: 4.5vh;
+  font-weight: 800;
+  user-select: none;
+  animation-name: healthChange;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  z-index: 10;
+  /* background-color: rgba(221, 231, 211, 0.493); */
+}
+
+.healthPos {
+  color: rgb(38, 255, 0);
+}
+
+.healthNeg {
+  color: rgb(255, 0, 0);
+}
+
+
+@keyframes healthChange {
+  0% {
+    opacity: 100%;
+    bottom: 2vw;
+    position: relative;
+  }
+  50% {
+    bottom: 4vw;
+    opacity: 100%;
+    position: relative;
+  }
+  100% {
+    bottom: 6vw;
+    opacity: 0%;
+    position: relative;
+  }
+}
+
 .iconify {
   position: absolute;
   z-index: 1;
-  font-size: 10vh;
+  font-size: 7vh;
+  align-self: center;
 }
 
 .stattext {
   color: cornsilk;
-  font-size: 7vh;
-  margin-top: 0.8vh;
+  font-size: 4.5vh;
+  /* margin-top: 0.8vh; */
   font-weight: 800;
   z-index: 2;
   position: absolute;
   user-select: none;
+  align-self: center;
 }

@@ -1,7 +1,8 @@
 <div class="InvContainer">
     <div></div>
 
-    <div class="flexrow">
+    <!-- helm -->
+    <div class="slotrow">
         <div></div>
         <div class="slot">
             {{ this.PlayerService.helm.itemName }}
@@ -10,45 +11,46 @@
     </div>
 
     <div class="slotrow">
-        <div class="slotspace"></div>
-
+        <!-- <div class="slotspace"></div> -->
         <div class="slot" (click)="Attack()">
             {{ this.PlayerService.weapon.itemName }}
         </div>
         <div class="slot">
             {{ this.PlayerService.armour.itemName }}
-            <span class="stattext"> {{ this.PlayerService.playerDefence }}</span>
         </div>
         <div class="slot" (click)="Block()">
             {{ this.PlayerService.offhand.itemName }}
         </div>
-        <div class="slotspace"></div>
+        <!-- <div class="slotspace"></div> -->
     </div>
 
     <div class="flexrow">
         <div class="statbox">
-            <span class="iconify" color="silver" data-icon="mdi:sword" data-inline="false"></span>
             <span class="stattext"> {{this.PlayerService.playerAttack}}</span>
+            <span class="iconify" color="silver" data-icon="mdi:sword" data-inline="false"></span>
         </div>
-
         <div class="flexrow">
-            <div class="statbox" *ngIf="this.PlayerService.isBlockActive === true">
-                <span class="iconify" color="grey" data-icon="bx-bxs-shield" data-inline="false"></span>
-                <span class="stattext"> {{ this.PlayerService.playerBlockAmount }}</span>
+            <div class="statbox">
+                <span class="stattext"> {{ this.PlayerService.playerDefence }}</span>
+                <span class="iconify" color="grey" data-icon="maki-clothing-store-15" data-inline="false"></span>
             </div>
+            <div class="statboxplus" *ngIf="this.PlayerService.isBlockActive === true">
+                <span class="stattext"> + </span>
+            </div>
+            <div class="statbox" *ngIf="this.PlayerService.isBlockActive === true">
+                <span class="stattext">{{ this.PlayerService.playerBlockAmount }}</span>
+                <span class="iconify" color="grey" data-icon="bx-bxs-shield" data-inline="false"></span>
+            </div>
+        </div>
+        <div class="flexrow">
             <div class="statbox">
                 <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
                 <span class="stattext"> {{ this.PlayerService.playerHealth }}</span>
+                <div *ngIf="this.PlayerService.healthChange > 0" class="healthPos" id="healthChange">+{{ this.PlayerService.healthChange }}</div>
+                <div *ngIf="this.PlayerService.healthChange < 0" class="healthNeg" id="healthChange">{{ this.PlayerService.healthChange }}</div>
+           
             </div>
         </div>
+
     </div>
-
-
-
-
-
-
-
-
-
 </div>

@@ -9,21 +9,16 @@
     <div></div>
 
     <!-- MONSTER -->
-    <div
-        *ngIf="this.RoomEventService.roomType === 'monster' || this.RoomEventService.roomType === 'boss' || this.RoomEventService.roomType === 'finalboss'">
+    <div *ngIf="this.RoomEventService.roomType === 'monster'">
 
-        <div class="flexrow">
+        <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="flexrow">
             <div></div>
-            <span *ngIf="this.RoomEventService.roomType === 'monster'" class="iconify" color="white"
-                data-icon="ri-skull-2-line" data-inline="false"></span>
-            <span *ngIf="this.RoomEventService.roomType === 'boss'" class="iconify" color="orange"
-                data-icon="ri-skull-2-line" data-inline="false"></span>
-            <span *ngIf="this.RoomEventService.roomType === 'finalboss'" class="iconify" color="red"
-                data-icon="ri-skull-2-line" data-inline="false"></span>
+            <img id="monsterDiv" src="{{ this.RoomEventService.roomImage }}" />
             <div></div>
         </div>
 
-        <div *ngIf="this.RoomEventService.monsterHealthValue <= 0 && this.PlayerService.isLootTaken === false" class="slotrow">
+        <div *ngIf="this.RoomEventService.monsterHealthValue <= 0 && this.PlayerService.isLootTaken === false"
+            class="slotrow">
             <div class="slotspace"></div>
             <div *ngFor="let loot of this.RoomEventService.roomLootList">
                 <div class="slot" (click)="takeLoot(loot.itemName)">
@@ -33,21 +28,90 @@
             <div class="slotspace"></div>
         </div>
 
-        <div class="flexrow">
+        <div *ngIf="this.RoomEventService.monsterHealthValue <= 0 && this.PlayerService.isLootTaken === false">x</div>
+
+        <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="statrow">
             <div class="statbox" (click)="monAttack()">
                 <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
                 <span class="stattext"> {{this.RoomEventService.monsterAttackValue}}</span>
             </div>
             <div class="statbox">
                 <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
-
                 <div> <a href="https://www.flaticon.com/" title="Flaticon"></a></div>
-
                 <span class="stattext"> {{this.RoomEventService.monsterHealthValue}}</span>
             </div>
         </div>
 
     </div>
+
+    <!-- MONSTER -->
+    <div *ngIf="this.RoomEventService.roomType === 'boss'">
+
+        <div class="flexrow">
+            <div></div>
+            <img id="monsterDiv" src="{{ this.RoomEventService.roomImage }}" />
+            <div></div>
+        </div>
+
+        <div *ngIf="this.RoomEventService.monsterHealthValue <= 0 && this.PlayerService.isLootTaken === false"
+            class="slotrow">
+            <div class="slotspace"></div>
+            <div *ngFor="let loot of this.RoomEventService.roomLootList">
+                <div class="slot" (click)="takeLoot(loot.itemName)">
+                    {{ loot.itemName }}
+                </div>
+            </div>
+            <div class="slotspace"></div>
+        </div>
+
+        <div class="statrow">
+            <div class="statbox" (click)="monAttack()">
+                <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
+                <span class="stattext"> {{this.RoomEventService.monsterAttackValue}}</span>
+            </div>
+            <div class="statbox">
+                <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
+                <div> <a href="https://www.flaticon.com/" title="Flaticon"></a></div>
+                <span class="stattext"> {{this.RoomEventService.monsterHealthValue}}</span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- final boss -->
+    <div *ngIf="this.RoomEventService.roomType === 'finalboss'">
+
+        <div class="flexrow">
+            <div></div>
+            <img id="monsterDiv" color="red" src="{{ this.RoomEventService.roomImage }}" />
+            <div></div>
+        </div>
+
+        <div *ngIf="this.RoomEventService.monsterHealthValue <= 0 && this.PlayerService.isLootTaken === false"
+            class="slotrow">
+            <div class="slotspace"></div>
+            <div *ngFor="let loot of this.RoomEventService.roomLootList">
+                <div class="slot" (click)="takeLoot(loot.itemName)">
+                    {{ loot.itemName }}
+                </div>
+            </div>
+            <div class="slotspace"></div>
+        </div>
+
+        <div class="statrow">
+            <div class="statbox" (click)="monAttack()">
+                <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
+                <span class="stattext"> {{this.RoomEventService.monsterAttackValue}}</span>
+            </div>
+            <div class="statbox">
+                <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
+                <div> <a href="https://www.flaticon.com/" title="Flaticon"></a></div>
+                <span class="stattext"> {{this.RoomEventService.monsterHealthValue}}</span>
+            </div>
+        </div>
+
+    </div>
+
 
     <!-- TREASURE -->
     <div *ngIf="this.RoomEventService.roomType === 'treasure'">
@@ -63,7 +127,7 @@
         <div class="slotrow">
             <div class="slotspace"></div>
             <div *ngFor="let loot of this.RoomEventService.roomLootList">
-                <div   *ngIf="this.PlayerService.isLootTaken === false" class="slot" (click)="takeLoot(loot.itemName)">
+                <div *ngIf="this.PlayerService.isLootTaken === false" class="slot" (click)="takeLoot(loot.itemName)">
                     {{ loot.itemName }}
                 </div>
             </div>
@@ -87,7 +151,9 @@
 
     <!-- START -->
     <div *ngIf="this.RoomEventService.roomType === 'start'">
-        start
+        <div>
+
+        </div>
     </div>
 
     <div *ngIf="this.RoomEventService.roomType === 'treasure' || this.RoomEventService.roomType === 'fire'">

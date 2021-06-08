@@ -23,10 +23,37 @@ export class RoomEventService {
 
   monsterAttackValue: number | null;
   monsterHealthValue: number | null;
+  roomImage: string | null;
 
   roomLootList: Item[] = [];
 
   healAmount: number = 0;
+
+  isMonsterStunned: boolean = false;
+
+  // this assigns room images 
+  setImage(roomType: string) {
+    switch (roomType) {
+      case "start":
+        return "assets/images/monsters/monster1.png";
+      case "treasure":
+        return "assets/images/monsters/monster1.png";
+      case "fire":
+        return "assets/images/monsters/monster1.png";
+      case "monster":
+        let x = Math.floor((Math.random() * 7))
+        console.log("this index of the image x = " + x)
+        return "assets/images/monsters/monster" + x + ".png";
+      case "boss":
+        let y = Math.floor((Math.random() * 7))
+        console.log("this index of the image x = " + y)
+        return "assets/images/monsters/monster" + y + ".png";
+      case "finalboss":
+        let z = Math.floor((Math.random() * 7))
+        console.log("this index of the image x = " + z)
+        return "assets/images/monsters/monster" + z + ".png";
+    }
+  }
 
   setRoom() {
     this.DungeonPathService.levelList.forEach(level => {
@@ -38,9 +65,13 @@ export class RoomEventService {
           this.currentRoom = room.roomNo
 
           if (room.roomType === "monster" || room.roomType === "boss" || room.roomType === "finalboss") {
-            this.monsterAttackValue = this.setMonsterAttack()
-            this.monsterHealthValue = this.setMonsterHealth()
+            this.monsterAttackValue = this.setMonsterAttackValue()
+            this.monsterHealthValue = this.setMonsterHealthValue()
+            this.isMonsterStunned = false;
             this.searchForLoot()
+            this.monsterAttack()
+            this.roomImage = this.setImage(this.roomType);
+            this.PlayerService.healthChange = 0;
           }
 
           if (room.roomType === "fire") {
@@ -56,7 +87,7 @@ export class RoomEventService {
     });
   }
 
-  setMonsterAttack() {
+  setMonsterAttackValue() {
     let currentLevel = this.currentLevel
     switch (this.roomType) {
       case "monster":
@@ -68,7 +99,7 @@ export class RoomEventService {
     }
   }
 
-  setMonsterHealth() {
+  setMonsterHealthValue() {
     let currentLevel = this.currentLevel
     switch (this.roomType) {
       case "monster":
@@ -83,11 +114,42 @@ export class RoomEventService {
   playerAttack() {
     this.monsterHealthValue = (this.monsterHealthValue - this.PlayerService.playerAttack)
     console.log("player hit enemy for " + this.PlayerService.playerAttack + " damage, taking health down to " + this.monsterHealthValue)
+    if (this.monsterHealthValue > 0) {
+      this.monsterAttack()
+    }
+    // this.PlayerService.healthChange = 0;
+  }
+
+  playerBlock() {
+    this.PlayerService.isBlockActive = true;
+    this.PlayerService.playerBlockAmount += this.PlayerService.offhand.itemDefenceValue;
+    if (this.monsterHealthValue > 0) {
+      this.monsterAttack()
+      this.isMonsterStunned = true;
+    }
   }
 
   monsterAttack() {
-    let dmg = this.monsterAttackValue
-    this.PlayerService.takeDamage(dmg)
+    if (this.isMonsterStunned === true) {
+      console.log(" monster is stunned");
+      this.isMonsterStunned = false;
+    } else {
+      setTimeout(() => {
+        let div = document.getElementById('monsterDiv');
+        div.style.position = "relative";
+        div.style.right = 250 + 'px';
+        let dmg = this.monsterAttackValue;
+        this.PlayerService.takeDamage(dmg);
+      }, 1000);
+      setTimeout(() => {
+        let div = document.getElementById('monsterDiv');
+        div.style.position = "relative";
+        div.style.right = 0 + 'px';
+      }, 1200);
+      setTimeout(() => {
+        this.PlayerService.healthChange = 0;
+      }, 1600);
+    }
   }
 
   getHealthFromFire() {
