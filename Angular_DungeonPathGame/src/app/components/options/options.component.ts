@@ -37,7 +37,7 @@ export class OptionsComponent implements OnInit {
     this.PlayerService.isBlockActive = false;
     this.PlayerService.assignBasicLoot();
     this.PlayerService.playerAttack = 1;
-    this.PlayerService.playerDefence = 0;
+    // this.PlayerService.playerDefence = 0;
     this.PlayerService.playerBlockAmount = 0;
     this.PlayerService.playerHealth = 5;
     this.RoomEventService.roomLootList = []

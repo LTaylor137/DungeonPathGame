@@ -31,7 +31,7 @@
         </div>
         <div class="flexrow">
             <div class="statbox">
-                <span class="stattext"> {{ this.PlayerService.playerDefence }}</span>
+                <span class="stattext"> {{ this.PlayerService.getDefenceValue() }}</span>
                 <span class="iconify" color="grey" data-icon="maki-clothing-store-15" data-inline="false"></span>
             </div>
             <div class="statboxplus" *ngIf="this.PlayerService.isBlockActive === true">
@@ -46,8 +46,8 @@
             <div class="statbox">
                 <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
                 <span class="stattext"> {{ this.PlayerService.playerHealth }}</span>
-                <div *ngIf="this.PlayerService.healthChange > 0" class="healthPos" id="healthChange">+{{ this.PlayerService.healthChange }}</div>
-                <div *ngIf="this.PlayerService.healthChange < 0" class="healthNeg" id="healthChange">{{ this.PlayerService.healthChange }}</div>
+                <div *ngIf="this.PlayerService.healthChange > 0" class="healthPos">+{{ this.PlayerService.healthChange }}</div>
+                <div *ngIf="this.PlayerService.healthChange < 0" class="healthNeg">{{ this.PlayerService.healthChange }}</div>
            
             </div>
         </div>

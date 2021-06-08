@@ -28,13 +28,13 @@
             <div class="slotspace"></div>
         </div>
 
-        <div *ngIf="this.RoomEventService.monsterHealthValue <= 0 && this.PlayerService.isLootTaken === false">x</div>
-
         <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="statrow">
             <div class="statbox" (click)="monAttack()">
                 <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
                 <span class="stattext"> {{this.RoomEventService.monsterAttackValue}}</span>
             </div>
+            <!-- monster stunned? -->
+            <div *ngIf="this.RoomEventService.isMonsterStunned === true"> Stunned! </div>
             <div class="statbox">
                 <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
                 <div> <a href="https://www.flaticon.com/" title="Flaticon"></a></div>
@@ -44,7 +44,7 @@
 
     </div>
 
-    <!-- MONSTER -->
+    <!-- BOSS -->
     <div *ngIf="this.RoomEventService.roomType === 'boss'">
 
         <div class="flexrow">
@@ -69,6 +69,8 @@
                 <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
                 <span class="stattext"> {{this.RoomEventService.monsterAttackValue}}</span>
             </div>
+            <!-- monster stunned? -->
+            <div *ngIf="this.RoomEventService.isMonsterStunned === true"> Stunned! </div>
             <div class="statbox">
                 <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
                 <div> <a href="https://www.flaticon.com/" title="Flaticon"></a></div>
@@ -78,7 +80,7 @@
 
     </div>
 
-    <!-- final boss -->
+    <!-- FINALBOSS -->
     <div *ngIf="this.RoomEventService.roomType === 'finalboss'">
 
         <div class="flexrow">
@@ -103,6 +105,8 @@
                 <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
                 <span class="stattext"> {{this.RoomEventService.monsterAttackValue}}</span>
             </div>
+            <!-- monster stunned? -->
+            <div *ngIf="this.RoomEventService.isMonsterStunned === true"> Stunned! </div>
             <div class="statbox">
                 <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
                 <div> <a href="https://www.flaticon.com/" title="Flaticon"></a></div>
@@ -139,8 +143,6 @@
 
     <!-- FIRE -->
     <div *ngIf="this.RoomEventService.roomType === 'fire'">
-        health +{{this.RoomEventService.healAmount}}
-
         <div class="flexrow">
             <div></div>
             <span *ngIf="this.RoomEventService.roomType === 'fire'" class="iconify" color="red"

@@ -125,7 +125,6 @@ export class RoomEventService {
     this.PlayerService.playerBlockAmount += this.PlayerService.offhand.itemDefenceValue;
     if (this.monsterHealthValue > 0) {
       this.monsterAttack()
-      this.isMonsterStunned = true;
     }
   }
 
@@ -134,6 +133,7 @@ export class RoomEventService {
       console.log(" monster is stunned");
       this.isMonsterStunned = false;
     } else {
+      // attack
       setTimeout(() => {
         let div = document.getElementById('monsterDiv');
         div.style.position = "relative";
@@ -141,6 +141,14 @@ export class RoomEventService {
         let dmg = this.monsterAttackValue;
         this.PlayerService.takeDamage(dmg);
       }, 1000);
+      // stun monster if block active
+      if (this.PlayerService.isBlockActive === true) {
+        setTimeout(() => {
+          console.log("monster stunned")
+          this.isMonsterStunned = true;
+        }, 1000);
+      }
+      //move back
       setTimeout(() => {
         let div = document.getElementById('monsterDiv');
         div.style.position = "relative";
@@ -149,6 +157,8 @@ export class RoomEventService {
       setTimeout(() => {
         this.PlayerService.healthChange = 0;
       }, 1600);
+
+      clearTimeout();
     }
   }
 
@@ -172,7 +182,6 @@ export class RoomEventService {
         }
       }
       );
-      console.log(templist);
     } else if (this.roomType === "monster" || this.roomType === "finalboss") {
       this.PlayerService.lootList.forEach(element => {
         if (element.itemTier <= 2) {
