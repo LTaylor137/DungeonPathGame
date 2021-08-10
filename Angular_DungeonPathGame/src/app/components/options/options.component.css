@@ -2,6 +2,7 @@
   margin: 1vw;
   display: flex;
   vertical-align: middle;
+  justify-content: space-around;
 }
 
 button, input {

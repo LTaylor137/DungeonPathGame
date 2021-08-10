@@ -37,6 +37,7 @@ export class DungeonPathService {
 
   showDevInfo: boolean = false;
   showRoomGaps: boolean = true;
+  showDungeonPath: boolean = true;
 
   posID: string = "11";
   nextID1: string;
@@ -73,6 +74,17 @@ export class DungeonPathService {
     }
   }
 
+  toggleDungeonPath() {
+    if (this.showDungeonPath === false) {
+      this.showDungeonPath = true;
+      this.makeConnections();
+      this.generateLeaderLines();
+    } else {
+      this.showDungeonPath = false;
+      this.deleteLeaderLines();
+    }
+  }
+
   movePlayer(x) {
     // change a room to used when leaving.
     this.levelList.forEach(level => {
@@ -87,7 +99,9 @@ export class DungeonPathService {
     this.nextID1 = "00";
     this.nextID2 = "00";
 
-    this.updateMoveOptions();
+    setTimeout(() => { this.updateMoveOptions(); }, 1000);
+    setTimeout(() => { this.toggleDungeonPath(); }, 1000);
+
   }
 
   updateMoveOptions() {
@@ -150,10 +164,10 @@ export class DungeonPathService {
         LeaderLine.pointAnchor(this.document.getElementById("Location" + connex.end.toString())),
         {
           color: 'black',
-          size: 15,
+          size: 20,
           path: "straight",
           startPlug: "behind",
-          endPlug: "disc"
+          endPlug: "behind"
         }
       );
       this.LeaderLineList.push(line);

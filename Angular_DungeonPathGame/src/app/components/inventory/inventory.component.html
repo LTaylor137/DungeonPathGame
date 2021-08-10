@@ -1,5 +1,12 @@
 <div class="InvContainer">
-    <div></div>
+
+    <div>
+        <div class="turnrow">
+            <div *ngIf="this.RoomEventService.isPlayerTurn === true" class="turnbox">
+               <p class="stattext"> Player Turn </p>
+            </div>
+        </div>
+    </div>
 
     <!-- helm -->
     <div class="slotrow">
@@ -24,10 +31,10 @@
         <!-- <div class="slotspace"></div> -->
     </div>
 
-    <div class="flexrow">
+    <div class="statrow">
         <div class="statbox">
             <span class="stattext"> {{this.PlayerService.playerAttack}}</span>
-            <span class="iconify" color="silver" data-icon="mdi:sword" data-inline="false"></span>
+            <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
         </div>
         <div class="flexrow">
             <div class="statbox">

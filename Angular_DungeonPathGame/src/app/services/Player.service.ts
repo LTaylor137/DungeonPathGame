@@ -73,7 +73,7 @@ export class PlayerService {
 
       // weapons
       this.lootList.push(new Item("weapon", "Fist", "Just wail on 'em", 1, 1, 0)),
-      this.lootList.push(new Item("weapon", "Splade", "Is it splade, or spork?", 1, 1, 0)),
+      this.lootList.push(new Item("weapon", "Splade", "Is it a splade, or a spork?", 1, 1, 0)),
       this.lootList.push(new Item("weapon", "Rock", "A rock you found on the floor", 1, 1, 0)),
 
       // t2
@@ -84,14 +84,14 @@ export class PlayerService {
       //t3
       this.lootList.push(new Item("weapon", "Sturgeon", "It's very heavy and covered in sharp spikes, who knows how it got in here...", 3, 3, 0)),
       this.lootList.push(new Item("weapon", "Bastard Sword", "A two handed greatsword", 3, 3, 0)),
-      this.lootList.push(new Item("weapon", "Light Sabre", "A two handed greataxe", 3, 4, 0)),
+      this.lootList.push(new Item("weapon", "Lightsabre", "A two handed greataxe", 3, 4, 0)),
 
       // armour
       this.lootList.push(new Item("armour", "Potato Sack", "Smells musty", 1, 0, 0))
       this.lootList.push(new Item("armour", "Dinner Shirt", "It's not pink, it's salmon!", 1, 0, 0))
       this.lootList.push(new Item("armour", "No Armour", "As nature intended", 1, 0, 0))
 
-    this.lootList.push(new Item("armour", "Leather", "Reduces damage taken by 1", 2, 0, 1))
+    this.lootList.push(new Item("armour", "Leather Armour", "Reduces damage taken by 1", 2, 0, 1))
     this.lootList.push(new Item("armour", "Steel Plate", "reduces damage taken by 2", 3, 0, 2))
     this.lootList.push(new Item("armour", "Plot Armour", "50% chance to avoid attacks.", 3, 0, 0))
 

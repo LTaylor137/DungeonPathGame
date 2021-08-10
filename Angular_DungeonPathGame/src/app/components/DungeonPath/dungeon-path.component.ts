@@ -18,7 +18,6 @@ export class DungeonPathComponent implements OnInit {
 
     movePlayer(x){
         this.DungeonPathService.movePlayer(x)
-        this.RoomEventService.setRoom()
     }
     
  

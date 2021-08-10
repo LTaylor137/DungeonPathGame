@@ -11,29 +11,17 @@ import { PlayerService } from "../../services/Player.service";
 })
 export class RoomEventComponent implements OnInit {
  
-  // roomType: string | null;
-  // LevelNo: number | null;
-  // roomNo: number | null;
-
-  // monsterAttack: number | null;
-
   constructor(public DungeonPathService: DungeonPathService, public RoomEventService: RoomEventService, public PlayerService: PlayerService) { }
 
   ngOnInit(): void {
+    console.log("set room room-event.component.ts")
     this.RoomEventService.setRoom();
-  }
-
-  monAttack()
-  {
-    this.RoomEventService.monsterAttack();
   }
 
   takeLoot(itemName)
   {
-
     this.PlayerService.takeLoot(itemName)
-
+    setTimeout(() => { this.DungeonPathService.toggleDungeonPath(); }, 1000);
   }
-
 
 }

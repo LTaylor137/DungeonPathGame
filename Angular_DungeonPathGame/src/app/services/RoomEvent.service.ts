@@ -30,6 +30,7 @@ export class RoomEventService {
   healAmount: number = 0;
 
   isMonsterStunned: boolean = false;
+  isPlayerTurn: boolean = false;
 
   // this assigns room images 
   setImage(roomType: string) {
@@ -68,10 +69,16 @@ export class RoomEventService {
             this.monsterAttackValue = this.setMonsterAttackValue()
             this.monsterHealthValue = this.setMonsterHealthValue()
             this.isMonsterStunned = false;
-            this.searchForLoot()
-            this.monsterAttack()
+            this.isPlayerTurn = false;
             this.roomImage = this.setImage(this.roomType);
             this.PlayerService.healthChange = 0;
+            this.AsignRoomLoot();
+
+            setTimeout(() => {
+              this.monsterAttack();
+              console.log("enter room aattack")
+            }, 1000);
+
           }
 
           if (room.roomType === "fire") {
@@ -79,7 +86,7 @@ export class RoomEventService {
           }
 
           if (room.roomType === "treasure") {
-            this.searchForLoot()
+            this.AsignRoomLoot()
           }
 
         }
@@ -114,51 +121,71 @@ export class RoomEventService {
   playerAttack() {
     this.monsterHealthValue = (this.monsterHealthValue - this.PlayerService.playerAttack)
     console.log("player hit enemy for " + this.PlayerService.playerAttack + " damage, taking health down to " + this.monsterHealthValue)
+
     if (this.monsterHealthValue > 0) {
-      this.monsterAttack()
+      setTimeout(() => {
+        this.isPlayerTurn = false
+        this.monsterAttack()
+      }, 1000);
     }
-    // this.PlayerService.healthChange = 0;
+
   }
 
   playerBlock() {
     this.PlayerService.isBlockActive = true;
     this.PlayerService.playerBlockAmount += this.PlayerService.offhand.itemDefenceValue;
+
     if (this.monsterHealthValue > 0) {
-      this.monsterAttack()
+      setTimeout(() => {
+        this.isPlayerTurn = false
+        this.monsterAttack()
+      }, 1000);
     }
+
   }
 
   monsterAttack() {
-    if (this.isMonsterStunned === true) {
-      console.log(" monster is stunned");
-      this.isMonsterStunned = false;
-    } else {
-      // attack
-      setTimeout(() => {
-        let div = document.getElementById('monsterDiv');
-        div.style.position = "relative";
-        div.style.right = 250 + 'px';
-        let dmg = this.monsterAttackValue;
-        this.PlayerService.takeDamage(dmg);
-      }, 1000);
-      // stun monster if block active
-      if (this.PlayerService.isBlockActive === true) {
-        setTimeout(() => {
-          console.log("monster stunned")
-          this.isMonsterStunned = true;
-        }, 1000);
-      }
-      //move back
-      setTimeout(() => {
-        let div = document.getElementById('monsterDiv');
-        div.style.position = "relative";
-        div.style.right = 0 + 'px';
-      }, 1200);
-      setTimeout(() => {
-        this.PlayerService.healthChange = 0;
-      }, 1600);
+    if (this.isPlayerTurn === false && this.monsterHealthValue > 0) {
 
-      clearTimeout();
+      if (this.isMonsterStunned === true) {
+        console.log(" monster is stunned");
+        setTimeout(() => {
+          this.isMonsterStunned = false;
+        }, 1000);
+
+      } else {
+        // attack
+        setTimeout(() => {
+          console.log("monster attack 1")
+          let div = document.getElementById('monsterDiv');
+          div.style.position = "relative";
+          div.style.right = 15 + 'vw';
+          let dmg = this.monsterAttackValue;
+          this.PlayerService.takeDamage(dmg);
+        }, 1000);
+
+        // stun monster if block active
+        if (this.PlayerService.isBlockActive === true) {
+          setTimeout(() => {
+            console.log("monster stunned")
+            this.isMonsterStunned = true;
+          }, 1000);
+        }
+        //move back
+        setTimeout(() => {
+          let div = document.getElementById('monsterDiv');
+          div.style.position = "relative";
+          div.style.right = 0 + 'px';
+        }, 1200);
+        setTimeout(() => {
+          this.PlayerService.healthChange = 0;
+        }, 1600);
+
+        // clearTimeout();
+      }
+      setTimeout(() => {
+        this.isPlayerTurn = true
+      }, 2600);
     }
   }
 
@@ -167,7 +194,7 @@ export class RoomEventService {
     this.PlayerService.gainHealth(this.healAmount)
   }
 
-  searchForLoot() {
+  AsignRoomLoot() {
 
     this.PlayerService.isLootTaken = false;
 

@@ -14,18 +14,15 @@ export class InventoryComponent implements OnInit {
 
   ngOnInit(): void {
     // this.PlayerService.playerHealth.subscribe(data => { this.health = data; console.log("this.health" + this.health)});
-    
   }
 
   health: number = 0;
 
-
-
-  Attack(){
-this.RoomEventService.playerAttack();
+  Attack() {
+    this.RoomEventService.playerAttack();
   }
 
-  Block(){
+  Block() {
     this.RoomEventService.playerBlock();
   }
 }

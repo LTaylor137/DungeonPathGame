@@ -1,14 +1,30 @@
 <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 
 
+<div class="pagecont">
+    <div class="columnContainer">
 
-    <app-options></app-options>
+        <!-- options -->
+        <app-options></app-options>
 
-    <div class="flexrow">
-        <app-inventory></app-inventory>
-        <app-room-event></app-room-event>
+        <!-- player info -->
+        <div class="info" *ngIf="DungeonPathService.showDevInfo === true">
+            playerHealth = {{ this.PlayerService.playerHealth }}
+            playerAttack = {{ this.PlayerService.playerAttack }}
+        </div>
+
+        <!-- if room shown  -->
+        <div *ngIf="this.DungeonPathService.showDungeonPath === false">
+            <div class="flexrow">
+                <app-inventory></app-inventory>
+                <app-room-event></app-room-event>
+            </div>
+        </div>
+
+        <!-- if dungeon path shown  -->
+        <div *ngIf="this.DungeonPathService.showDungeonPath === true">
+            <app-dungeon-path> </app-dungeon-path>
+        </div>
+
     </div>
-
-    <app-dungeon-path> </app-dungeon-path>
-
-
+</div>

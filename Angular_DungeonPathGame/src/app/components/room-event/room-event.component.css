@@ -5,25 +5,29 @@
 
 .REContainer {
   background-color: rgb(30, 101, 128);
-  width: 47vw;
-  height: 35vh;
-  margin: 1vw;
+  width: 43vw;
+  height: 80vh;
+  margin: 0vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.flexrow,
-.statrow {
+.flexrow, .Monsterflexrow, .status{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  vertical-align: middle;
 }
 
-.statrow {
-  background-color: rgb(0, 0, 0);
+.Monsterflexrow{
+  height: 40vh;
 }
 
+.status{
+  justify-content: space-around;
+}
+ 
 .flexcol {
   display: flex;
   flex-direction: column;
@@ -32,10 +36,10 @@
   background-color: rgba(187, 11, 11, 0.76);
 }
 
-.info {
+.devinfo {
   margin-top: 15vh;
   background-color: black;
-  color: white;
+  color: rgb(255, 255, 255);
   text-align: center;
   width: 20vw;
   align-self: center;
@@ -65,14 +69,33 @@
   background-color: rgba(255, 255, 255, 0);
 }
 
+.statrow{
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  vertical-align: middle;
+  background-color: rgb(0, 0, 0);
+}
+
+.turnrow {
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  vertical-align: middle;
+  background-color: rgb(0, 0, 0);
+}
+
 .statcont {
   display: flex;
   flex-direction: row;
 }
 
-.statbox {
-  width: 8vh;
-  height: 8vh;
+.statbox,
+.turnbox {
+  width: 10vw;
+  height: 100%;
   background-color: black;
   display: flex;
   flex-direction: row;
@@ -80,16 +103,18 @@
   z-index: 0;
 }
 
-.iconify {
-  /* z-index: 1; */
-  font-size: 7vh;
-  /* justify-self: center; */
-  /* animation-name: xxx;
-  animation-duration: .5s;
-  animation-iteration-count: infinite; */
+.turnbox {
+  width: 100%;
 }
 
-.monster {
+.iconify {
+  position: absolute;
+  z-index: 1;
+  font-size: 7vh;
+  align-self: center;
+}
+
+.monsterDiv {
   z-index: 1;
   justify-self: center;
   animation-name: monsterAttack;
@@ -119,9 +144,8 @@
 .stattext {
   color: cornsilk;
   font-size: 4.5vh;
-  margin-top: 0.8vh;
   font-weight: 800;
   z-index: 2;
-  position: absolute;
   user-select: none;
+  align-self: center;
 }

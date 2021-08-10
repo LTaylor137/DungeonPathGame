@@ -1,5 +1,25 @@
-.flexrow {
+.pagecont {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 98vw;
+  height: 98vh;
+}
+
+.columnContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 90%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* background-color: burlywood; */
+  }
+
+  .flexrow {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     /* width: 70vw; */
   }

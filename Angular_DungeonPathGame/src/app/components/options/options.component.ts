@@ -23,9 +23,17 @@ export class OptionsComponent implements OnInit {
     this.DungeonPathService.toggleRoomGaps()
   }
 
+  toggleDungeonPath() {
+    this.DungeonPathService.toggleDungeonPath()
+  }
+
   Generate() {
     this.DungeonPathService.generateMap()
     this.RoomEventService.setRoom()
+  }
+
+  redrawLines() {
+    this.DungeonPathService.generateLeaderLines();
   }
 
   resetPlayerPos() {

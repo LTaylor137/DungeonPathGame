@@ -1,12 +1,12 @@
+
 .DPContainer {
-  width: 96vw;
-  height: 54.5vh;
-  margin: 1vw;
-  background-color: rgb(175, 144, 41);
+  width: 100%;
+  height: 80vh;
+  margin: 0;
+  background-color: rgb(212, 185, 96);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  vertical-align: middle;
 }
 
 .flexrow {
@@ -18,10 +18,10 @@
 .level {
   width: 7vw;
   height: 100%;
-  background-color: rgba(224, 214, 157, 0.411);
+  background-color: rgba(36, 31, 4, 0.137);
   display: flex;
   flex-direction: column;
-  justify-content:space-around;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -35,15 +35,14 @@
 }
 
 /* room size shared info */
-.room, .nextroominfo, .used, .rmButton, .rmButton:hover
-{
-  height: 4.5vw;
-  width: 4.5vw;
-  min-width: 30px;
-  min-height: 30px;
-  max-width: 60px;
-  max-height: 60px;
-  border-radius: 1.75vw;
+.room,
+.nextroominfo,
+.used,
+.rmButton,
+.rmButton:hover {
+  height: 70px;
+  width: 70px;
+  border-radius: 30px;
   border-style: none;
   background-color: black;
 }
@@ -57,12 +56,8 @@
 }
 
 .iconify {
-  height: 4vw;
-  width: 4vw;
-  min-width: 25px;
-  min-height: 25px;
-  max-width: 55px;
-  max-height:55px;
+  height: 50px;
+  width: 65px;
   border-radius: 1.75vw;
   z-index: 4;
   user-select: none;
@@ -80,28 +75,33 @@
 }
 
 .rmButton {
-  /* height: 6vw;
-  width: 6vw; */
-  /* border-width: -.3vw; */
   border-style: solid;
   border-color: rgb(255, 255, 255);
   background-color: rgba(0, 0, 0, 0);
   z-index: 7;
   cursor: pointer;
-  position:fixed;
+  position: fixed;
   animation-name: roomSelect;
   animation-duration: 1.5s;
   animation-iteration-count: infinite;
 }
 
 @keyframes roomSelect {
-  0%   {border-color:rgb(255, 255, 255);}
-  50%  {border-color: rgb(255, 255, 255); border-width: .4vw; transform: scale(1.2);}
-  100% {border-color: rgb(255, 255, 255);}
+  0% {
+    border-color: rgb(255, 255, 255);
+  }
+  50% {
+    border-color: rgb(255, 255, 255);
+    border-width: 7.5px;
+    transform: scale(1.2);
+  }
+  100% {
+    border-color: rgb(255, 255, 255);
+  }
 }
 
 .rmButton:hover {
-  border-width: .4vw;
+  border-width: 7.5px;
   border-style: solid;
   border-color: rgb(255, 255, 255);
   background-color: rgba(0, 0, 0, 0);
@@ -123,14 +123,10 @@
 }
 
 .player {
-  height: 4vw;
-  width: 4vw;
-  min-width: 25px;
-  min-height: 25px;
-  max-width: 55px;
-  max-height:55px;
-  border-radius: 1.75vw;
-  border-width: 5px;
+  height: 47.5px;
+  width: 47.5px;
+  border-radius: 30px;
+  border-width: 10px;
   border-style: solid;
   border-color: rgb(0, 0, 0);
   color: aliceblue;
@@ -139,4 +135,3 @@
   text-align: center;
   z-index: 10;
 }
-
