@@ -24,4 +24,15 @@ export class RoomEventComponent implements OnInit {
     setTimeout(() => { this.DungeonPathService.toggleDungeonPath(); }, 1000);
   }
 
+  
+  health: number = 0;
+
+  Attack() {
+    this.RoomEventService.playerAttack();
+  }
+
+  Block() {
+    this.RoomEventService.playerBlock();
+  }
+  
 }

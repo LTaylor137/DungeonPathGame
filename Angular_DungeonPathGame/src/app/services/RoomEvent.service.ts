@@ -163,7 +163,7 @@ export class RoomEventService {
       } else {
         // attack
         setTimeout(() => {
-          let div = document.getElementById('monsterDiv');
+          let div = document.getElementById('monsterAni');
           div.style.position = "relative";
           div.style.right = 25 + 'vw';
           let dmg = this.monsterAttackValue;
@@ -179,7 +179,7 @@ export class RoomEventService {
         }
         //move back
         setTimeout(() => {
-          let div = document.getElementById('monsterDiv');
+          let div = document.getElementById('monsterAni');
           div.style.position = "relative";
           div.style.right = 0 + 'px';
         }, 1200);

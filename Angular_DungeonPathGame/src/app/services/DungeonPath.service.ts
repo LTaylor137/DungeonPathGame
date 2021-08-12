@@ -102,8 +102,8 @@ export class DungeonPathService {
     this.nextID1 = "00";
     this.nextID2 = "00";
 
-    setTimeout(() => { this.updateMoveOptions(); }, 1000);
-    setTimeout(() => { this.toggleDungeonPath(); }, 1000);
+    setTimeout(() => { this.updateMoveOptions(); }, 500);
+    setTimeout(() => { this.toggleDungeonPath(); }, 500);
 
   }
 

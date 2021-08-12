@@ -1,124 +1,210 @@
 <div class="REContainer">
 
-
     <div class="caveBGCont">
         <img class="caveBGImg" src="{{ this.RoomEventService.roomBackground }}" />
     </div>
 
+    <!-- dev info -->
     <div class="devinfo" *ngIf="DungeonPathService.showDevInfo === true">
         {{this.RoomEventService.roomType}} <br>
         currentLevel = {{this.RoomEventService.currentLevel}} <br>
         currentRoom = {{this.RoomEventService.currentRoom}}
     </div>
 
+    <!-- HEADER -->
     <!-- TURN INFO -->
-    <div>
-        <div class="turnrow">
-            <div *ngIf="this.RoomEventService.isPlayerTurn === false && this.RoomEventService.monsterHealthValue > 0"
-                class="turnbox">
-                <p class="stattext"> Monster Turn </p>
-            </div>
+    <div class="statrow">
+
+        <div class="statRowSpacer">
         </div>
+
+        <div class="statContainer">
+            <p *ngIf="this.RoomEventService.isPlayerTurn === true" class="stattext"> Player Turn </p>
+        </div>
+
+        <div class="statContainer">
+            <p *ngIf="this.RoomEventService.isPlayerTurn === false && this.RoomEventService.monsterHealthValue > 0"
+                class="stattext"> Monster Turn </p>
+        </div>
+
     </div>
 
-    <!-- MONSTER -->
-    <div
-        *ngIf="this.RoomEventService.roomType === 'monster' || this.RoomEventService.roomType === 'boss' || this.RoomEventService.roomType === 'finalboss'">
+    <!-- BODY -->
+
+    <div class="flexrow">
+        <!-- Equipment Column -->
+        <div class="equipColumn">
+            <div class="equipSlot"
+                [style.background-color]="this.PlayerService.getColour(this.PlayerService.helm.itemTier)">
+                {{ this.PlayerService.helm.itemName }}
+            </div>
+            <div class="equipSlot"
+                [style.background-color]="this.PlayerService.getColour(this.PlayerService.armour.itemTier)">
+                {{ this.PlayerService.armour.itemName }}
+            </div>
+            <div class="equipSlot" (click)="Block()"
+                [style.background-color]="this.PlayerService.getColour(this.PlayerService.offhand.itemTier)">
+                {{ this.PlayerService.offhand.itemName }}
+            </div>
+            <div class="equipSlot" (click)="Attack()"
+                [style.background-color]="this.PlayerService.getColour(this.PlayerService.weapon.itemTier)">
+                {{ this.PlayerService.weapon.itemName }}
+            </div>
+        </div>
+
+        <!-- Player Avatar Column -->
+        <div class="avatarColumn">
+            <div class="ailmentBox">
+            </div>
+            <img id="playerAvatar" class="avatar" src="{{ this.PlayerService.playerAvatar }}" />
+        </div>
 
 
-        <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="flexrow">
-            <div class="flexcol">
-                <div class="statusBox">
+
+        <!-- Inventory Column -->
+
+        <!-- Player Avatar equipColumn -->
+
+        <!-- Room Event Column -->
+
+        <!-- Footer -->
+
+        <!-- MONSTER -->
+        <div *ngIf="this.RoomEventService.roomType === 'monster' ||
+             this.RoomEventService.roomType === 'boss' ||
+              this.RoomEventService.roomType === 'finalboss'">
+
+            <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="avatarColumn">
+                <div class="ailmentBox">
                     <!-- monster stunned? -->
                     <div *ngIf="this.RoomEventService.isMonsterStunned === true && this.RoomEventService.monsterHealthValue > 0"
-                        class="status"> Stunned! </div>
+                        class="ailment"> Stunned! </div>
                 </div>
-                <img id="monsterDiv" src="{{ this.RoomEventService.roomImage }}" />
+                <div class="monster">
+                    <img class="monster" id="monsterAni" src="{{ this.RoomEventService.roomImage }}" />
+                </div>
             </div>
-        </div>
 
-        <!-- loot -->
-        <div class="flexrow"
-            *ngIf="this.RoomEventService.monsterHealthValue <= 0 && this.PlayerService.isLootTaken === false">
-
-            <div class="lootCont">
-                <div class="flexrow">
-                    <div *ngFor="let loot of this.RoomEventService.roomLootList">
-                        <div class="lootCard" [style.background-color]="this.PlayerService.getColour(loot.itemTier)"
-                            (click)="takeLoot(loot.itemName)">
-                            {{ loot.itemName }}
+            <!-- monster loot -->
+            <div class="avatarColumn">
+                <div class="lootContainer" *ngIf="this.RoomEventService.monsterHealthValue <= 0 
+                    && this.PlayerService.isLootTaken === false">
+                    <div class="flexrow">
+                        <div *ngFor="let loot of this.RoomEventService.roomLootList">
+                            <div class="lootCard" [style.background-color]="this.PlayerService.getColour(loot.itemTier)"
+                                (click)="takeLoot(loot.itemName)">
+                                {{ loot.itemName }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flexrow">
+                        <div class="forgoLoot" (click)="this.DungeonPathService.toggleDungeonPath()">
+                            take nothing and leave
                         </div>
                     </div>
                 </div>
-                <div class="flexrow">
-                    <div class="forgoLoot" (click)="this.DungeonPathService.toggleDungeonPath()">
-                        take nothing and leave
-                    </div>
-                </div>
             </div>
 
         </div>
 
-    </div>
+        <!-- <div class="equipColumn">
+            
+        </div> -->
 
-    <!-- TREASURE -->
-    <div *ngIf="this.RoomEventService.roomType === 'treasure'">
+        <!-- TREASURE -->
+        <div *ngIf="this.RoomEventService.roomType === 'treasure'">
 
-        <div class="flexrow">
-            <div></div>
-            <span *ngIf="this.RoomEventService.roomType === 'treasure'" class="iconify" color="gold"
-                data-icon="mdi-treasure-chest" data-inline="false"></span>
-            <div></div>
-        </div>
-
-        <!-- loot -->
-        <div class="flexrow">
-
-            <div class="lootCont">
-                <div class="flexrow">
-                    <div *ngFor="let loot of this.RoomEventService.roomLootList">
-                        <div class="lootCard" [style.background-color]="this.PlayerService.getColour(loot.itemTier)"
-                            (click)="takeLoot(loot.itemName)">
-                            {{ loot.itemName }}
+            <!-- loot -->
+            <div class="avatarColumn">
+                <div class="lootContainer" *ngIf="this.PlayerService.isLootTaken === false">
+                    <div class="flexrow">
+                        <div *ngFor="let loot of this.RoomEventService.roomLootList">
+                            <div class="lootCard" [style.background-color]="this.PlayerService.getColour(loot.itemTier)"
+                                (click)="takeLoot(loot.itemName)">
+                                {{ loot.itemName }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flexrow">
+                        <div class="forgoLoot" (click)="this.DungeonPathService.toggleDungeonPath()">
+                            take nothing and leave
                         </div>
                     </div>
                 </div>
-                <div class="flexrow">
-                    <div class="forgoLoot" (click)="this.DungeonPathService.toggleDungeonPath()">
-                        take nothing and leave
-                    </div>
-                </div>
+            </div>
+
+            <div class="flexrow">
+                <div></div>
+                <span *ngIf="this.RoomEventService.roomType === 'treasure'" class="iconify" color="gold"
+                    data-icon="mdi-treasure-chest" data-inline="false"></span>
+                <div></div>
             </div>
 
         </div>
 
-    </div>
-
-    <!-- FIRE -->
-    <div *ngIf="this.RoomEventService.roomType === 'fire'">
-        <div class="flexrow">
-            <div></div>
-            <span *ngIf="this.RoomEventService.roomType === 'fire'" class="iconify" color="red"
-                data-icon="majesticons:fire" data-inline="false"></span>
-            <div></div>
+        <!-- FIRE -->
+        <div *ngIf="this.RoomEventService.roomType === 'fire'">
+            <div class="avatarColumn">
+                <span *ngIf="this.RoomEventService.roomType === 'fire'" class="iconify" color="red"
+                    data-icon="majesticons:fire" data-inline="false"></span>
+            </div>
         </div>
+
     </div>
 
-    <!-- bottom stat row -->
+    <!----------------------------------------- FOOTER --------------------------------------------->
     <div class="statrow">
-        <div class="statbox">
+
+        <div class="statRowSpacer">
         </div>
-        <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="statbox">
-            <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
-            <span class="stattext"> {{this.RoomEventService.monsterAttackValue}}</span>
+
+        <!-- player stats -->
+        <div class="statContainer">
+            <div class="statbox">
+                <span class="stattext"> {{this.PlayerService.playerAttack}}</span>
+                <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
+            </div>
+
+            <!-- <div class="flexrow"> -->
+            <div class="statbox">
+                <span *ngIf="this.PlayerService.isBlockActive === true" class="stattextGrn"> {{
+                    this.PlayerService.getDefenceValue() }}</span>
+                <span *ngIf="this.PlayerService.isBlockActive === false" class="stattext"> {{
+                    this.PlayerService.getDefenceValue() }}</span>
+                <span class="iconify" color="grey" data-icon="bx-bxs-shield" data-inline="false"></span>
+            </div>
+            <!-- </div> -->
+
+            <!-- <div class="flexrow"> -->
+            <div class="statbox">
+                <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
+                <span class="stattext"> {{ this.PlayerService.playerHealth }}</span>
+                <div *ngIf="this.PlayerService.healthChange > 0" class="healthPos">
+                    +{{ this.PlayerService.healthChange }}
+                </div>
+                <div *ngIf="this.PlayerService.healthChange < 0" class="healthNeg">
+                    {{ this.PlayerService.healthChange }}
+                </div>
+            </div>
+            <!-- </div> -->
         </div>
-        <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="statbox">
-            <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
-            <div> <a href="https://www.flaticon.com/" title="Flaticon"></a></div>
-            <span class="stattext"> {{this.RoomEventService.monsterHealthValue}}</span>
+
+
+        <!-- monster  stats -->
+        <div class="statContainer">
+            <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="statbox">
+                <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
+                <span class="stattext"> {{this.RoomEventService.monsterAttackValue}}</span>
+            </div>
+            <div class="statbox">
+            </div>
+            <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="statbox">
+                <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
+                <div> <a href="https://www.flaticon.com/" title="Flaticon"></a></div>
+                <span class="stattext"> {{this.RoomEventService.monsterHealthValue}}</span>
+            </div>
         </div>
-        <div class="statbox">
-        </div>
+
     </div>
 
     <!-- START -->
