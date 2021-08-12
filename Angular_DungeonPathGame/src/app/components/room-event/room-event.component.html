@@ -1,6 +1,6 @@
 <div class="REContainer">
 
-    
+
     <div class="caveBGCont">
         <img class="caveBGImg" src="{{ this.RoomEventService.roomBackground }}" />
     </div>
@@ -25,14 +25,16 @@
     <div
         *ngIf="this.RoomEventService.roomType === 'monster' || this.RoomEventService.roomType === 'boss' || this.RoomEventService.roomType === 'finalboss'">
 
-        <!-- monster stunned? -->
-        <div *ngIf="this.RoomEventService.isMonsterStunned === true && this.RoomEventService.monsterHealthValue > 0"
-            class="status"> Stunned! </div>
 
-        <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="Monsterflexrow">
-            <div></div>
-            <img id="monsterDiv" src="{{ this.RoomEventService.roomImage }}" />
-            <div></div>
+        <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="flexrow">
+            <div class="flexcol">
+                <div class="statusBox">
+                    <!-- monster stunned? -->
+                    <div *ngIf="this.RoomEventService.isMonsterStunned === true && this.RoomEventService.monsterHealthValue > 0"
+                        class="status"> Stunned! </div>
+                </div>
+                <img id="monsterDiv" src="{{ this.RoomEventService.roomImage }}" />
+            </div>
         </div>
 
         <!-- loot -->
