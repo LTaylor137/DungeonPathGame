@@ -24,6 +24,7 @@ export class RoomEventService {
   monsterAttackValue: number | null;
   monsterHealthValue: number | null;
   roomImage: string | null;
+  roomBackground: string | null;
 
   roomLootList: Item[] = [];
 
@@ -31,6 +32,11 @@ export class RoomEventService {
 
   isMonsterStunned: boolean = false;
   isPlayerTurn: boolean = false;
+
+  // this assigns room background 
+  setRoomBackground() {
+    return "../../assets/images/backgrounds/background1.png";
+  }
 
   // this assigns room images 
   setImage(roomType: string) {
@@ -71,6 +77,7 @@ export class RoomEventService {
             this.isMonsterStunned = false;
             this.isPlayerTurn = false;
             this.roomImage = this.setImage(this.roomType);
+            this.roomBackground = this.setRoomBackground();
             this.PlayerService.healthChange = 0;
             this.AsignRoomLoot();
 
@@ -156,10 +163,9 @@ export class RoomEventService {
       } else {
         // attack
         setTimeout(() => {
-          console.log("monster attack 1")
           let div = document.getElementById('monsterDiv');
           div.style.position = "relative";
-          div.style.right = 15 + 'vw';
+          div.style.right = 25 + 'vw';
           let dmg = this.monsterAttackValue;
           this.PlayerService.takeDamage(dmg);
         }, 1000);
@@ -192,6 +198,7 @@ export class RoomEventService {
   getHealthFromFire() {
     this.healAmount = Math.floor(Math.random() * 3) + 1;
     this.PlayerService.gainHealth(this.healAmount)
+    setTimeout(() => { this.DungeonPathService.toggleDungeonPath(); }, 1000);
   }
 
   AsignRoomLoot() {

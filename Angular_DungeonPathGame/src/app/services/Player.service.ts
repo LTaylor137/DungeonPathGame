@@ -17,6 +17,7 @@ export class PlayerService {
   playerHealth: number = 5;
   // playerDefence: number = 0;
   playerBlockAmount: number = 0;
+  playerAvatar: string = "../../assets/images/avatars/Avatar1.png";
 
   lootList: Item[] = [];
 
@@ -26,6 +27,10 @@ export class PlayerService {
   healthChange: number;
 
   constructor() { }
+
+  setAvatar() {
+    return "../../assets/images/avatars/Avatar1.png";
+  }
 
   gainHealth(heal: number) {
     setTimeout(() => {
@@ -39,17 +44,8 @@ export class PlayerService {
   }
 
   takeDamage(dmg: number) {
-    let result = dmg;
-    // remove block amount
-    if (this.isBlockActive === true) {
-      result = result - this.playerBlockAmount;
-    }
     // remove defence amount
-    if (result <= 0) {
-      console.log("attack did not break block")
-    } else if (result > 0) {
-      result = result - this.getDefenceValue();
-    }
+      let result = dmg - this.getDefenceValue();
     // if any damage remaining, deduct from player health.
     if (result <= 0) {
       console.log("attack did not break armour")
@@ -67,39 +63,39 @@ export class PlayerService {
     //foods
     this.lootList.push(new Item("food", "Painkillers", "You're in a computer game, Max... Heals for 1 health", 0, 0, 1)),
       this.lootList.push(new Item("food", "Heart Container", "Hey, Listen! Heals for 1 health", 0, 0, 1)),
-      this.lootList.push(new Item("food", "Mushroom", "Heals for 1 health", 0, 0, 1)),
-      this.lootList.push(new Item("food", "Phoenix Down", "Heals for 1 health", 0, 0, 1)),
+      this.lootList.push(new Item("food", "Mushroom", "Wahoo! Heals for 1 health", 0, 0, 1)),
       this.lootList.push(new Item("food", "Rations", "“Do you think love can bloom, even on a battlefield?” Heals for 1 health", 0, 0, 1)),
 
       // weapons
+      // t1
       this.lootList.push(new Item("weapon", "Fist", "Just wail on 'em", 1, 1, 0)),
       this.lootList.push(new Item("weapon", "Splade", "Is it a splade, or a spork?", 1, 1, 0)),
       this.lootList.push(new Item("weapon", "Rock", "A rock you found on the floor", 1, 1, 0)),
-
       // t2
       this.lootList.push(new Item("weapon", "Board with a nail in it", "Swing the nail bit at the enemy", 2, 2, 0)),
-      this.lootList.push(new Item("weapon", "Meat Cleaver", "A Sword", 2, 2, 0)),
-      this.lootList.push(new Item("weapon", "Axe", "An Sword", 2, 2, 0)),
-
+      this.lootList.push(new Item("weapon", "Meat Cleaver", "For cleaving", 2, 2, 0)),
+      this.lootList.push(new Item("weapon", "Axe", "A small hatchet", 2, 2, 0)),
       //t3
-      this.lootList.push(new Item("weapon", "Sturgeon", "It's very heavy and covered in sharp spikes, who knows how it got in here...", 3, 3, 0)),
-      this.lootList.push(new Item("weapon", "Bastard Sword", "A two handed greatsword", 3, 3, 0)),
-      this.lootList.push(new Item("weapon", "Lightsabre", "A two handed greataxe", 3, 4, 0)),
+      this.lootList.push(new Item("weapon", "Sturgeon", "A very heavy fish, covered in sharp spikes, who knows how it got in here...", 3, 3, 0)),
+      this.lootList.push(new Item("weapon", "Claymore", "A two handed greatsword", 3, 3, 0)),
+      this.lootList.push(new Item("weapon", "Great Axe", "A two handed greataxe", 3, 3, 0)),
+      // t4
+      this.lootList.push(new Item("weapon", "Lightsabre", "Vrooom!", 4, 4, 0)),
 
       // armour
       this.lootList.push(new Item("armour", "Potato Sack", "Smells musty", 1, 0, 0))
-      this.lootList.push(new Item("armour", "Dinner Shirt", "It's not pink, it's salmon!", 1, 0, 0))
-      this.lootList.push(new Item("armour", "No Armour", "As nature intended", 1, 0, 0))
+    this.lootList.push(new Item("armour", "Dinner Shirt", "It's not pink, it's salmon!", 1, 0, 0))
+    this.lootList.push(new Item("armour", "Shirtless", "As nature intended", 1, 0, 0))
 
     this.lootList.push(new Item("armour", "Leather Armour", "Reduces damage taken by 1", 2, 0, 1))
     this.lootList.push(new Item("armour", "Steel Plate", "reduces damage taken by 2", 3, 0, 2))
-    this.lootList.push(new Item("armour", "Plot Armour", "50% chance to avoid attacks.", 3, 0, 0))
+    this.lootList.push(new Item("armour", "Plot Armour", "50% chance to avoid attacks.", 4, 0, 0))
 
     // offhands
     this.lootList.push(new Item("offhand", "Wooden Buckler", "small, able to block 1 damage for 1 turn, will stun enemy on successful block", 1, 0, 1))
     this.lootList.push(new Item("offhand", "Tower Shield", "Large Shield, able to block 2 damage for 1 turn, will stun enemy on successful block", 2, 0, 2))
     this.lootList.push(new Item("offhand", "Handgun", "Allows you to shoot first when entering a room", 3, 1, 0))
-    this.lootList.push(new Item("offhand", "MagLite", "25% chance to dazzle an emeny causing them to miss", 3, 0, 0))
+    this.lootList.push(new Item("offhand", "MagLite", "25% chance to dazzle an emeny causing them to miss", 4, 0, 0))
 
     // helms
     this.lootList.push(new Item("helm", "Beanie", "keeps you warm, has a pom-pom!", 1, 0, 0))
@@ -107,7 +103,7 @@ export class PlayerService {
     this.lootList.push(new Item("helm", "Christmas hat", "It had little flashing lights but the batteries have died", 1, 0, 0))
 
     this.lootList.push(new Item("helm", "Soup Pot", "It covers your whole skull! Adds +1 Defence", 2, 0, 1))
-    this.lootList.push(new Item("helm", "Miner's Hat", "25% chance to dazzle an emeny causing them to miss", 3, 0, 0))
+    this.lootList.push(new Item("helm", "Miner's Hat", "25% chance to dazzle an emeny causing them to miss", 4, 0, 0))
 
   }
 
@@ -129,7 +125,11 @@ export class PlayerService {
   }
 
   getDefenceValue() {
-    return this.helm.itemDefenceValue + this.armour.itemDefenceValue;
+    if (this.isBlockActive === true) {
+      return this.helm.itemDefenceValue + this.armour.itemDefenceValue + this.offhand.itemDefenceValue;
+    } else {
+      return this.helm.itemDefenceValue + this.armour.itemDefenceValue;
+    }
   }
 
   takeLoot(itemName) {
@@ -163,6 +163,22 @@ export class PlayerService {
     }
 
     this.isLootTaken = true;
+
+  }
+
+  getColour(tier) {
+    switch (tier) {
+      case 0:
+        return "rgb(131, 214, 98)";
+      case 1:
+        return "rgb(124, 124, 124)";
+      case 2:
+        return "rgb(52, 99, 175)";
+      case 3:
+        return "rgb(175, 163, 52)";
+      case 4:
+        return "rgb(154, 64, 195)";
+    }
 
   }
 

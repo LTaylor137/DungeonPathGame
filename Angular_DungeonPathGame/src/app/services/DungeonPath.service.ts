@@ -21,6 +21,7 @@ declare let LeaderLine: any;
 
 export class DungeonPathService {
 
+  // map building
   mapSize: number | null;
   LevelNo: number | null;
 
@@ -34,16 +35,18 @@ export class DungeonPathService {
   levelList: Level[] = [];
   connectionsList: Connection[] = [];
   LeaderLineList: any[] = [];
-
-  showDevInfo: boolean = false;
-  showRoomGaps: boolean = true;
-  showDungeonPath: boolean = true;
-
+  
   posID: string = "11";
   nextID1: string;
   nextID2: string;
 
-  constructor(@Inject(DOCUMENT) private document) {
+  // options
+  showDevInfo: boolean = false;
+  showRoomGaps: boolean = true;
+  showDungeonPath: boolean = true;
+
+
+  constructor(@Inject(DOCUMENT) private document, public PlayerService: PlayerService) {
   }
 
   ngOnInit(): void {
@@ -277,6 +280,7 @@ export class DungeonPathService {
     this.LevelNo = 1;
     this.maxRmThisLevel = 1;
     this.maxRmNextLevel = 1;
+    this.PlayerService.setAvatar()
 
     // ========================= create levels =========================
     while (this.LevelNo <= this.mapSize) {
@@ -310,7 +314,7 @@ export class DungeonPathService {
           ConnectionRoomNo += 2;
           this.maxRmNextLevel += 1;
           this.isSplitBlock = true;
-        } else if ((Math.random() > 0.5) && this.LevelNo === 2 || this.maxRmThisLevel < (this.mapSize / 5)) {
+        } else if ((Math.random() > 0.7) && this.LevelNo === 2 || this.maxRmThisLevel < (this.mapSize / 5)) {
           thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, ConnectionRoomNo + 1, "splithi%", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
           roomNo += 1;
           ConnectionRoomNo += 2;
@@ -336,7 +340,7 @@ export class DungeonPathService {
 
           } else {
             // split - or stay
-            if (Math.random() > 0.1 && this.isSplitBlock === false) {
+            if (Math.random() > 0.5 && this.isSplitBlock === false) {
               thislevel.roomList.push(new Room(this.LevelNo, roomNo, ConnectionRoomNo, ConnectionRoomNo + 1, "GrSplit", this.setRoomType(this.LevelNo, roomNo), this.createID(this.LevelNo, roomNo)))
               roomNo += 1;
               ConnectionRoomNo += 2;
