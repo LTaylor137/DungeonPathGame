@@ -33,14 +33,14 @@ export class PlayerService {
   }
 
   gainHealth(heal: number) {
-    setTimeout(() => {
+    // setTimeout(() => {
       let div = document.getElementById('monsterDiv');
       this.playerHealth += heal;
       this.healthChange = heal
-    }, 500);
+    // }, 500);
     setTimeout(() => {
       this.healthChange = 0;
-    }, 1000);
+    }, 1500);
   }
 
   takeDamage(dmg: number) {
@@ -50,9 +50,11 @@ export class PlayerService {
     if (result <= 0) {
       console.log("attack did not break armour")
     } else if (result > 0) {
-      this.playerHealth = this.playerHealth - result;
       console.log("attack did " + result + " damage.")
       this.healthChange = - result;
+      setTimeout(() => {
+        this.playerHealth = this.playerHealth - result;
+    }, 1000);
     }
     this.playerBlockAmount = 0;
     this.isBlockActive = false;
@@ -61,7 +63,7 @@ export class PlayerService {
   populateLootPool() {
 
     //foods
-    this.lootList.push(new Item("food", "Painkillers", "You're in a computer game, Max... Heals for 1 health", 0, 0, 1)),
+    this.lootList.push(new Item("food", "Painkillers", "You're in a computer game, Max... Heals for 1 health", 0, 0, 1,)),
       this.lootList.push(new Item("food", "Heart Container", "Hey, Listen! Heals for 1 health", 0, 0, 1)),
       this.lootList.push(new Item("food", "Mushroom", "Wahoo! Heals for 1 health", 0, 0, 1)),
       this.lootList.push(new Item("food", "Rations", "“Do you think love can bloom, even on a battlefield?” Heals for 1 health", 0, 0, 1)),
@@ -98,12 +100,12 @@ export class PlayerService {
     this.lootList.push(new Item("offhand", "MagLite", "25% chance to dazzle an emeny causing them to miss", 4, 0, 0))
 
     // helms
-    this.lootList.push(new Item("helm", "Beanie", "keeps you warm, has a pom-pom!", 1, 0, 0))
+    this.lootList.push(new Item("helm", "Beanie", "keeps you warm, has a pom-pom", 1, 0, 0))
     this.lootList.push(new Item("helm", "Novelty Viking Helmet", "It's a bit too small. Made of plastic", 1, 0, 0))
     this.lootList.push(new Item("helm", "Christmas hat", "It had little flashing lights but the batteries have died", 1, 0, 0))
 
     this.lootList.push(new Item("helm", "Soup Pot", "It covers your whole skull! Adds +1 Defence", 2, 0, 1))
-    this.lootList.push(new Item("helm", "Miner's Hat", "25% chance to dazzle an emeny causing them to miss", 4, 0, 0))
+    this.lootList.push(new Item("helm", "Miners Helmet", "25% chance to dazzle an emeny causing them to miss", 4, 0, 1))
 
   }
 

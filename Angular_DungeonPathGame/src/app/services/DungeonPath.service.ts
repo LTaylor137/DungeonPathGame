@@ -35,7 +35,7 @@ export class DungeonPathService {
   levelList: Level[] = [];
   connectionsList: Connection[] = [];
   LeaderLineList: any[] = [];
-  
+
   posID: string = "11";
   nextID1: string;
   nextID2: string;
@@ -161,19 +161,42 @@ export class DungeonPathService {
   }
 
   generateLeaderLines() {
+    // this.connectionsList.forEach(connex => {
+    //   let line = new LeaderLine(
+    //     LeaderLine.pointAnchor(this.document.getElementById("Location" + connex.start.toString())),
+    //     LeaderLine.pointAnchor(this.document.getElementById("Location" + connex.end.toString())),
+    //     {
+    //       color: 'rgba(230, 230, 230)',
+    //       size: 80,
+    //       // path: "arc",
+    //       startPlug: "behind",
+    //       endPlug: "disc",
+    //       endPlugSize: .4,
+    //       outlineColor: 'rgba(20, 20, 230)',
+    //       outline: 2,
+    //       startSocketGravity: [50, 0],
+    //       endSocketGravity: [0, 0]
+
+    //     }
+    //   );
+    //   this.LeaderLineList.push(line);
+    // });
     this.connectionsList.forEach(connex => {
-      let line = new LeaderLine(
+      let line2 = new LeaderLine(
         LeaderLine.pointAnchor(this.document.getElementById("Location" + connex.start.toString())),
         LeaderLine.pointAnchor(this.document.getElementById("Location" + connex.end.toString())),
         {
           color: 'black',
-          size: 20,
+          size: 30,
           path: "straight",
           startPlug: "behind",
-          endPlug: "behind"
+          endPlug: "behind",
+          startSocketGravity: [100, 0],
+          endSocketGravity: [0, 0]
+
         }
       );
-      this.LeaderLineList.push(line);
+      this.LeaderLineList.push(line2);
     });
   }
 
@@ -190,7 +213,7 @@ export class DungeonPathService {
 
     if (lvl === 1) {
       lvl = 1;
-    } else if (Math.random() > 0.85 &&
+    } else if (Math.random() > 0.80 &&
       lvl !== (this.mapSize / 2 + 1) &&
       lvl !== (this.mapSize - 1) &&
       lvl !== (this.mapSize)) {
@@ -302,7 +325,7 @@ export class DungeonPathService {
         console.log("this.maxRmThisLevel " + this.maxRmThisLevel)
 
         // create a gap 
-        if (roomNo === 1 && this.LevelNo <= this.mapSize / 2.5 && this.showRoomGaps === true) {
+        if (roomNo === 1 && this.LevelNo <= this.mapSize / 3 && this.showRoomGaps === true) {
           for (let i = ((this.mapSize / 4) - (this.maxRmThisLevel)); i >= 0; i--)
             thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "GAP1", ""))
         }

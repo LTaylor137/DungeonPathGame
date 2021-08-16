@@ -32,6 +32,9 @@ export class RoomEventService {
 
   isMonsterStunned: boolean = false;
   isPlayerTurn: boolean = false;
+  isMonsterTakeDamage: boolean = false;
+  isMonsterDead: boolean = false;
+  isPlayerDead: boolean = false;
 
   // this assigns room background 
   setRoomBackground() {
@@ -70,6 +73,7 @@ export class RoomEventService {
           this.roomType = room.roomType
           this.currentLevel = room.levelNo
           this.currentRoom = room.roomNo
+          this.roomBackground = this.setRoomBackground();
 
           if (room.roomType === "monster" || room.roomType === "boss" || room.roomType === "finalboss") {
             this.monsterAttackValue = this.setMonsterAttackValue()
@@ -77,15 +81,9 @@ export class RoomEventService {
             this.isMonsterStunned = false;
             this.isPlayerTurn = false;
             this.roomImage = this.setImage(this.roomType);
-            this.roomBackground = this.setRoomBackground();
             this.PlayerService.healthChange = 0;
             this.AsignRoomLoot();
-
-            setTimeout(() => {
-              this.monsterAttack();
-              console.log("enter room aattack")
-            }, 1000);
-
+            setTimeout(() => { this.monsterAttack(); }, 1000);
           }
 
           if (room.roomType === "fire") {
@@ -109,7 +107,7 @@ export class RoomEventService {
       case "boss":
         return Math.ceil((currentLevel / 2));
       case "finalboss":
-        return Math.ceil((currentLevel / 2));
+        return Math.ceil((currentLevel / 2 - 1));
     }
   }
 
@@ -121,20 +119,41 @@ export class RoomEventService {
       case "boss":
         return Math.ceil((currentLevel));
       case "finalboss":
-        return Math.ceil((currentLevel));
+        return Math.ceil((currentLevel - 1));
     }
   }
 
   playerAttack() {
-    this.monsterHealthValue = (this.monsterHealthValue - this.PlayerService.playerAttack)
+
+    this.isMonsterTakeDamage = true;
+
+    // attack
+    // setTimeout(() => {
+      let div = document.getElementById('playerAvatar');
+      div.style.position = "relative";
+      div.style.right = -25 + 'vw';
+      let dmg = this.PlayerService.playerAttack;
+      this.monsterHealthValue = (this.monsterHealthValue - this.PlayerService.playerAttack)
+    // }, 500);
+    //move back
+    setTimeout(() => {
+      let div = document.getElementById('playerAvatar');
+      div.style.position = "relative";
+      div.style.right = 0 + 'px';
+    }, 500);
+
     console.log("player hit enemy for " + this.PlayerService.playerAttack + " damage, taking health down to " + this.monsterHealthValue)
 
+    // monster has died
     if (this.monsterHealthValue > 0) {
       setTimeout(() => {
         this.isPlayerTurn = false
+        this.isMonsterTakeDamage = false;
         this.monsterAttack()
       }, 1000);
     }
+
+
 
   }
 
@@ -158,7 +177,7 @@ export class RoomEventService {
         console.log(" monster is stunned");
         setTimeout(() => {
           this.isMonsterStunned = false;
-        }, 1000);
+        }, 500);
 
       } else {
         // attack
@@ -168,30 +187,29 @@ export class RoomEventService {
           div.style.right = 25 + 'vw';
           let dmg = this.monsterAttackValue;
           this.PlayerService.takeDamage(dmg);
-        }, 1000);
-
+        }, 500);
         // stun monster if block active
         if (this.PlayerService.isBlockActive === true) {
           setTimeout(() => {
             console.log("monster stunned")
             this.isMonsterStunned = true;
-          }, 1000);
+          }, 500);
         }
         //move back
         setTimeout(() => {
           let div = document.getElementById('monsterAni');
           div.style.position = "relative";
           div.style.right = 0 + 'px';
-        }, 1200);
+        }, 700);
         setTimeout(() => {
           this.PlayerService.healthChange = 0;
-        }, 1600);
+        }, 2000);
 
         // clearTimeout();
       }
       setTimeout(() => {
         this.isPlayerTurn = true
-      }, 2600);
+      }, 2000);
     }
   }
 
@@ -204,19 +222,19 @@ export class RoomEventService {
   AsignRoomLoot() {
 
     this.PlayerService.isLootTaken = false;
-
     this.roomLootList = []
     let templist = [];
+    let currentlyEquipped = [this.PlayerService.helm, this.PlayerService.armour, this.PlayerService.offhand, this.PlayerService.weapon];
 
     // create a new list based on tier level 
-    if (this.roomType === "treasure" || this.roomType === "boss") {
+    if (this.roomType === "treasure" || this.roomType === "boss" || this.roomType === "finalboss") {
       this.PlayerService.lootList.forEach(element => {
         if (element.itemTier >= 2) {
           templist.push(element);
         }
       }
       );
-    } else if (this.roomType === "monster" || this.roomType === "finalboss") {
+    } else if (this.roomType === "monster") {
       this.PlayerService.lootList.forEach(element => {
         if (element.itemTier <= 2) {
           templist.push(element);
@@ -228,14 +246,16 @@ export class RoomEventService {
     // select only 3 items from that list.
     while (this.roomLootList.length <= 2) {
       let randomItem = Math.floor(Math.random() * templist.length);
-      console.log("the item chosen is  = =  " + randomItem, templist[randomItem])
+      console.log("the item chosen is = " + randomItem, templist[randomItem])
       // only add the item if it's not already in the list of items offered.
       if (this.roomLootList.includes(templist[randomItem])) {
-        // do nothihg
+        // do not add
+      } else if(currentlyEquipped.includes(templist[randomItem]) === true){
+        // do not add
+        console.log(templist[randomItem].itemName + "was found in list of equipped items. And was skipped.")
       } else {
         this.roomLootList.push(templist[randomItem])
       }
-      console.log("the item list =  " + this.roomLootList)
     }
 
   }

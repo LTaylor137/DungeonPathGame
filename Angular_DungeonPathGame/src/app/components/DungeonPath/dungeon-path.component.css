@@ -3,7 +3,7 @@
   width: 100%;
   height: 80vh;
   margin: 0;
-  background-color: rgb(212, 185, 96);
+  background-color: rgb(207, 169, 97);
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -18,7 +18,7 @@
 .level {
   width: 7vw;
   height: 100%;
-  background-color: rgba(36, 31, 4, 0.137);
+  /* background-color: rgba(36, 31, 4, 0.137); */
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -40,10 +40,14 @@
 .used,
 .rmButton,
 .rmButton:hover {
-  height: 70px;
-  width: 70px;
-  border-radius: 30px;
+  min-width: 60px;
+  min-height: 60px;
+  height: 5vw;
+  width: 5vw;
+  border-radius: 100px;
+  /* border-color: rgba(190, 160, 130); */
   border-style: none;
+  /* border-width: 10px; */
   background-color: black;
 }
 
@@ -55,13 +59,31 @@
   z-index: 5;
 }
 
+.player {
+  min-width: 40px;
+  min-height: 40px;
+  height: 4vw;
+  width: 4vw;
+  border-radius: 60px;
+  border-width: 10px;
+  border-style: solid;
+  border-color: rgb(0, 0, 0);
+  color: aliceblue;
+  background-color: rgb(24, 209, 55);
+  position: absolute;
+  text-align: center;
+  z-index: 10;
+}
+
 .iconify {
-  height: 50px;
-  width: 65px;
+  min-width: 50px;
+  min-height: 50px;
+  height: 4vw;
+  width: 4vw;
   border-radius: 1.75vw;
   z-index: 4;
   user-select: none;
-  margin: 2.5px;
+  margin: 0.5vw;
 }
 
 .used {
@@ -71,7 +93,7 @@
   z-index: 9;
   position: absolute;
   user-select: none;
-  background-color: rgba(32, 32, 32, 0.726);
+  background-color: rgba(0, 0, 0)
 }
 
 .rmButton {
@@ -92,8 +114,8 @@
   }
   50% {
     border-color: rgb(255, 255, 255);
-    border-width: 7.5px;
-    transform: scale(1.2);
+    border-width: 0.5vw;
+    transform: scale(1.23);
   }
   100% {
     border-color: rgb(255, 255, 255);
@@ -120,18 +142,4 @@
   padding-top: 5px;
   margin-left: 7px;
   z-index: 5;
-}
-
-.player {
-  height: 47.5px;
-  width: 47.5px;
-  border-radius: 30px;
-  border-width: 10px;
-  border-style: solid;
-  border-color: rgb(0, 0, 0);
-  color: aliceblue;
-  background-color: rgb(24, 209, 55);
-  position: absolute;
-  text-align: center;
-  z-index: 10;
 }

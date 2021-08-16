@@ -1,10 +1,17 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: sans-serif;
+  font: weight 600;
 }
 
 .REContainer {
-  background-image: linear-gradient(to left, rgb(31, 31, 31), rgba(131, 131, 131, 0.445), rgb(31, 31, 31));
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.466),
+    rgba(141, 141, 141, 0.164),
+    rgba(218, 218, 218, 0.096)
+  );
   width: 88.2vw;
   height: 80vh;
   display: flex;
@@ -52,23 +59,51 @@
 }
 
 /* equipment */
-
 .equipColumn {
   padding: 1.5vw;
   background-color: rgba(37, 37, 37, 0.76);
 }
 
-.equipSlot {
+.equipSlot,
+.equipButton {
   width: 10vh;
   height: 10vh;
   border-radius: 1vh;
-  margin: .8vw;
+  margin: 0.8vw;
   font-size: 1.7vh;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
   user-select: none;
+}
+
+.equipButton {
+  background-color: rgba(255, 255, 255, 0);
+  border-style: none;
+  /* border-width: 0.5vw; */
+  z-index: 7;
+  margin: 0vw;
+  padding: 0.5vw;
+  cursor: pointer;
+  position: fixed;
+  animation-name: equipButton;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  user-select: none;
+  cursor: pointer;
+}
+
+@keyframes equipButton {
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  50% {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    background-color: rgb(255, 255, 255, 0);
+  }
 }
 
 .slotrow {
@@ -124,7 +159,7 @@
   padding: 1.5vw;
   /* background-color: rgba(116, 209, 121, 0.76); */
   width: 10vh;
-  margin: .8vw;
+  margin: 0.8vw;
 }
 
 .statContainer {
@@ -145,26 +180,23 @@
   z-index: 0;
 }
 
-/* .turnbox {
-  width: 100%;
-} */
-
 .statboxplus {
   width: 1vw;
   z-index: 5;
 }
 
-.healthChange, .healthPos, .healthNeg {
+.healthChange,
+.healthPos,
+.healthNeg {
   width: 8vh;
   height: 8vh;
   display: flex;
   justify-content: center;
-  color: cornsilk;
   font-size: 4.5vh;
   font-weight: 800;
   user-select: none;
   animation-name: healthChange;
-  animation-duration: 1.5s;
+  animation-duration: 1500ms;
   animation-iteration-count: 1;
   z-index: 10;
   /* background-color: rgba(221, 231, 211, 0.493); */
@@ -180,17 +212,12 @@
 
 @keyframes healthChange {
   0% {
-    opacity: 100%;
-    bottom: 2vw;
-    position: relative;
-  }
-  50% {
-    bottom: 5vw;
+    bottom: 20vw;
     opacity: 100%;
     position: relative;
   }
   100% {
-    bottom: 6vw;
+    bottom: 0vw;
     opacity: 0%;
     position: relative;
   }
@@ -219,13 +246,60 @@
 }
 
 /* Treasure / Loot */
+
+.monsterDead {
+  height: 35vh;
+  transform: rotate(100deg);
+  margin-top: -15vh;
+  margin-left: 20vw;
+  animation-name: monsterDeathAni;
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+  position: absolute;
+}
+
+@keyframes monsterDeathAni {
+  0% {
+    height: 40vh;
+    margin-top: -40vh;
+    margin-left: 0vw;
+    transform: rotate(0deg);
+    position: absolute;
+  }
+  30% {
+    height: 35vh;
+    transform: rotate(80deg);
+    margin-top: -38vh;
+    margin-left: 18vw;
+    position: absolute;
+  }
+  35% {
+    height: 35vh;
+    transform: rotate(90deg);
+    margin-top: -37vh;
+    margin-left: 19vw;
+    position: absolute;
+  }
+  100% {
+    height: 35vh;
+    transform: rotate(100deg);
+    margin-top: -15vh;
+    margin-left: 20vw;
+    position: absolute;
+  }
+}
+
 .lootContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
   padding: 1vw;
+  /* margin-bottom: 10vh; */
+  margin-right: 8vh;
   background-color: rgba(32, 32, 32, 0.794);
+  z-index: 3;
+  position: relative;
 }
 
 .lootCard {
@@ -233,22 +307,28 @@
   height: 11vw;
   background-color: rgb(126, 126, 126);
   font-size: 1.7vh;
-  margin: 1.5vw;
+  margin: 1vw;
+  padding: 0.5vw;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
+  user-select: none;
+  cursor: pointer;
 }
 
 .forgoLoot {
   width: 25vh;
   height: 6vh;
-  background-color: rgb(26, 26, 26);
-  font-size: 1.7vh;
+  background-color: rgb(216, 216, 216);
+  color: rgb(31, 31, 31);
+  /* font-size: 1.7vh; */
   border-radius: 1vw;
-  margin: 2vw;
+  margin: 1vw;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
+  user-select: none;
+  cursor: pointer;
 }
