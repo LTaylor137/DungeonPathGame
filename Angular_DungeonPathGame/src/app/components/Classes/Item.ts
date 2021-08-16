@@ -6,7 +6,6 @@ export class Item {
      itemTier: number;
      itemAttackValue: number;
      itemDefenceValue: number;
-     // itemImage: any;
 
      constructor(
           _itemType: string,
@@ -14,7 +13,7 @@ export class Item {
           _itemDescription: string,
           _itemTier: number,
           _itemAttackValue: number,
-          _itemDefenceValue: number) 
+          _itemDefenceValue: number)
           {
           this.itemType = _itemType;
           this.itemName = _itemName;
@@ -23,6 +22,13 @@ export class Item {
           this.itemAttackValue = _itemAttackValue;
           this.itemDefenceValue = _itemDefenceValue;
      }
+
+getItemImage(itemName){
+
+     return "../../../assets/images/equipment/" + itemName + ".png"
+
+}
+
 
 }
 

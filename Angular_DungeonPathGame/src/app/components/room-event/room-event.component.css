@@ -70,12 +70,21 @@
   height: 10vh;
   border-radius: 1vh;
   margin: 0.8vw;
+  /* padding: 0.8vw; */
   font-size: 1.7vh;
   display: flex;
   flex-direction: column;
-  text-align: center;
+  align-items: center;
   justify-content: center;
+  align-items: center;
   user-select: none;
+}
+
+.itemImage {
+
+width: 80%;
+opacity: 50%;
+
 }
 
 .equipButton {
@@ -250,64 +259,79 @@
 .monsterDead {
   height: 35vh;
   transform: rotate(100deg);
-  margin-top: -15vh;
-  margin-left: 20vw;
+  top: 55vh;
+  left: 72vw;
   animation-name: monsterDeathAni;
   animation-duration: 1000ms;
   animation-iteration-count: 1;
-  position: absolute;
+  z-index: 1;
+  position: fixed;
 }
 
 @keyframes monsterDeathAni {
   0% {
     height: 40vh;
-    margin-top: -40vh;
-    margin-left: 0vw;
+    top: 41vh;
+    left: 67vw;
     transform: rotate(0deg);
-    position: absolute;
-  }
-  30% {
-    height: 35vh;
-    transform: rotate(80deg);
-    margin-top: -38vh;
-    margin-left: 18vw;
-    position: absolute;
-  }
-  35% {
-    height: 35vh;
+}
+30% {
+    height: 38vh;
+    top: 41vh;
+    left: 69vw;
+    transform: rotate(88deg);
+}
+35% {
+    height: 38vh;
+    top: 43vh;
+    left: 70vw;
     transform: rotate(90deg);
-    margin-top: -37vh;
-    margin-left: 19vw;
-    position: absolute;
-  }
-  100% {
+}
+100% {
     height: 35vh;
+    top: 55vh;
+    left: 72vw;
     transform: rotate(100deg);
-    margin-top: -15vh;
-    margin-left: 20vw;
-    position: absolute;
-  }
+}
 }
 
-.lootContainer {
+.lootContainer,
+.lootContainerAni {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
   padding: 1vw;
-  /* margin-bottom: 10vh; */
-  margin-right: 8vh;
+  top: 35vh;
+  right: 14vh;
   background-color: rgba(32, 32, 32, 0.794);
   z-index: 3;
-  position: relative;
+  animation-name: lootContainerAni;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+  position: absolute;
 }
 
-.lootCard {
+@keyframes lootContainerAni {
+  0% {
+    padding: 0.01vw;
+    width: 5vw;
+    height: 5vw;
+    top: 65vh;
+    right: 20vh;
+    margin-bottom: 5vh;
+  }
+  100% {
+  }
+}
+
+.lootCard,
+.lootCardAni {
   width: 8vw;
   height: 11vw;
   background-color: rgb(126, 126, 126);
   font-size: 1.7vh;
   margin: 1vw;
+  align-items: center;
   padding: 0.5vw;
   display: flex;
   flex-direction: column;
@@ -315,14 +339,31 @@
   justify-content: center;
   user-select: none;
   cursor: pointer;
+  animation-name: lootCardAni;
+  animation-duration: 1500ms;
+  animation-iteration-count: 1;
 }
 
-.forgoLoot {
+@keyframes lootCardAni {
+  0% {
+    width: 0.01vh;
+    height: 0.01vh;
+    font-size: 0.01vh;
+    margin: 0.01vw;
+    padding: 0.01vw;
+  }
+  100% {
+  }
+}
+
+.forgoLootButton,
+.forgoLootButtonAni {
   width: 25vh;
   height: 6vh;
   background-color: rgb(216, 216, 216);
   color: rgb(31, 31, 31);
   /* font-size: 1.7vh; */
+  font-weight: 600;
   border-radius: 1vw;
   margin: 1vw;
   display: flex;
@@ -331,4 +372,19 @@
   justify-content: center;
   user-select: none;
   cursor: pointer;
+  animation-name: forgoLootButtonAni;
+  animation-duration: 1500ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes forgoLootButtonAni {
+  0% {
+    width: 0.01vh;
+    height: 0.01vh;
+    font-size: 0.01vh;
+    margin: 0.01vw;
+    padding: 0.01vw;
+  }
+  100% {
+  }
 }

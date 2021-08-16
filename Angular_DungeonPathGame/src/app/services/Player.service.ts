@@ -74,15 +74,15 @@ export class PlayerService {
       this.lootList.push(new Item("weapon", "Splade", "Is it a splade, or a spork?", 1, 1, 0)),
       this.lootList.push(new Item("weapon", "Rock", "A rock you found on the floor", 1, 1, 0)),
       // t2
-      this.lootList.push(new Item("weapon", "Board with a nail in it", "Swing the nail bit at the enemy", 2, 2, 0)),
+      this.lootList.push(new Item("weapon", "Baseball Bat", "Swing the nail bit at the enemy", 2, 2, 0)),
       this.lootList.push(new Item("weapon", "Meat Cleaver", "For cleaving", 2, 2, 0)),
       this.lootList.push(new Item("weapon", "Axe", "A small hatchet", 2, 2, 0)),
       //t3
-      this.lootList.push(new Item("weapon", "Sturgeon", "A very heavy fish, covered in sharp spikes, who knows how it got in here...", 3, 3, 0)),
+      this.lootList.push(new Item("weapon", "Marlin", "A very heavy fish, covered in sharp spikes, who knows how it got in here...", 3, 3, 0)),
       this.lootList.push(new Item("weapon", "Claymore", "A two handed greatsword", 3, 3, 0)),
       this.lootList.push(new Item("weapon", "Great Axe", "A two handed greataxe", 3, 3, 0)),
       // t4
-      this.lootList.push(new Item("weapon", "Lightsabre", "Vrooom!", 4, 4, 0)),
+      this.lootList.push(new Item("weapon", "Lightsaber", "Vrooom!", 4, 4, 0)),
 
       // armour
       this.lootList.push(new Item("armour", "Potato Sack", "Smells musty", 1, 0, 0))
@@ -97,12 +97,12 @@ export class PlayerService {
     this.lootList.push(new Item("offhand", "Wooden Buckler", "small, able to block 1 damage for 1 turn, will stun enemy on successful block", 1, 0, 1))
     this.lootList.push(new Item("offhand", "Tower Shield", "Large Shield, able to block 2 damage for 1 turn, will stun enemy on successful block", 2, 0, 2))
     this.lootList.push(new Item("offhand", "Handgun", "Allows you to shoot first when entering a room", 3, 1, 0))
-    this.lootList.push(new Item("offhand", "MagLite", "25% chance to dazzle an emeny causing them to miss", 4, 0, 0))
+    this.lootList.push(new Item("offhand", "Torch", "25% chance to dazzle an emeny causing them to miss", 4, 0, 0))
 
     // helms
     this.lootList.push(new Item("helm", "Beanie", "keeps you warm, has a pom-pom", 1, 0, 0))
-    this.lootList.push(new Item("helm", "Novelty Viking Helmet", "It's a bit too small. Made of plastic", 1, 0, 0))
-    this.lootList.push(new Item("helm", "Christmas hat", "It had little flashing lights but the batteries have died", 1, 0, 0))
+    this.lootList.push(new Item("helm", "Plastic Viking Helmet", "It's a bit too small. Made of plastic", 1, 0, 0))
+    this.lootList.push(new Item("helm", "Christmas Hat", "It had little flashing lights but the batteries have died", 1, 0, 0))
 
     this.lootList.push(new Item("helm", "Soup Pot", "It covers your whole skull! Adds +1 Defence", 2, 0, 1))
     this.lootList.push(new Item("helm", "Miners Helmet", "25% chance to dazzle an emeny causing them to miss", 4, 0, 1))

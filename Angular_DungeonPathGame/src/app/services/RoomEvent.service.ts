@@ -33,8 +33,8 @@ export class RoomEventService {
   isMonsterStunned: boolean = false;
   isPlayerTurn: boolean = false;
   isMonsterTakeDamage: boolean = false;
-  isMonsterDead: boolean = false;
-  isPlayerDead: boolean = false;
+  // isMonsterDead: boolean = false;
+  // isPlayerDead: boolean = false;
 
   // this assigns room background 
   setRoomBackground() {
