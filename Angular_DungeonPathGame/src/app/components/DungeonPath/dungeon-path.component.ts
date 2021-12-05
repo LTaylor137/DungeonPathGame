@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { DungeonPathService } from "../../services/DungeonPath.service";
 import { RoomEventService } from "../../services/RoomEvent.service";
-import { PlayerService } from "../../services/Player.service";
+import { PlayerInventoryService } from "../../services/PlayerInventory.service";
 
 @Component({
     selector: 'app-dungeon-path',

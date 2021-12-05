@@ -73,6 +73,16 @@
   position: absolute;
   text-align: center;
   z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.playerIcon {
+  width: 80%;
+  height: 80%;
+  text-align: center;
+  z-index: 10;
 }
 
 .iconify {

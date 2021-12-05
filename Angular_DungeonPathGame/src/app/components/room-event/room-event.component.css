@@ -5,7 +5,7 @@
   font: weight 600;
 }
 
-.REContainer {
+.room-event-container {
   background-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0.466),
@@ -19,7 +19,7 @@
   justify-content: space-between;
 }
 
-.devinfo {
+.dev-info {
   margin-top: 15vh;
   background-color: black;
   color: rgb(255, 255, 255);
@@ -28,15 +28,16 @@
   align-self: center;
 }
 
-/* Cave Background */
-.caveBGCont {
+/* =============== Cave Background =============== */
+
+.cave-background-container {
   position: absolute;
   z-index: -1;
   height: 80vh;
   width: 88.2vw;
 }
 
-.caveBGImg {
+.cave-background-image {
   height: 100%;
   width: 100%;
 }
@@ -50,7 +51,7 @@
 }
 
 .flexcol,
-.Monsterflexrow,
+.monster-flexrow,
 .status {
   display: flex;
   flex-direction: column;
@@ -58,14 +59,15 @@
   height: 100%;
 }
 
-/* equipment */
-.equipColumn {
+/* =============== equipment =============== */
+
+.equip-column {
   padding: 1.5vw;
   background-color: rgba(37, 37, 37, 0.76);
 }
 
-.equipSlot,
-.equipButton {
+.equip-slot,
+.equip-button {
   width: 10vh;
   height: 10vh;
   border-radius: 1vh;
@@ -80,14 +82,12 @@
   user-select: none;
 }
 
-.itemImage {
-
-width: 80%;
-opacity: 50%;
-
+.item-image {
+  width: 80%;
+  opacity: 50%;
 }
 
-.equipButton {
+.equip-button {
   background-color: rgba(255, 255, 255, 0);
   border-style: none;
   /* border-width: 0.5vw; */
@@ -115,24 +115,23 @@ opacity: 50%;
   }
 }
 
-.slotrow {
+.slot-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   justify-self: center;
 }
 
-/* avatars */
+/* =============== avatars =============== */
 
-.avatarColumn {
+.avatar-column {
   display: flex;
   flex-direction: column;
   width: 30vw;
   align-items: center;
-  /* background-color: rgba(173, 36, 36, 0.281); */
 }
 
-.ailmentBox {
+.ailment-box {
   width: 10vw;
   height: 10vh;
   display: flex;
@@ -145,17 +144,176 @@ opacity: 50%;
   justify-content: space-around;
 }
 
+ /* avatar */
+
 .avatar {
   height: 40vh;
 }
+
+.avatar-attacking {
+  height: 40vh;
+  animation-name: avatar-attacking;
+  animation-duration: 700ms;
+  animation-iteration-count: 1;
+  position: absolute;
+}
+
+@keyframes avatar-attacking {
+  0% {
+    right: 50vw;
+  }
+  30% {
+    right: 40vw;
+  }
+  100% {
+    right: 40vw;
+  }
+}
+
+.eqiup-attacking {
+  width: 10vh;
+  height: 10vh;
+  margin-bottom: 14vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  z-index: 0;
+  animation-name: eqiup-attacking;
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+  position: absolute;
+}
+
+@keyframes eqiup-attacking {
+  0% {
+    top: 30vh;
+    right: 50vw;
+    transform: rotate(-45deg);
+  }
+  30% {
+    top: 28vh;
+    right: 30vw;
+    transform: rotate(-45deg);
+  }
+  50% {
+    top: 60vh;
+    right: 30vw;
+    transform: rotate(60deg);
+  }
+  100% {
+    top: 61vh;
+    right: 31vw;
+    transform: rotate(65deg);
+  }
+}
+
+.eqiup-blocking {
+  height: 19vh;
+  width: 6vw;
+  top: 45vh;
+  position: absolute;
+}
+
+.damage-deflect {
+  height: 10vh;
+  width: 5vw;
+  animation-name: damage-deflect-ani;
+  animation-duration: 1500ms;
+  animation-iteration-count: 1;
+  position: absolute;
+}
+
+@keyframes damage-deflect-ani {
+  0% {
+    top: 50vh;
+    height: 10vh;
+    width: 5vw;
+    opacity: 100%;
+  }
+  30% {
+    top: 45vh;
+    height: 20vh;
+    width: 10vw;
+    opacity: 0%;
+  }
+  100% {
+    top: 45vh;
+    height: 1vh;
+    width: 1vw;
+    opacity: 0%;
+  }
+}
+
+/* monster  */
 
 .monster {
   height: 40vh;
 }
 
-/* header + footer */
+.monster-attacking {
+  height: 40vh;
+  animation-name: monster-attacking;
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+  position: absolute;
+}
 
-.statrow {
+@keyframes monster-attacking {
+  0% {
+    right: 16vw;
+  }
+  20% {
+    right: 35vw;
+  }
+  90% {
+    right: 35vw;
+  }
+  100% {
+    right: 20vw;
+  }
+}
+
+.monster-claw-attacking {
+  width: 10vh;
+  height: 10vh;
+  margin-bottom: 14vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  z-index: 0;
+  animation-name: monster-claw-attacking;
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+  position: absolute;
+}
+
+@keyframes monster-claw-attacking {
+  0% {
+    top: 30vh;
+    right: 30vw;
+    transform: rotate(45deg);
+  }
+  30% {
+    top: 28vh;
+    right: 50vw;
+    transform: rotate(45deg);
+  }
+  50% {
+    top: 60vh;
+    right: 50vw;
+    transform: rotate(-30deg);
+  }
+  100% {
+    top: 61vh;
+    right: 49vw;
+    transform: rotate(-35deg);
+  }
+}
+
+
+/* =============== header + footer =============== */
+
+.stat-row {
   height: 10vh;
   display: flex;
   flex-direction: row;
@@ -164,39 +322,31 @@ opacity: 50%;
   background-color: rgb(0, 0, 0);
 }
 
-.statRowSpacer {
+.stat-row-spacer {
   padding: 1.5vw;
-  /* background-color: rgba(116, 209, 121, 0.76); */
   width: 10vh;
   margin: 0.8vw;
 }
 
-.statContainer {
+.stat-container {
   width: 30vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* background-color: rgba(255, 127, 80, 0.342); */
 }
 
-.statbox {
+.stat-box {
   width: 8vw;
   height: 100%;
-  /* background-color: black; */
   display: flex;
   flex-direction: row;
   justify-content: center;
   z-index: 0;
 }
 
-.statboxplus {
-  width: 1vw;
-  z-index: 5;
-}
-
-.healthChange,
-.healthPos,
-.healthNeg {
+.health-change,
+.health-pos,
+.health-neg {
   width: 8vh;
   height: 8vh;
   display: flex;
@@ -204,29 +354,31 @@ opacity: 50%;
   font-size: 4.5vh;
   font-weight: 800;
   user-select: none;
-  animation-name: healthChange;
-  animation-duration: 1500ms;
+  animation-name: health-change;
+  animation-duration: 1000ms;
   animation-iteration-count: 1;
   z-index: 10;
-  /* background-color: rgba(221, 231, 211, 0.493); */
+  opacity: 0%;
 }
 
-.healthPos {
+.health-pos {
   color: rgb(38, 255, 0);
 }
 
-.healthNeg {
+.health-neg {
   color: rgb(255, 0, 0);
 }
 
-@keyframes healthChange {
+@keyframes health-change {
   0% {
-    bottom: 20vw;
+    bottom: 40vh;
+    right: 0vw;
     opacity: 100%;
     position: relative;
   }
   100% {
-    bottom: 0vw;
+    bottom: 3vh;
+    right: 0vw;
     opacity: 0%;
     position: relative;
   }
@@ -239,8 +391,8 @@ opacity: 50%;
   align-self: center;
 }
 
-.stattext,
-.stattextGrn {
+.stat-text,
+.stat-text-green {
   color: cornsilk;
   font-size: 4.5vh;
   font-weight: 800;
@@ -250,53 +402,74 @@ opacity: 50%;
   position: absolute;
 }
 
-.stattextGrn {
+.stat-text-green {
   color: rgb(70, 255, 37);
 }
 
-/* Treasure / Loot */
+/* =============== Treasure / Loot =============== */
 
-.monsterDead {
+.chest {
+  height: 15vh;
+  top: 60vh;
+  left: 67.5vw;
+  z-index: 1;
+  position: absolute;
+}
+
+.fire {
+  height: 25vh;
+  left: 65vw;
+  z-index: 1;
+  position: absolute;
+}
+
+.monster-dead {
   height: 35vh;
   transform: rotate(100deg);
   top: 55vh;
   left: 72vw;
-  animation-name: monsterDeathAni;
+  animation-name: monster-death-ani;
   animation-duration: 1000ms;
   animation-iteration-count: 1;
   z-index: 1;
   position: fixed;
 }
 
-@keyframes monsterDeathAni {
+@keyframes monster-death-ani {
   0% {
     height: 40vh;
     top: 41vh;
     left: 67vw;
     transform: rotate(0deg);
-}
-30% {
+  }
+  40% {
     height: 38vh;
     top: 41vh;
     left: 69vw;
     transform: rotate(88deg);
-}
-35% {
+  }
+  60% {
     height: 38vh;
     top: 43vh;
     left: 70vw;
     transform: rotate(90deg);
-}
-100% {
+  }
+  75% {
     height: 35vh;
     top: 55vh;
     left: 72vw;
     transform: rotate(100deg);
-}
+  }
+  100% {
+    height: 35vh;
+    top: 55vh;
+    left: 72vw;
+    transform: rotate(100deg);
+  }
 }
 
-.lootContainer,
-.lootContainerAni {
+.loot-container,
+.loot-container-animation {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -305,27 +478,29 @@ opacity: 50%;
   right: 14vh;
   background-color: rgba(32, 32, 32, 0.794);
   z-index: 3;
-  animation-name: lootContainerAni;
-  animation-duration: 500ms;
+  animation-name: loot-container-animation;
+  animation-duration: 1300ms;
   animation-iteration-count: 1;
   position: absolute;
 }
 
-@keyframes lootContainerAni {
+@keyframes loot-container-animation {
   0% {
     padding: 0.01vw;
-    width: 5vw;
-    height: 5vw;
     top: 65vh;
-    right: 20vh;
+    right: 25vw;
     margin-bottom: 5vh;
   }
   100% {
+    padding: 1vw;
+    top: 35vh;
+    right: 14vh;
+    margin-bottom: 0vh;
   }
 }
 
-.lootCard,
-.lootCardAni {
+.loot-card,
+.loot-card-animation {
   width: 8vw;
   height: 11vw;
   background-color: rgb(126, 126, 126);
@@ -339,30 +514,34 @@ opacity: 50%;
   justify-content: center;
   user-select: none;
   cursor: pointer;
-  animation-name: lootCardAni;
-  animation-duration: 1500ms;
+  animation-name: loot-card-animation;
+  animation-duration: 1300ms;
   animation-iteration-count: 1;
 }
 
-@keyframes lootCardAni {
+@keyframes loot-card-animation {
   0% {
-    width: 0.01vh;
-    height: 0.01vh;
-    font-size: 0.01vh;
-    margin: 0.01vw;
-    padding: 0.01vw;
+    width: 0vh;
+    height: 0vh;
+    font-size: 0vh;
+    margin: 0vw;
+    padding: 0vw;
   }
   100% {
+    width: 8vw;
+    height: 11vw;
+    font-size: 1.7vh;
+    margin: 1vw;
+    padding: 0.5vw;
   }
 }
 
-.forgoLootButton,
-.forgoLootButtonAni {
+.forgo-loot-button,
+.forgo-loot-button-animation {
   width: 25vh;
   height: 6vh;
   background-color: rgb(216, 216, 216);
   color: rgb(31, 31, 31);
-  /* font-size: 1.7vh; */
   font-weight: 600;
   border-radius: 1vw;
   margin: 1vw;
@@ -372,19 +551,22 @@ opacity: 50%;
   justify-content: center;
   user-select: none;
   cursor: pointer;
-  animation-name: forgoLootButtonAni;
-  animation-duration: 1500ms;
+  animation-name: forgo-loot-button-animation;
+  animation-duration: 1300ms;
   animation-iteration-count: 1;
 }
 
-@keyframes forgoLootButtonAni {
+@keyframes forgo-loot-button-animation {
   0% {
-    width: 0.01vh;
-    height: 0.01vh;
-    font-size: 0.01vh;
-    margin: 0.01vw;
-    padding: 0.01vw;
+    width: 0vh;
+    height: 0vh;
+    font-size: 0vh;
+    margin: 0vw;
   }
   100% {
+    width: 25vh;
+    height: 6vh;
+    font-size: 1.7vh;
+    margin: 1vw;
   }
 }

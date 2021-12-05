@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DungeonPathService } from "./services/DungeonPath.service";
-import { PlayerService } from "./services/Player.service";
+import { PlayerInventoryService } from "./services/PlayerInventory.service";
 
 @Component({
   selector: 'app-root',
@@ -11,12 +11,12 @@ export class AppComponent {
 
   title = 'DungeonPathGame';
 
-  constructor(public DungeonPathService: DungeonPathService, public PlayerService: PlayerService) { }
+  constructor(public DungeonPathService: DungeonPathService, public PlayerInventoryService: PlayerInventoryService) { }
 
   ngOnInit(): void {
     this.DungeonPathService.generateMap();
-    this.PlayerService.populateLootPool();
-    this.PlayerService.assignBasicLoot()
+    this.PlayerInventoryService.populateLootPool();
+    this.PlayerInventoryService.assignBasicLoot()
   }
 
 }

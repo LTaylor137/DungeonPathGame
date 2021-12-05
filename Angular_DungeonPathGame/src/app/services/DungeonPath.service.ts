@@ -5,7 +5,7 @@ import { Level } from '../components/Classes/Level';
 import { Room } from '../components/Classes/Room';
 import { Connection } from '../components/Classes/Connection';
 import { RoomEventService } from "../services/RoomEvent.service";
-import { PlayerService } from "../services/Player.service";
+import { PlayerInventoryService } from "./PlayerInventory.service";
 
 declare let LeaderLine: any;
 
@@ -46,7 +46,7 @@ export class DungeonPathService {
   showDungeonPath: boolean = true;
 
 
-  constructor(@Inject(DOCUMENT) private document, public PlayerService: PlayerService) {
+  constructor(@Inject(DOCUMENT) private document, public PlayerInventoryService: PlayerInventoryService) {
   }
 
   ngOnInit(): void {
@@ -303,7 +303,7 @@ export class DungeonPathService {
     this.LevelNo = 1;
     this.maxRmThisLevel = 1;
     this.maxRmNextLevel = 1;
-    this.PlayerService.setAvatar()
+    this.PlayerInventoryService.setAvatar()
 
     // ========================= create levels =========================
     while (this.LevelNo <= this.mapSize) {

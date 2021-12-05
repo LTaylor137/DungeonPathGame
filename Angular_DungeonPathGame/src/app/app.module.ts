@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { DungeonPathComponent } from './components/DungeonPath/dungeon-path.component';
 import { RoomEventComponent } from './components/room-event/room-event.component';
 import { OptionsComponent } from './components/options/options.component';
-import { PlayerService } from "./services/Player.service";
+import { PlayerInventoryService } from "./services/PlayerInventory.service";
 import { DungeonPathService } from './services/DungeonPath.service';
 import { RoomEventService } from './services/RoomEvent.service';
 
@@ -23,7 +23,7 @@ import { RoomEventService } from './services/RoomEvent.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [PlayerService, DungeonPathService, RoomEventService],
+  providers: [PlayerInventoryService, DungeonPathService, RoomEventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

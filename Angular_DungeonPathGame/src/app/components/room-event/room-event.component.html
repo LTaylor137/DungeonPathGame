@@ -1,11 +1,11 @@
-<div class="REContainer">
+<div class="room-event-container">
 
-    <div class="caveBGCont">
-        <img class="caveBGImg" src="{{ this.RoomEventService.roomBackground }}" />
+    <div class="cave-background-container">
+        <img class="cave-background-image" src="{{ this.RoomEventService.roomBackground }}" />
     </div>
 
     <!-- dev info -->
-    <div class="devinfo" *ngIf="DungeonPathService.showDevInfo === true">
+    <div class="dev-info" *ngIf="DungeonPathService.showDevInfo === true">
         {{this.RoomEventService.roomType}} <br>
         currentLevel = {{this.RoomEventService.currentLevel}} <br>
         currentRoom = {{this.RoomEventService.currentRoom}}
@@ -13,72 +13,84 @@
 
     <!-- HEADER -->
     <!-- TURN INFO -->
-    <div class="statrow">
+    <div class="stat-row">
 
-        <div class="statRowSpacer">
+        <div class="stat-row-spacer">
         </div>
 
-        <div class="statContainer">
-            <p *ngIf="this.RoomEventService.isPlayerTurn === true" class="stattext"> Player Turn </p>
+        <div class="stat-container">
+            <p *ngIf="this.RoomEventService.isPlayerTurn === true" class="stat-text"> Player Turn </p>
         </div>
 
-        <div class="statContainer">
+        <div class="stat-container">
             <p *ngIf="this.RoomEventService.isPlayerTurn === false && this.RoomEventService.monsterHealthValue > 0"
-                class="stattext"> Monster Turn </p>
+                class="stat-text"> Monster Turn </p>
         </div>
 
     </div>
 
     <!-- BODY -->
     <div class="flexrow">
+
         <!-- Equipment Column -->
-        <div class="equipColumn">
-            <div class="equipSlot"
-                [style.background-color]="this.PlayerService.getColour(this.PlayerService.helm.itemTier)">
-               <img class="itemImage" src="../../../assets/images/equipment/{{this.PlayerService.helm.itemName}}.png">
-                <!-- {{ this.PlayerService.helm.itemName }} -->
+        <div class="equip-column">
+            <div class="equip-slot"
+                [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.helm.itemTier)">
+                <img class="item-image"
+                    src="../../../assets/images/equipment/{{this.PlayerInventoryService.helm.itemName}}.png">
             </div>
-            <div class="equipSlot"
-                [style.background-color]="this.PlayerService.getColour(this.PlayerService.armour.itemTier)">
-                <img  class="itemImage" src="../../../assets/images/equipment/{{this.PlayerService.armour.itemName}}.png">
-                <!-- {{ this.PlayerService.armour.itemName }} -->
+            <div class="equip-slot"
+                [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.armour.itemTier)">
+                <img class="item-image"
+                    src="../../../assets/images/equipment/{{this.PlayerInventoryService.armour.itemName}}.png">
             </div>
-            <div class="equipSlot"
-                [style.background-color]="this.PlayerService.getColour(this.PlayerService.offhand.itemTier)">
-                <img  class="itemImage" src="../../../assets/images/equipment/{{this.PlayerService.offhand.itemName}}.png">
-                <!-- {{ this.PlayerService.offhand.itemName }} -->
-                <button class="equipButton" (click)="Block()" *ngIf="this.RoomEventService.isPlayerTurn === true">
+            <div class="equip-slot"
+                [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.offhand.itemTier)">
+                <img class="item-image"
+                    src="../../../assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
+                <button class="equip-button" (click)="Block()" *ngIf="this.RoomEventService.isPlayerTurn === true">
                 </button>
             </div>
-            <div class="equipSlot"
-                [style.background-color]="this.PlayerService.getColour(this.PlayerService.weapon.itemTier)">
-                <img  class="itemImage" src="../../../assets/images/equipment/{{this.PlayerService.weapon.itemName}}.png">
-                <!-- {{ this.PlayerService.weapon.itemName }} -->
-                <button class="equipButton" (click)="Attack()" *ngIf="this.RoomEventService.isPlayerTurn === true">
+            <div class="equip-slot"
+                [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.weapon.itemTier)">
+                <img class="item-image"
+                    src="../../../assets/images/equipment/{{this.PlayerInventoryService.weapon.itemName}}.png">
+                <button class="equip-button" (click)="Attack()" *ngIf="this.RoomEventService.isPlayerTurn === true">
                 </button>
             </div>
         </div>
 
         <!-- Player Avatar Column -->
-        <div class="avatarColumn">
-            <div class="ailmentBox">
-                <div *ngIf="this.PlayerService.isBlockActive === true"> blocking </div>
+        <div class="avatar-column">
+
+            <div class="ailment-box">
+                <div *ngIf="this.RoomEventService.isPlayerBlocking === true"> blocking </div>
+                <div *ngIf="this.RoomEventService.roomType === 'fire'"> resting </div>
             </div>
-            <div class="flexrow">
-                <div class="ailmentBox">
+
+            <div id="playerAvatar" class="flexrow">
+
+                <div class="equip-in-use"></div>
+
+                <img class="avatar-attacking" *ngIf="this.RoomEventService.isPlayerAttacking === true"
+                    src="{{ this.PlayerInventoryService.playerAvatar }}" />
+
+                <img class="avatar" *ngIf="this.RoomEventService.isPlayerAttacking === false"
+                    src="{{ this.PlayerInventoryService.playerAvatar }}" />
+
+                <div>
+                    <img *ngIf="this.RoomEventService.isPlayerBlocking === true && 
+                                this.RoomEventService.isPlayerAttacking === false" class="eqiup-blocking"
+                                src="../../../assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
+                    <img *ngIf="this.RoomEventService.isPlayerAttacking === true" class="eqiup-attacking"
+                        src="../../../assets/images/equipment/{{this.PlayerInventoryService.weapon.itemName}}.png">
+                    <img *ngIf="this.RoomEventService.isDamageNegated === true" class="damage-deflect"
+                        src="../../../assets/images/equipment/Block Effect.png">
                 </div>
-                <img id="playerAvatar" class="avatar" src="{{ this.PlayerService.playerAvatar }}" />
-                <div class="ailmentBox">
-                    <div *ngIf="this.PlayerService.isBlockActive === true">
-                        <span class="iconify" color="grey" data-icon="bx-bxs-shield" data-inline="true"></span>
-                    </div>
-                </div>
+
             </div>
+
         </div>
-
-        <!-- Animation Column -->
-
-        <!-- Player Avatar equipColumn -->
 
         <!-- Room Event Column -->
         <!-- MONSTER -->
@@ -86,55 +98,58 @@
              this.RoomEventService.roomType === 'boss' ||
               this.RoomEventService.roomType === 'finalboss'">
 
-            <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="avatarColumn">
+            <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="avatar-column">
 
-                <div class="ailmentBox">
+                <div class="ailment-box">
                     <!-- monster stunned? -->
                     <div *ngIf="this.RoomEventService.isMonsterStunned === true && this.RoomEventService.monsterHealthValue > 0"
                         class="ailment"> Stunned! </div>
                 </div>
 
                 <div class="monster">
-                    <img class="monster" id="monsterAni" src="{{ this.RoomEventService.roomImage }}" />
+                    <img class="monster" *ngIf="this.RoomEventService.isMonsterAttacking === false"
+                        src="{{ this.RoomEventService.roomImage }}" />
+                    <img class="monster-attacking" *ngIf="this.RoomEventService.isMonsterAttacking === true"
+                        src="{{ this.RoomEventService.roomImage }}" />
+                        <img class="monster-claw-attacking" *ngIf="this.RoomEventService.isMonsterAttacking === true"
+                        src="../../../assets/images/equipment/Monster Claw.png"/>
                 </div>
 
             </div>
 
             <!-- monster loot -->
-            <div class="avatarColumn">
-                <div *ngIf="this.RoomEventService.monsterHealthValue <= 0 && this.PlayerService.isLootTaken === false">
+            <div class="avatar-column">
+                <div
+                    *ngIf="this.RoomEventService.monsterHealthValue <= 0 && this.RoomEventService.isLootTaken === false">
 
-                    <div class="lootContainer">
+                    <div class="loot-container">
 
                         <div class="flexrow">
                             <div *ngFor="let loot of this.RoomEventService.roomLootList">
-                                <div class="lootCard"
-                                    [style.background-color]="this.PlayerService.getColour(loot.itemTier)"
+                                <div class="loot-card"
+                                    [style.background-color]="this.PlayerInventoryService.getItemColour(loot.itemTier)"
                                     (click)="takeLoot(loot.itemName)">
-                                    <img  class="itemImage" src="../../../assets/images/equipment/{{loot.itemName}}.png">
+                                    <img class="item-image"
+                                        src="../../../assets/images/equipment/{{loot.itemName}}.png">
                                     {{ loot.itemName }}
                                 </div>
                             </div>
                         </div>
 
                         <div class="flexrow">
-                            <div class="forgoLootButton" (click)="this.DungeonPathService.toggleDungeonPath()">
+                            <div class="forgo-loot-button" (click)="this.DungeonPathService.toggleDungeonPath()">
                                 take nothing and leave
                             </div>
                         </div>
 
                     </div>
 
-
-                    <!-- <img class="monsterDead" src="{{ this.RoomEventService.roomImage }}" /> -->
-
-
                 </div>
 
             </div>
 
             <div *ngIf="this.RoomEventService.monsterHealthValue <= 0">
-                <img class="monsterDead" src="{{ this.RoomEventService.roomImage }}" />
+                <img class="monster-dead" src="{{ this.RoomEventService.roomImage }}" />
             </div>
 
         </div>
@@ -145,95 +160,94 @@
         <div *ngIf="this.RoomEventService.roomType === 'treasure'">
 
             <!-- loot -->
-            <div class="avatarColumn">
-                <div class="lootContainer" *ngIf="this.PlayerService.isLootTaken === false">
+            <div class="avatar-column">
+                <div class="loot-container" *ngIf="this.RoomEventService.isLootTaken === false">
+
                     <div class="flexrow">
                         <div *ngFor="let loot of this.RoomEventService.roomLootList">
-                            <div class="lootCard" [style.background-color]="this.PlayerService.getColour(loot.itemTier)"
+                            <div class="loot-card"
+                                [style.background-color]="this.PlayerInventoryService.getItemColour(loot.itemTier)"
                                 (click)="takeLoot(loot.itemName)">
+                                <img class="item-image" src="../../../assets/images/equipment/{{loot.itemName}}.png">
                                 {{ loot.itemName }}
                             </div>
                         </div>
                     </div>
+
                     <div class="flexrow">
-                        <div class="forgoLootButton" (click)="this.DungeonPathService.toggleDungeonPath()">
+                        <div class="forgo-loot-button" (click)="this.DungeonPathService.toggleDungeonPath()">
                             take nothing and leave
                         </div>
                     </div>
+
                 </div>
             </div>
 
+            <!-- chest image -->
             <div class="flexrow">
-                <div></div>
-                <span *ngIf="this.RoomEventService.roomType === 'treasure'" class="iconify" color="gold"
-                    data-icon="mdi-treasure-chest" data-inline="false"></span>
-                <div></div>
+                <div *ngIf="this.RoomEventService.roomType === 'treasure'">
+                    <img id="treasure" class="chest" src="../../../assets/images/misc/ChestClosed.png">
+                </div>
             </div>
 
         </div>
 
         <!-- FIRE -->
-        <div *ngIf="this.RoomEventService.roomType === 'fire'">
-            <div class="avatarColumn">
-                <span *ngIf="this.RoomEventService.roomType === 'fire'" class="iconify" color="red"
-                    data-icon="majesticons:fire" data-inline="false"></span>
-            </div>
+        <div class="avatar-column" *ngIf="this.RoomEventService.roomType === 'fire'">
+            <img class="fire" src="../../../assets/images/misc/Fire.png">
         </div>
 
     </div>
 
     <!----------------------------------------- FOOTER --------------------------------------------->
-    <div class="statrow">
 
-        <div class="statRowSpacer">
+    <div class="stat-row">
+
+        <div class="stat-row-spacer">
         </div>
 
         <!-- player stats -->
-        <div class="statContainer">
-            <div class="statbox">
-                <span class="stattext"> {{this.PlayerService.playerAttack}}</span>
+        <div class="stat-container">
+            <div class="stat-box">
+                <span class="stat-text"> {{this.PlayerInventoryService.playerAttack}}</span>
                 <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
             </div>
 
-            <!-- <div class="flexrow"> -->
-            <div class="statbox">
-                <span *ngIf="this.PlayerService.isBlockActive === true" class="stattextGrn"> {{
-                    this.PlayerService.getDefenceValue() }}</span>
-                <span *ngIf="this.PlayerService.isBlockActive === false" class="stattext"> {{
-                    this.PlayerService.getDefenceValue() }}</span>
+            <div class="stat-box">
+                <span *ngIf="this.RoomEventService.isPlayerBlocking === true" class="stat-text-green"> {{
+                    this.PlayerInventoryService.playerDefence }}</span>
+                <span *ngIf="this.RoomEventService.isPlayerBlocking === false" class="stat-text"> {{
+                    this.PlayerInventoryService.playerDefence }}</span>
                 <span class="iconify" color="grey" data-icon="bx-bxs-shield" data-inline="false"></span>
             </div>
-            <!-- </div> -->
 
-            <!-- <div class="flexrow"> -->
-            <div class="statbox">
+            <div class="stat-box">
                 <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
-                <span class="stattext"> {{ this.PlayerService.playerHealth }}</span>
-                <div *ngIf="this.PlayerService.healthChange > 0" class="healthPos">
-                    +{{ this.PlayerService.healthChange }}
+                <span class="stat-text"> {{ this.PlayerInventoryService.playerHealth }}</span>
+                <div *ngIf="this.RoomEventService.healthChangeValue > 0" class="health-pos">
+                    +{{ this.RoomEventService.healthChangeValue }}
                 </div>
-                <div *ngIf="this.PlayerService.healthChange < 0" class="healthNeg">
-                    {{ this.PlayerService.healthChange }}
+                <div *ngIf="this.RoomEventService.healthChangeValue < 0" class="health-neg">
+                    {{ this.RoomEventService.healthChangeValue }}
                 </div>
             </div>
-            <!-- </div> -->
+
         </div>
 
-
         <!-- monster  stats -->
-        <div class="statContainer">
-            <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="statbox">
+        <div class="stat-container">
+            <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="stat-box">
                 <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
-                <span class="stattext"> {{this.RoomEventService.monsterAttackValue}}</span>
+                <span class="stat-text"> {{this.RoomEventService.monsterTurnValue}}</span>
             </div>
-            <div class="statbox">
+            <div class="stat-box">
             </div>
-            <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="statbox">
-                <div class="statbox">
+            <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="stat-box">
+                <div class="stat-box">
                     <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
-                    <span class="stattext"> {{this.RoomEventService.monsterHealthValue}}</span>
-                    <div *ngIf="this.RoomEventService.isMonsterTakeDamage === true " class="healthNeg">
-                        {{ this.PlayerService.playerAttack }}
+                    <span class="stat-text"> {{this.RoomEventService.monsterHealthValue}}</span>
+                    <div *ngIf="this.RoomEventService.isMonsterTakeDamage === true " class="health-neg">
+                        -{{ this.PlayerInventoryService.playerAttack }}
                     </div>
                 </div>
             </div>

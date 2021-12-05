@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DungeonPathService } from "../../services/DungeonPath.service";
 import { RoomEventService } from "../../services/RoomEvent.service";
-import { PlayerService } from "../../services/Player.service";
+import { PlayerInventoryService } from "../../services/PlayerInventory.service";
 
 @Component({
   selector: 'app-options',
@@ -10,7 +10,7 @@ import { PlayerService } from "../../services/Player.service";
 })
 export class OptionsComponent implements OnInit {
 
-  constructor(public DungeonPathService: DungeonPathService, public RoomEventService: RoomEventService, public PlayerService: PlayerService) { }
+  constructor(public DungeonPathService: DungeonPathService, public RoomEventService: RoomEventService, public PlayerInventoryService: PlayerInventoryService) { }
 
   ngOnInit(): void {
   }
@@ -42,20 +42,16 @@ export class OptionsComponent implements OnInit {
   }
 
   Reset() {
-    this.PlayerService.isBlockActive = false;
-    this.PlayerService.assignBasicLoot();
-    this.PlayerService.playerAttack = 1;
-    // this.PlayerService.playerDefence = 0;
-    this.PlayerService.playerBlockAmount = 0;
-    this.PlayerService.playerHealth = 5;
+    this.RoomEventService.isPlayerBlocking = false;
+    this.PlayerInventoryService.assignBasicLoot();
+    this.PlayerInventoryService.playerAttack = 1;
+    this.PlayerInventoryService.playerDefence = 0;
+    this.PlayerInventoryService.playerBlockAmount = 0;
+    this.PlayerInventoryService.playerHealth = 5;
     this.RoomEventService.roomLootList = []
+    this.DungeonPathService.showDungeonPath = true;
     this.DungeonPathService.generateMap()
-    this.DungeonPathService.resetPlayer()
-    this.RoomEventService.setRoom()
+    this.resetPlayerPos()
   }
-
-
-
-
 
 }

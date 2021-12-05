@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DungeonPathService } from "../../services/DungeonPath.service";
 import { RoomEventService } from "../../services/RoomEvent.service";
-import { PlayerService } from "../../services/Player.service";
+import { PlayerInventoryService } from "../../services/PlayerInventory.service";
 
 
 @Component({
@@ -11,7 +11,7 @@ import { PlayerService } from "../../services/Player.service";
 })
 export class RoomEventComponent implements OnInit {
  
-  constructor(public DungeonPathService: DungeonPathService, public RoomEventService: RoomEventService, public PlayerService: PlayerService) { }
+  constructor(public DungeonPathService: DungeonPathService, public RoomEventService: RoomEventService, public PlayerInventoryService: PlayerInventoryService) { }
 
   ngOnInit(): void {
     console.log("set room room-event.component.ts")
@@ -20,12 +20,8 @@ export class RoomEventComponent implements OnInit {
 
   takeLoot(itemName)
   {
-    this.PlayerService.takeLoot(itemName)
-    setTimeout(() => { this.DungeonPathService.toggleDungeonPath(); }, 1000);
+    this.RoomEventService.takeLoot(itemName)
   }
-
-  
-  health: number = 0;
 
   Attack() {
     this.RoomEventService.playerAttack();
