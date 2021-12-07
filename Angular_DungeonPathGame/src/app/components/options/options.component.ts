@@ -15,6 +15,25 @@ export class OptionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ShowOptions: boolean = true;
+  isGodmodeOn: boolean = true;
+
+  toggleOptions() {
+    if (this.ShowOptions === true) {
+      this.ShowOptions = false;
+    } else if (this.ShowOptions === false) {
+      this.ShowOptions = true;
+    }
+  }
+
+  GodMode() {
+    if (this.isGodmodeOn === true) {
+      this.isGodmodeOn = false;
+    } else if (this.isGodmodeOn === false) {
+      this.isGodmodeOn = true;
+    }
+  }
+
   toggleDevInfo() {
     this.DungeonPathService.toggleDevInfo()
   }
@@ -33,7 +52,11 @@ export class OptionsComponent implements OnInit {
   }
 
   redrawLines() {
+    this.DungeonPathService.deleteLeaderLines();
+    setTimeout(() => {
+    this.DungeonPathService.makeConnections();
     this.DungeonPathService.generateLeaderLines();
+  }, 0);
   }
 
   resetPlayerPos() {

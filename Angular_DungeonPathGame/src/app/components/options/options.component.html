@@ -1,10 +1,35 @@
-<div class="OptionsContainer">
-    <button id="button" (click)="Reset()">Reset All</button>
-    <button id="button" (click)="Generate()">Generate Map</button>
-    <button id="button" (click)="redrawLines()">redraw Lines</button>
-    <button id="button" (click)="resetPlayerPos()">Reset Player Pos</button>
-    <button id="button" (click)="toggleDevInfo()">Toggle Dev Info</button>
-    <button id="button" (click)="toggleRoomGaps()">Toggle Room Gaps</button>
-    <button id="button" (click)="toggleDungeonPath()">Toggle Dungeon Path/Room</button>
-    <input id="mapLengthInput" placeholder="Enter map length here...">
+<div class="OptionsWrapper">
+
+    <div>
+        <img class="ShowOptionsButton" (click)="toggleOptions()" src="../../../assets/images/misc/hamburger.png" />
+    </div>
+
+    <div class="OptionButtonsContainer" *ngIf="this.ShowOptions === true">
+        
+        <button id="button" (click)="Reset()">Reset All</button>
+        <button id="button" (click)="Generate()">Regenerate Map</button>
+        <button id="button" (click)="redrawLines()">Redraw Lines</button>
+        <button id="button" (click)="resetPlayerPos()">Reset Player Pos</button>
+
+        <button id="button" (click)="GodMode()">Godmode
+            <a *ngIf="this.isGodmodeOn === true" [ngStyle]="{'color': 'lime'}">On</a>
+            <a *ngIf="this.isGodmodeOn === false" [ngStyle]="{'color': 'red'}">Off</a>
+        </button>
+
+        <button id="button" (click)="toggleDungeonPath()">Toggle Dungeon
+            <a *ngIf="this.DungeonPathService.showDungeonPath === true" [ngStyle]="{'color': 'lime'}">Path</a>
+            <a *ngIf="this.DungeonPathService.showDungeonPath === true" [ngStyle]="{'color': 'black'}"> / Room</a>
+            <a *ngIf="this.DungeonPathService.showDungeonPath === false" [ngStyle]="{'color': 'black'}">Path / </a>
+            <a *ngIf="this.DungeonPathService.showDungeonPath === false" [ngStyle]="{'color': 'lime'}">Room</a>
+        </button>
+
+        <button id="button" (click)="toggleDevInfo()">Dev Info
+            <a *ngIf="this.DungeonPathService.showDevInfo === true" [ngStyle]="{'color': 'lime'}">On</a>
+            <a *ngIf="this.DungeonPathService.showDevInfo === false" [ngStyle]="{'color': 'red'}">Off</a>
+        </button>
+
+        <!-- <button id="button" (click)="toggleRoomGaps()">Toggle Room Gaps</button> -->
+        <!-- <input id="mapLengthInput" placeholder="Enter map length here..."> -->
+
+    </div>
 </div>

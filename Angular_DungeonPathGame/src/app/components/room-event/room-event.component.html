@@ -34,16 +34,34 @@
 
         <!-- Equipment Column -->
         <div class="equip-column">
+
+            <!-- helm -->
             <div class="equip-slot"
                 [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.helm.itemTier)">
                 <img class="item-image"
                     src="../../../assets/images/equipment/{{this.PlayerInventoryService.helm.itemName}}.png">
             </div>
+            <div class="Tooltip">
+                <div class="TooltipArrow"></div>
+                <a class="TooltipTitle">{{this.PlayerInventoryService.helm.itemName}}<br></a>
+                <a class="TooltipText">Defence Value: {{this.PlayerInventoryService.helm.itemDefenceValue}}<br></a>
+                <a class="TooltipDesc">"{{this.PlayerInventoryService.helm.itemDescription}}"</a>
+            </div>
+
+            <!-- armour -->
             <div class="equip-slot"
                 [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.armour.itemTier)">
                 <img class="item-image"
                     src="../../../assets/images/equipment/{{this.PlayerInventoryService.armour.itemName}}.png">
             </div>
+            <div class="Tooltip">
+                <div class="TooltipArrow"></div>
+                <a class="TooltipTitle">{{this.PlayerInventoryService.armour.itemName}}<br></a>
+                <a class="TooltipText">Defence Value: {{this.PlayerInventoryService.armour.itemDefenceValue}}<br></a>
+                <a class="TooltipDesc">"{{this.PlayerInventoryService.armour.itemDescription}}"</a>
+            </div>
+
+            <!-- offhand -->
             <div class="equip-slot"
                 [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.offhand.itemTier)">
                 <img class="item-image"
@@ -51,6 +69,15 @@
                 <button class="equip-button" (click)="Block()" *ngIf="this.RoomEventService.isPlayerTurn === true">
                 </button>
             </div>
+            <div class="Tooltip">
+                <div class="TooltipArrow"></div>
+                <a class="TooltipTitle">{{this.PlayerInventoryService.offhand.itemName}}<br></a>
+                <a *ngIf="this.PlayerInventoryService.offhand.itemAttackValue > 0" class="TooltipText">Attack Value: {{this.PlayerInventoryService.offhand.itemAttackValue}}<br></a>
+                <a *ngIf="this.PlayerInventoryService.offhand.itemDefenceValue > 0" class="TooltipText">Defence Value: {{this.PlayerInventoryService.offhand.itemDefenceValue}}<br></a>
+                <a class="TooltipDesc">"{{this.PlayerInventoryService.offhand.itemDescription}}"</a>
+            </div>
+
+            <!-- weapon -->
             <div class="equip-slot"
                 [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.weapon.itemTier)">
                 <img class="item-image"
@@ -58,6 +85,13 @@
                 <button class="equip-button" (click)="Attack()" *ngIf="this.RoomEventService.isPlayerTurn === true">
                 </button>
             </div>
+            <div class="Tooltip">
+                <div class="TooltipArrow"></div>
+                <a class="TooltipTitle">{{this.PlayerInventoryService.weapon.itemName}}<br></a>
+                <a class="TooltipText">Attack Value: {{this.PlayerInventoryService.weapon.itemAttackValue}}<br></a>
+                <a class="TooltipDesc">"{{this.PlayerInventoryService.weapon.itemDescription}}"</a>
+            </div>
+
         </div>
 
         <!-- Player Avatar Column -->
@@ -81,8 +115,12 @@
                 <div>
                     <img *ngIf="this.RoomEventService.isPlayerBlocking === true && 
                                 this.RoomEventService.isPlayerAttacking === false" class="eqiup-blocking"
-                                src="../../../assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
-                    <img *ngIf="this.RoomEventService.isPlayerAttacking === true" class="eqiup-attacking"
+                        src="../../../assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
+                    <img *ngIf="this.RoomEventService.isPlayerAttacking === true &&
+                        this.PlayerInventoryService.weapon.itemTier <= 2" class="eqiup-attacking"
+                        src="../../../assets/images/equipment/{{this.PlayerInventoryService.weapon.itemName}}.png">
+                    <img *ngIf="this.RoomEventService.isPlayerAttacking === true &&
+                        this.PlayerInventoryService.weapon.itemTier >= 3" class="eqiup-attacking-2"
                         src="../../../assets/images/equipment/{{this.PlayerInventoryService.weapon.itemName}}.png">
                     <img *ngIf="this.RoomEventService.isDamageNegated === true" class="damage-deflect"
                         src="../../../assets/images/equipment/Block Effect.png">
@@ -111,8 +149,8 @@
                         src="{{ this.RoomEventService.roomImage }}" />
                     <img class="monster-attacking" *ngIf="this.RoomEventService.isMonsterAttacking === true"
                         src="{{ this.RoomEventService.roomImage }}" />
-                        <img class="monster-claw-attacking" *ngIf="this.RoomEventService.isMonsterAttacking === true"
-                        src="../../../assets/images/equipment/Monster Claw.png"/>
+                    <img class="monster-claw-attacking" *ngIf="this.RoomEventService.isMonsterAttacking === true"
+                        src="../../../assets/images/equipment/Monster Claw.png" />
                 </div>
 
             </div>
