@@ -1,35 +1,68 @@
 <div class="OptionsWrapper">
 
     <div>
-        <img class="ShowOptionsButton" (click)="toggleOptions()" src="../../../assets/images/misc/hamburger.png" />
+        <img *ngIf="this.ShowOptions === true" class="showOptionsButton" (click)="toggleOptions()" src="../../../assets/images/misc/gear.png" />
+        <img *ngIf="this.ShowOptions === false" class="hideOptionsButton" (click)="toggleOptions()" src="../../../assets/images/misc/gear.png" />
     </div>
 
     <div class="OptionButtonsContainer" *ngIf="this.ShowOptions === true">
         
-        <button id="button" (click)="Reset()">Reset All</button>
-        <button id="button" (click)="Generate()">Regenerate Map</button>
-        <button id="button" (click)="redrawLines()">Redraw Lines</button>
-        <button id="button" (click)="resetPlayerPos()">Reset Player Pos</button>
+        <button class="optionButton" (click)="Reset()">Reset All</button>
+        <button class="optionButton" (click)="Generate()">Regenerate Map</button>
+        <button class="optionButton" (click)="redrawLines()">Redraw Lines</button>
+        <button class="optionButton" (click)="resetPlayerPos()">Reset Player Pos</button>
 
-        <button id="button" (click)="GodMode()">Godmode
+        <button class="optionButton" (click)="GodMode()">Godmode
             <a *ngIf="this.isGodmodeOn === true" [ngStyle]="{'color': 'lime'}">On</a>
             <a *ngIf="this.isGodmodeOn === false" [ngStyle]="{'color': 'red'}">Off</a>
         </button>
 
-        <button id="button" (click)="toggleDungeonPath()">Toggle Dungeon
+        <button class="optionButton" (click)="toggleDungeonPath()">Toggle Dungeon
             <a *ngIf="this.DungeonPathService.showDungeonPath === true" [ngStyle]="{'color': 'lime'}">Path</a>
             <a *ngIf="this.DungeonPathService.showDungeonPath === true" [ngStyle]="{'color': 'black'}"> / Room</a>
             <a *ngIf="this.DungeonPathService.showDungeonPath === false" [ngStyle]="{'color': 'black'}">Path / </a>
             <a *ngIf="this.DungeonPathService.showDungeonPath === false" [ngStyle]="{'color': 'lime'}">Room</a>
         </button>
 
-        <button id="button" (click)="toggleDevInfo()">Dev Info
+        <button class="optionButton" (click)="toggleDevInfo()">Dev Info
             <a *ngIf="this.DungeonPathService.showDevInfo === true" [ngStyle]="{'color': 'lime'}">On</a>
             <a *ngIf="this.DungeonPathService.showDevInfo === false" [ngStyle]="{'color': 'red'}">Off</a>
         </button>
 
-        <!-- <button id="button" (click)="toggleRoomGaps()">Toggle Room Gaps</button> -->
+        <!-- <button class="optionButton" (click)="toggleRoomGaps()">Toggle Room Gaps</button> -->
         <!-- <input id="mapLengthInput" placeholder="Enter map length here..."> -->
 
     </div>
+
+    
+    <div class="OptionButtonsContainer" *ngIf="this.HideOptions === true">
+        
+        <button class="optionButtonHide">Reset All</button>
+        <button class="optionButtonHide">Regenerate Map</button>
+        <button class="optionButtonHide">Redraw Lines</button>
+        <button class="optionButtonHide">Reset Player Pos</button>
+
+        <button class="optionButtonHide">Godmode
+            <a *ngIf="this.isGodmodeOn === true" [ngStyle]="{'color': 'lime'}">On</a>
+            <a *ngIf="this.isGodmodeOn === false" [ngStyle]="{'color': 'red'}">Off</a>
+        </button>
+
+        <button class="optionButtonHide">Toggle Dungeon
+            <a *ngIf="this.DungeonPathService.showDungeonPath === true" [ngStyle]="{'color': 'lime'}">Path</a>
+            <a *ngIf="this.DungeonPathService.showDungeonPath === true" [ngStyle]="{'color': 'black'}"> / Room</a>
+            <a *ngIf="this.DungeonPathService.showDungeonPath === false" [ngStyle]="{'color': 'black'}">Path / </a>
+            <a *ngIf="this.DungeonPathService.showDungeonPath === false" [ngStyle]="{'color': 'lime'}">Room</a>
+        </button>
+
+        <button class="optionButtonHide">Dev Info
+            <a *ngIf="this.DungeonPathService.showDevInfo === true" [ngStyle]="{'color': 'lime'}">On</a>
+            <a *ngIf="this.DungeonPathService.showDevInfo === false" [ngStyle]="{'color': 'red'}">Off</a>
+        </button>
+
+        <!-- <button class="optionButton" (click)="toggleRoomGaps()">Toggle Room Gaps</button> -->
+        <!-- <input id="mapLengthInput" placeholder="Enter map length here..."> -->
+
+    </div>
+
+
 </div>

@@ -97,8 +97,7 @@
   display: none;
 }
 
-.equip-slot:hover + 
-.Tooltip {
+.equip-slot:hover + .Tooltip {
   display: block;
   padding: 1vw;
   background-color: rgba(0, 0, 0, 0.75);
@@ -121,18 +120,18 @@
   border-right: 21px solid rgba(0, 0, 0, 0.75);
 }
 
-.TooltipTitle{
+.TooltipTitle {
   text-align: center;
   font-weight: 600;
   font-size: large;
 }
 
-.TooltipText{
+.TooltipText {
   font-weight: 300;
   line-height: 2.5;
 }
 
-.TooltipDesc{
+.TooltipDesc {
   font-weight: 100;
   font-style: italic;
   font-size: medium;
@@ -508,6 +507,12 @@
   position: absolute;
 }
 
+.loot-image {
+  width: 50%;
+  opacity: 50%;
+  margin: 2vh;
+}
+
 .loot-container,
 .loot-container-animation {
   display: flex;
@@ -542,16 +547,13 @@
 .loot-card,
 .loot-card-animation {
   width: 8vw;
-  height: 11vw;
-  background-color: rgb(126, 126, 126);
-  font-size: 1.7vh;
+  height: 30vh;
   margin: 1vw;
   align-items: center;
   padding: 0.5vw;
   display: flex;
   flex-direction: column;
   text-align: center;
-  justify-content: center;
   cursor: pointer;
   animation-name: loot-card-animation;
   animation-duration: 1300ms;
@@ -562,14 +564,16 @@
   0% {
     width: 0vh;
     height: 0vh;
-    font-size: 0vh;
+    color: rgba(0, 0, 0, 0);
     margin: 0vw;
     padding: 0vw;
   }
+  40% {
+    color: rgba(0, 0, 0, 0);
+  }
   100% {
     width: 8vw;
-    height: 11vw;
-    font-size: 1.7vh;
+    height: 30vh;
     margin: 1vw;
     padding: 0.5vw;
   }
@@ -577,18 +581,18 @@
 
 .forgo-loot-button,
 .forgo-loot-button-animation {
-  width: 25vh;
+  width: 30vh;
   height: 6vh;
   background-color: rgb(216, 216, 216);
   color: rgb(31, 31, 31);
-  font-weight: 600;
+  font-weight: 800;
+  font-size: 2vh;
   border-radius: 1vw;
   margin: 1vw;
   display: flex;
   flex-direction: column;
   text-align: center;
   justify-content: center;
-
   cursor: pointer;
   animation-name: forgo-loot-button-animation;
   animation-duration: 1300ms;
@@ -599,13 +603,13 @@
   0% {
     width: 0vh;
     height: 0vh;
-    font-size: 0vh;
+    font-size: 0.1vh;
     margin: 0vw;
   }
   100% {
-    width: 25vh;
+    width: 30vh;
     height: 6vh;
-    font-size: 1.7vh;
+    font-size: 2vh;
     margin: 1vw;
   }
 }

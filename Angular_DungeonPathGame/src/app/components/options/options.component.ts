@@ -16,11 +16,15 @@ export class OptionsComponent implements OnInit {
   }
 
   ShowOptions: boolean = true;
+  HideOptions: boolean = false;
   isGodmodeOn: boolean = true;
 
   toggleOptions() {
     if (this.ShowOptions === true) {
+      this.HideOptions = true;
       this.ShowOptions = false;
+     setTimeout(() => {
+      this.HideOptions = false;}, 500)
     } else if (this.ShowOptions === false) {
       this.ShowOptions = true;
     }
@@ -54,9 +58,9 @@ export class OptionsComponent implements OnInit {
   redrawLines() {
     this.DungeonPathService.deleteLeaderLines();
     setTimeout(() => {
-    this.DungeonPathService.makeConnections();
-    this.DungeonPathService.generateLeaderLines();
-  }, 0);
+      this.DungeonPathService.makeConnections();
+      this.DungeonPathService.generateLeaderLines();
+    }, 0);
   }
 
   resetPlayerPos() {

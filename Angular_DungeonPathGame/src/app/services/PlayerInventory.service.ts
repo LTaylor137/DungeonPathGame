@@ -30,10 +30,10 @@ export class PlayerInventoryService {
   populateLootPool() {
 
     //foods
-    this.lootPool.push(new Item("food", "Painkillers", "You're in a computer game, Max... Heals for 1 health", 0, 0, 1,)),
-      this.lootPool.push(new Item("food", "Heart Container", "Hey, Listen! Heals for 1 health", 0, 0, 1)),
-      this.lootPool.push(new Item("food", "Mushroom", "Wahoo! Heals for 1 health", 0, 0, 1)),
-      this.lootPool.push(new Item("food", "Rations", "“Do you think love can bloom, even on a battlefield?” Heals for 1 health", 0, 0, 1)),
+    this.lootPool.push(new Item("food", "Painkillers", "You're in a computer game, Max... - Heals for 1 health", 0, 0, 1,)),
+      this.lootPool.push(new Item("food", "Heart Container", "Hey, Listen! - Heals for 1 health", 0, 0, 1)),
+      this.lootPool.push(new Item("food", "Mushroom", "Wahoo! - Heals for 1 health", 0, 0, 1)),
+      this.lootPool.push(new Item("food", "Rations", "Do you think love can bloom, even on a battlefield? - Heals for 1 health", 0, 0, 1)),
 
       // weapons
       // t1

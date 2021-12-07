@@ -72,8 +72,10 @@
             <div class="Tooltip">
                 <div class="TooltipArrow"></div>
                 <a class="TooltipTitle">{{this.PlayerInventoryService.offhand.itemName}}<br></a>
-                <a *ngIf="this.PlayerInventoryService.offhand.itemAttackValue > 0" class="TooltipText">Attack Value: {{this.PlayerInventoryService.offhand.itemAttackValue}}<br></a>
-                <a *ngIf="this.PlayerInventoryService.offhand.itemDefenceValue > 0" class="TooltipText">Defence Value: {{this.PlayerInventoryService.offhand.itemDefenceValue}}<br></a>
+                <a *ngIf="this.PlayerInventoryService.offhand.itemAttackValue > 0" class="TooltipText">Attack Value:
+                    {{this.PlayerInventoryService.offhand.itemAttackValue}}<br></a>
+                <a *ngIf="this.PlayerInventoryService.offhand.itemDefenceValue > 0" class="TooltipText">Defence Value:
+                    {{this.PlayerInventoryService.offhand.itemDefenceValue}}<br></a>
                 <a class="TooltipDesc">"{{this.PlayerInventoryService.offhand.itemDescription}}"</a>
             </div>
 
@@ -167,9 +169,14 @@
                                 <div class="loot-card"
                                     [style.background-color]="this.PlayerInventoryService.getItemColour(loot.itemTier)"
                                     (click)="takeLoot(loot.itemName)">
-                                    <img class="item-image"
+                                    <img class="loot-image"
                                         src="../../../assets/images/equipment/{{loot.itemName}}.png">
-                                    {{ loot.itemName }}
+                                    <a class="TooltipTitle">{{loot.itemName}}<br></a>
+                                    <a *ngIf="loot.itemAttackValue > 0" class="TooltipText">Attack Value:
+                                        {{loot.itemAttackValue}}<br></a>
+                                    <a *ngIf="loot.itemDefenceValue > 0" class="TooltipText">Defence Value:
+                                        {{loot.itemDefenceValue}}<br></a>
+                                    <a class="TooltipDesc">"{{loot.itemDescription}}"</a>
                                 </div>
                             </div>
                         </div>
@@ -206,8 +213,13 @@
                             <div class="loot-card"
                                 [style.background-color]="this.PlayerInventoryService.getItemColour(loot.itemTier)"
                                 (click)="takeLoot(loot.itemName)">
-                                <img class="item-image" src="../../../assets/images/equipment/{{loot.itemName}}.png">
-                                {{ loot.itemName }}
+                                <img class="loot-image" src="../../../assets/images/equipment/{{loot.itemName}}.png">
+                                <a class="TooltipTitle">{{loot.itemName}}<br></a>
+                                <a *ngIf="loot.itemAttackValue > 0" class="TooltipText">Attack Value:
+                                    {{loot.itemAttackValue}}<br></a>
+                                <a *ngIf="loot.itemDefenceValue > 0" class="TooltipText">Defence Value:
+                                    {{loot.itemDefenceValue}}<br></a>
+                                <a class="TooltipDesc">"{{loot.itemDescription}}"</a>
                             </div>
                         </div>
                     </div>

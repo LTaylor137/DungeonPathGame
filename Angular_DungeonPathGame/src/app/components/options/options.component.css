@@ -4,11 +4,43 @@
   /* margin: 1vw 0vw 0vw 0vw; */
 }
 
-.ShowOptionsButton {
-  width: 35px;
-  height: 50px;
+.showOptionsButton,
+.hideOptionsButton {
+  width: 40px;
+  height: 40px;
   margin: 1vw 2vw 0vw 1.5vw;
   background-color: rgb(32, 32, 32);
+  animation-name: ShowOptionsButton-animation;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes ShowOptionsButton-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+.hideOptionsButton {
+  animation-name: HideOptionsButton-animation;
+}
+
+@keyframes HideOptionsButton-animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  70% {
+    transform: rotate(-180deg);
+  }
+  100% {
+    transform: rotate(-180deg);
+  }
 }
 
 .OptionButtonsContainer {
@@ -18,7 +50,8 @@
   align-items: center;
 }
 
-button {
+.optionButton,
+.optionButtonHide {
   color: black;
   padding: 5px 10px 5px 10px;
   margin: 5px;
@@ -27,10 +60,53 @@ button {
   font-size: 16px;
   font-weight: 700;
   text-align: left;
+  white-space: nowrap;
+  animation-name: button-animation;
+  animation-duration: 500ms;
+  animation-iteration-count: 1;
 }
 
-input {
-  border-radius: 5px;
-  font-size: 14px;
-  font-weight: 600;
+@keyframes button-animation {
+  0% {
+    padding: 0px;
+  margin: 0px;
+    width: 0vh;
+    height: 28px;
+    font-size: 0px;
+    font-weight: 100;
+    white-space: nowrap;
+  }
+  30% {
+    font-size: 0px;
+    font-weight: 100;
+    white-space: nowrap;
+  }
+  60% {
+    height: 28px;
+  }
+}
+
+.optionButtonHide {
+  animation-name: buttonHide-animation;
+  animation-duration: 500ms;
+}
+
+@keyframes buttonHide-animation {
+  0% {
+    height: 28px;
+  }
+  30% {
+    font-size: 0.001px;
+    font-weight: 100;
+    white-space: nowrap;
+  }
+  100% {
+    padding: 0px;
+    margin: 0px;
+      width: 0vh;
+      height: 28px;
+      font-size: 0px;
+    font-weight: 100;
+    white-space: nowrap;
+  }
 }
