@@ -19,9 +19,6 @@
   0% {
     transform: rotate(0deg);
   }
-  30% {
-    transform: rotate(0deg);
-  }
   100% {
     transform: rotate(180deg);
   }
@@ -34,9 +31,6 @@
 @keyframes HideOptionsButton-animation {
   0% {
     transform: rotate(0deg);
-  }
-  70% {
-    transform: rotate(-180deg);
   }
   100% {
     transform: rotate(-180deg);
@@ -97,6 +91,15 @@
   }
   30% {
     font-size: 0.001px;
+    font-weight: 100;
+    white-space: nowrap;
+  }
+  70% {
+    padding: 0px;
+    margin: 0px;
+      width: 0vh;
+      height: 28px;
+      font-size: 0px;
     font-weight: 100;
     white-space: nowrap;
   }

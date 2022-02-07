@@ -26,23 +26,29 @@ export class RoomEventService {
   roomLootList: Item[] = [];
   isLootTaken: boolean = false;
 
-  monsterTurnValue: number | null;
+  monsterAttackValue: number | null;
   monsterHealthValue: number | null;
 
   healAmount: number = 0;
   healthChangeValue: number = 0;
+  monsterHealthChangeValue: number = 0;
 
-  isMonsterStunned: boolean = false;
   isPlayerTurn: boolean = false;
   isPlayerAttacking: boolean = false;
   isPlayerBlocking: boolean = false;
-  isDamageNegated: boolean = false;
+  isHandgunInUse: boolean = false;
   isMonsterAttacking: boolean = false;
+
+  isDamageNegated: boolean = false;
+  isAttackAvoided: boolean = false;
+  isPlayerTakeDamage: boolean = false;
   isMonsterTakeDamage: boolean = false;
+  isMonsterStunned: boolean = false;
+
+  // isHandgunUsed: boolean = false;
   // isMonsterDead: boolean = false;
   // isPlayerDead: boolean = false;
 
-  // this assigns room background 
   setRoomBackground() {
     let BackgroundImageArray = [
       "../../assets/images/backgrounds/background1.png",
@@ -55,8 +61,7 @@ export class RoomEventService {
     return random;
   }
 
-  // this assigns room images 
-  setImage(roomType: string) {
+  setRoomImage(roomType: string) {
     switch (roomType) {
       case "start":
         return "assets/images/monsters/monster1.png";
@@ -76,7 +81,7 @@ export class RoomEventService {
     }
   }
 
-  setRoom() {
+  setupRoom() {
     this.DungeonPathService.levelList.forEach(level => {
       level.roomList.forEach(room => {
         this.roomBackground = this.setRoomBackground();
@@ -87,13 +92,22 @@ export class RoomEventService {
           this.currentRoom = room.roomNo
           this.healthChangeValue = 0;
           if (room.roomType === "monster" || room.roomType === "boss" || room.roomType === "finalboss") {
-            this.roomImage = this.setImage(this.roomType);
-            this.monsterTurnValue = this.setMonsterAttackValue()
+            this.roomImage = this.setRoomImage(this.roomType);
+            this.monsterAttackValue = this.setMonsterAttackValue()
             this.monsterHealthValue = this.setMonsterHealthValue()
+            this.isMonsterTakeDamage = false;
             this.isMonsterStunned = false;
             this.isPlayerTurn = false;
             this.AssignRoomLoot();
-            setTimeout(() => { this.monsterTurn(); }, 1000);
+
+            // use players handgun here
+            if (this.PlayerInventoryService.offhand.itemName === 'Handgun') {
+              this.playerUsesHandgun()
+              setTimeout(() => { this.monsterTurn(); }, 2000);
+            } else {
+              setTimeout(() => { this.monsterTurn(); }, 1000);
+            }
+
           }
           if (room.roomType === "fire") {
             setTimeout(() => { this.getHealthFromFire(); }, 500);
@@ -135,31 +149,43 @@ export class RoomEventService {
   }
 
   playerAttack() {
+    this.isPlayerBlocking = false;
     this.isPlayerAttacking = true;
+
     // attack
     setTimeout(() => {
-      this.isMonsterTakeDamage = true;
+      // drop monster instantly
       if (this.monsterHealthValue <= this.PlayerInventoryService.playerAttack) {
-        // drop monster instantly
-        this.monsterHealthValue = (this.monsterHealthValue - this.PlayerInventoryService.playerAttack)
+        this.isMonsterTakeDamage = true;
+          this.monsterHealthValue = (this.monsterHealthValue - this.monsterHealthValue)
       } else {
-        // reduce health after delay
-        setTimeout(() => {
-          this.monsterHealthValue = (this.monsterHealthValue - this.PlayerInventoryService.playerAttack)
-        }, 500);
+        if (this.PlayerInventoryService.weapon.itemName === "Lightsaber" && Math.random() < 0.25) {
+          console.log("lightsaber perk activated")
+          this.isMonsterTakeDamage = true;
+          this.monsterHealthChangeValue = this.monsterHealthValue
+            this.monsterHealthValue = 0
+        } else {
+          this.isMonsterTakeDamage = true;
+          this.monsterHealthChangeValue = this.PlayerInventoryService.playerAttack
+          setTimeout(() => {
+            this.monsterHealthValue = (this.monsterHealthValue - this.PlayerInventoryService.playerAttack)
+          }, 500);
+        }
       }
     }, 250);
+
     //move back
     setTimeout(() => {
       this.isPlayerAttacking = false;
+      console.log("player hit enemy for " + this.PlayerInventoryService.playerAttack + " damage, taking health down to " + this.monsterHealthValue);
     }, 1000);
-    console.log("player hit enemy for " + this.PlayerInventoryService.playerAttack + " damage, taking health down to " + this.monsterHealthValue);
+
     // change to monster turn
     if (this.monsterHealthValue > 0) {
       setTimeout(() => {
-        this.healthChangeValue = 0;
-        this.isPlayerTurn = false
         this.isMonsterTakeDamage = false;
+        this.monsterHealthChangeValue = 0;
+        this.isPlayerTurn = false
         this.monsterTurn()
       }, 1000);
     }
@@ -180,55 +206,98 @@ export class RoomEventService {
     }
   }
 
+  playerUsesHandgun() {
+
+    console.log("handgun used")
+    this.isMonsterTakeDamage = false;
+    this.isHandgunInUse = true;
+
+    // monster take damage
+    setTimeout(() => {
+      this.isMonsterTakeDamage = true;
+    }, 1000);
+
+    setTimeout(() => {
+      this.monsterHealthValue = (this.monsterHealthValue - 1)
+    }, 1500);
+
+    //wrapup
+    setTimeout(() => {
+      this.isHandgunInUse = false;
+      this.isMonsterTakeDamage = false;
+    }, 2000);
+
+  }
+
   monsterTurn() {
+
     if (this.isPlayerTurn === false && this.monsterHealthValue > 0) {
       if (this.isMonsterStunned === true) {
-        console.log(" monster is stunned");
+        // console.log(" monster is stunned");
         setTimeout(() => {
           this.isMonsterStunned = false;
         }, 500);
       } else {
-        this.isMonsterAttacking = true;
+
         // monster attacks
-        setTimeout(() => {
-          //calculate damage done
-          let damage = this.monsterTurnValue;
-          damage = damage - (this.PlayerInventoryService.playerDefence + this.PlayerInventoryService.playerBlockAmount);
-          if (damage <= 0) {
-            console.log("attack did not break armour")
-            this.isDamageNegated = true;
-          } else if (damage > 0) {
-            console.log("attack did " + damage + " damage.")
-            this.healthChangeValue = - damage;
-            this.PlayerInventoryService.takeDamage(damage);
-          }
-          this.isPlayerBlocking = false;
-        }, 500);
-        // stun monster if player block active
-        if (this.isPlayerBlocking === true) {
+        this.isMonsterAttacking = true;
+
+        // calculate if player avoids attack
+        let avoidChance = this.PlayerInventoryService.getPlayerAvoidChance();
+        console.log("player avoidchance = " + avoidChance)
+        let random = Math.random()
+        console.log("random no = " + random)
+        if (avoidChance > random) {
+          // monster attack misses
+          console.log("player avoided attack")
+          this.isAttackAvoided = true;
+        } else {
+
+          // monster attack hits
           setTimeout(() => {
-            console.log("monster stunned")
-            this.isMonsterStunned = true;
-            this.isDamageNegated = true;
-            this.PlayerInventoryService.playerDefence -= this.PlayerInventoryService.offhand.itemDefenceValue;
+            //calculate damage done
+            let damage = this.monsterAttackValue;
+            damage = damage - (this.PlayerInventoryService.playerDefence + this.PlayerInventoryService.playerBlockAmount);
+            if (damage <= 0) {
+              // console.log("attack did not break armour")
+              this.isDamageNegated = true;
+            } else if (damage > 0) {
+              // console.log("attack did " + damage + " damage.")
+              this.isPlayerTakeDamage = true;
+              // will this damage kill player?
+              if (damage >= this.PlayerInventoryService.playerHealth) {
+                // console.log("attack killed player" + damage + this.PlayerInventoryService.playerHealth)
+              }
+              this.healthChangeValue = - damage;
+              this.PlayerInventoryService.takeDamage(damage);
+            }
+            // stun monster if player block active
+            if (this.isPlayerBlocking === true) {
+              this.isMonsterStunned = true;
+              this.isDamageNegated = true;
+            }
           }, 500);
         }
-        // move back
-        setTimeout(() => {
-          this.isMonsterAttacking = false;
-        }, 1000);
       }
-      // end turn
-      setTimeout(() => {
-        this.healthChangeValue = 0;
-        this.isDamageNegated = false;
-        this.isPlayerTurn = true;
-      }, 2000);
     }
+    // move monster back
+    setTimeout(() => {
+      this.isAttackAvoided = false;
+      this.isMonsterAttacking = false;
+    }, 1000);
+    // end monsters turn
+    setTimeout(() => {
+      this.healthChangeValue = 0;
+      this.isDamageNegated = false;
+      this.isPlayerTakeDamage = false;
+      this.isPlayerTurn = true;
+      this.isPlayerBlocking = false;
+      this.PlayerInventoryService.playerDefence = (this.PlayerInventoryService.helm.itemDefenceValue + this.PlayerInventoryService.armour.itemDefenceValue)
+    }, 2000);
   }
 
   getHealthFromFire() {
-    this.healAmount = Math.floor(Math.random() * 3) + 1;
+    this.healAmount = Math.floor(Math.random() * 2) + 2;
     this.PlayerInventoryService.gainHealth(this.healAmount)
     this.healthChangeValue = this.healAmount;
     setTimeout(() => {

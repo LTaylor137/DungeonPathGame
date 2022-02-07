@@ -10,16 +10,15 @@ import { PlayerInventoryService } from "../../services/PlayerInventory.service";
   styleUrls: ['./room-event.component.css']
 })
 export class RoomEventComponent implements OnInit {
- 
+
   constructor(public DungeonPathService: DungeonPathService, public RoomEventService: RoomEventService, public PlayerInventoryService: PlayerInventoryService) { }
 
   ngOnInit(): void {
     console.log("set room room-event.component.ts")
-    this.RoomEventService.setRoom();
+    this.RoomEventService.setupRoom();
   }
 
-  takeLoot(itemName)
-  {
+  takeLoot(itemName) {
     this.RoomEventService.takeLoot(itemName)
   }
 
@@ -27,8 +26,14 @@ export class RoomEventComponent implements OnInit {
     this.RoomEventService.playerAttack();
   }
 
-  Block() {
-    this.RoomEventService.playerBlock();
+  Offhand() {
+    if (this.PlayerInventoryService.offhand.itemName === "Handgun") {
+      console.log("do Handgun stuff")
+    } else if (this.PlayerInventoryService.offhand.itemName === "Torch") {
+      console.log("do torch stuff")
+    } else {
+      this.RoomEventService.playerBlock();
+    }
   }
-  
+
 }

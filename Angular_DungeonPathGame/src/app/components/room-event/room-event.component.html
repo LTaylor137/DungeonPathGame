@@ -1,4 +1,22 @@
-<div class="room-event-container">
+<!-- Display if player health < 0  -->
+<div *ngIf="this.PlayerInventoryService.playerHealth <= 0 &&
+    this.PlayerInventoryService.isGodmodeOn === false" class="flexrow">
+
+    <div class="room-event-container">
+
+        <div class="cave-background-container">
+            <img class="cave-background-image" src="{{ this.RoomEventService.roomBackground }}" />
+        </div>
+
+        you died
+
+    </div>
+
+</div>
+
+<!-- Display if player health > 0  -->
+<div *ngIf="this.PlayerInventoryService.playerHealth >= 1 ||
+    this.PlayerInventoryService.isGodmodeOn === true" class="room-event-container">
 
     <div class="cave-background-container">
         <img class="cave-background-image" src="{{ this.RoomEventService.roomBackground }}" />
@@ -41,11 +59,11 @@
                 <img class="item-image"
                     src="../../../assets/images/equipment/{{this.PlayerInventoryService.helm.itemName}}.png">
             </div>
-            <div class="Tooltip">
-                <div class="TooltipArrow"></div>
-                <a class="TooltipTitle">{{this.PlayerInventoryService.helm.itemName}}<br></a>
-                <a class="TooltipText">Defence Value: {{this.PlayerInventoryService.helm.itemDefenceValue}}<br></a>
-                <a class="TooltipDesc">"{{this.PlayerInventoryService.helm.itemDescription}}"</a>
+            <div class="tooltip">
+                <div class="tooltipArrow"></div>
+                <a class="tooltipTitle">{{this.PlayerInventoryService.helm.itemName}}<br></a>
+                <a class="tooltipText">Defence Value: {{this.PlayerInventoryService.helm.itemDefenceValue}}<br></a>
+                <a class="tooltipDesc">"{{this.PlayerInventoryService.helm.itemDescription}}"</a>
             </div>
 
             <!-- armour -->
@@ -54,11 +72,11 @@
                 <img class="item-image"
                     src="../../../assets/images/equipment/{{this.PlayerInventoryService.armour.itemName}}.png">
             </div>
-            <div class="Tooltip">
-                <div class="TooltipArrow"></div>
-                <a class="TooltipTitle">{{this.PlayerInventoryService.armour.itemName}}<br></a>
-                <a class="TooltipText">Defence Value: {{this.PlayerInventoryService.armour.itemDefenceValue}}<br></a>
-                <a class="TooltipDesc">"{{this.PlayerInventoryService.armour.itemDescription}}"</a>
+            <div class="tooltip">
+                <div class="tooltipArrow"></div>
+                <a class="tooltipTitle">{{this.PlayerInventoryService.armour.itemName}}<br></a>
+                <a class="tooltipText">Defence Value: {{this.PlayerInventoryService.armour.itemDefenceValue}}<br></a>
+                <a class="tooltipDesc">"{{this.PlayerInventoryService.armour.itemDescription}}"</a>
             </div>
 
             <!-- offhand -->
@@ -66,17 +84,18 @@
                 [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.offhand.itemTier)">
                 <img class="item-image"
                     src="../../../assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
-                <button class="equip-button" (click)="Block()" *ngIf="this.RoomEventService.isPlayerTurn === true">
+                <button class="equip-button" (click)="Offhand()" *ngIf="this.RoomEventService.isPlayerTurn === true 
+                && this.PlayerInventoryService.offhand.itemTier < 4">
                 </button>
             </div>
-            <div class="Tooltip">
-                <div class="TooltipArrow"></div>
-                <a class="TooltipTitle">{{this.PlayerInventoryService.offhand.itemName}}<br></a>
-                <a *ngIf="this.PlayerInventoryService.offhand.itemAttackValue > 0" class="TooltipText">Attack Value:
+            <div class="tooltip">
+                <div class="tooltipArrow"></div>
+                <a class="tooltipTitle">{{this.PlayerInventoryService.offhand.itemName}}<br></a>
+                <a *ngIf="this.PlayerInventoryService.offhand.itemAttackValue > 0" class="tooltipText">Attack Value:
                     {{this.PlayerInventoryService.offhand.itemAttackValue}}<br></a>
-                <a *ngIf="this.PlayerInventoryService.offhand.itemDefenceValue > 0" class="TooltipText">Defence Value:
+                <a *ngIf="this.PlayerInventoryService.offhand.itemDefenceValue > 0" class="tooltipText">Defence Value:
                     {{this.PlayerInventoryService.offhand.itemDefenceValue}}<br></a>
-                <a class="TooltipDesc">"{{this.PlayerInventoryService.offhand.itemDescription}}"</a>
+                <a class="tooltipDesc">"{{this.PlayerInventoryService.offhand.itemDescription}}"</a>
             </div>
 
             <!-- weapon -->
@@ -87,11 +106,11 @@
                 <button class="equip-button" (click)="Attack()" *ngIf="this.RoomEventService.isPlayerTurn === true">
                 </button>
             </div>
-            <div class="Tooltip">
-                <div class="TooltipArrow"></div>
-                <a class="TooltipTitle">{{this.PlayerInventoryService.weapon.itemName}}<br></a>
-                <a class="TooltipText">Attack Value: {{this.PlayerInventoryService.weapon.itemAttackValue}}<br></a>
-                <a class="TooltipDesc">"{{this.PlayerInventoryService.weapon.itemDescription}}"</a>
+            <div class="tooltip">
+                <div class="tooltipArrow"></div>
+                <a class="tooltipTitle">{{this.PlayerInventoryService.weapon.itemName}}<br></a>
+                <a class="tooltipText">Attack Value: {{this.PlayerInventoryService.weapon.itemAttackValue}}<br></a>
+                <a class="tooltipDesc">"{{this.PlayerInventoryService.weapon.itemDescription}}"</a>
             </div>
 
         </div>
@@ -99,19 +118,25 @@
         <!-- Player Avatar Column -->
         <div class="avatar-column">
 
-            <div class="ailment-box">
-                <div *ngIf="this.RoomEventService.isPlayerBlocking === true"> blocking </div>
-                <div *ngIf="this.RoomEventService.roomType === 'fire'"> resting </div>
+            <div class="status-box">
+                <div *ngIf="this.RoomEventService.isPlayerBlocking === true"> Blocking <br> </div>
+                <div *ngIf="this.RoomEventService.isAttackAvoided === true"> Avoided Attack </div>
+                <div *ngIf="this.RoomEventService.roomType === 'fire'"> Resting </div>
             </div>
 
-            <div id="playerAvatar" class="flexrow">
+            <div id="playerAvatar" class="avatar">
 
                 <div class="equip-in-use"></div>
 
                 <img class="avatar-attacking" *ngIf="this.RoomEventService.isPlayerAttacking === true"
                     src="{{ this.PlayerInventoryService.playerAvatar }}" />
 
-                <img class="avatar" *ngIf="this.RoomEventService.isPlayerAttacking === false"
+                <img class="avatar" *ngIf="this.RoomEventService.isPlayerAttacking === false &&
+                this.RoomEventService.isAttackAvoided === false"
+                    src="{{ this.PlayerInventoryService.playerAvatar }}" />
+
+                <img class="avatar-avoiding" *ngIf="this.RoomEventService.isPlayerAttacking === false &&
+                    this.RoomEventService.isAttackAvoided === true"
                     src="{{ this.PlayerInventoryService.playerAvatar }}" />
 
                 <div>
@@ -119,13 +144,17 @@
                                 this.RoomEventService.isPlayerAttacking === false" class="eqiup-blocking"
                         src="../../../assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
                     <img *ngIf="this.RoomEventService.isPlayerAttacking === true &&
-                        this.PlayerInventoryService.weapon.itemTier <= 2" class="eqiup-attacking"
+                        this.PlayerInventoryService.weapon.itemTier < 3" class="eqiup-attacking"
                         src="../../../assets/images/equipment/{{this.PlayerInventoryService.weapon.itemName}}.png">
                     <img *ngIf="this.RoomEventService.isPlayerAttacking === true &&
                         this.PlayerInventoryService.weapon.itemTier >= 3" class="eqiup-attacking-2"
                         src="../../../assets/images/equipment/{{this.PlayerInventoryService.weapon.itemName}}.png">
                     <img *ngIf="this.RoomEventService.isDamageNegated === true" class="damage-deflect"
-                        src="../../../assets/images/equipment/Block Effect.png">
+                        src="../../../assets/images/effects/Block Effect.png">
+                    <img *ngIf="this.RoomEventService.isPlayerTakeDamage === true" class="damage-hit"
+                        src="../../../assets/images/effects/Hit Effect.png">
+                    <img *ngIf="this.RoomEventService.isHandgunInUse === true" class="eqiup-handgun"
+                        src="../../../assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
                 </div>
 
             </div>
@@ -139,11 +168,10 @@
               this.RoomEventService.roomType === 'finalboss'">
 
             <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="avatar-column">
-
-                <div class="ailment-box">
-                    <!-- monster stunned? -->
-                    <div *ngIf="this.RoomEventService.isMonsterStunned === true && this.RoomEventService.monsterHealthValue > 0"
-                        class="ailment"> Stunned! </div>
+                <div class="status-box">
+                    <div
+                        *ngIf="this.RoomEventService.isMonsterStunned === true && this.RoomEventService.monsterHealthValue > 0">
+                        Stunned </div>
                 </div>
 
                 <div class="monster">
@@ -152,10 +180,19 @@
                     <img class="monster-attacking" *ngIf="this.RoomEventService.isMonsterAttacking === true"
                         src="{{ this.RoomEventService.roomImage }}" />
                     <img class="monster-claw-attacking" *ngIf="this.RoomEventService.isMonsterAttacking === true"
-                        src="../../../assets/images/equipment/Monster Claw.png" />
+                        src="../../../assets/images/effects/Monster Claw.png" />
                 </div>
 
             </div>
+
+            <!-- monster hit effect persists outside of monsters life -->
+            <img *ngIf="this.RoomEventService.isMonsterTakeDamage === true && 
+            this.PlayerInventoryService.weapon.itemName != 'Lightsaber'" class="monster-damage-hit"
+            src="../../../assets/images/effects/Monster Hit Effect.png">
+            <img *ngIf="this.RoomEventService.isMonsterTakeDamage === true && 
+            this.PlayerInventoryService.weapon.itemName === 'Lightsaber' &&
+            this.RoomEventService.isPlayerTurn === true" class="monster-lightsaber-hit"
+            src="../../../assets/images/effects/Lightsaber Effect.png">
 
             <!-- monster loot -->
             <div class="avatar-column">
@@ -171,12 +208,12 @@
                                     (click)="takeLoot(loot.itemName)">
                                     <img class="loot-image"
                                         src="../../../assets/images/equipment/{{loot.itemName}}.png">
-                                    <a class="TooltipTitle">{{loot.itemName}}<br></a>
-                                    <a *ngIf="loot.itemAttackValue > 0" class="TooltipText">Attack Value:
+                                    <a class="tooltipTitle">{{loot.itemName}}<br></a>
+                                    <a *ngIf="loot.itemAttackValue > 0" class="tooltipText">Attack Value:
                                         {{loot.itemAttackValue}}<br></a>
-                                    <a *ngIf="loot.itemDefenceValue > 0" class="TooltipText">Defence Value:
+                                    <a *ngIf="loot.itemDefenceValue > 0" class="tooltipText">Defence Value:
                                         {{loot.itemDefenceValue}}<br></a>
-                                    <a class="TooltipDesc">"{{loot.itemDescription}}"</a>
+                                    <a class="tooltipDesc">"{{loot.itemDescription}}"</a>
                                 </div>
                             </div>
                         </div>
@@ -206,6 +243,7 @@
 
             <!-- loot -->
             <div class="avatar-column">
+
                 <div class="loot-container" *ngIf="this.RoomEventService.isLootTaken === false">
 
                     <div class="flexrow">
@@ -214,12 +252,12 @@
                                 [style.background-color]="this.PlayerInventoryService.getItemColour(loot.itemTier)"
                                 (click)="takeLoot(loot.itemName)">
                                 <img class="loot-image" src="../../../assets/images/equipment/{{loot.itemName}}.png">
-                                <a class="TooltipTitle">{{loot.itemName}}<br></a>
-                                <a *ngIf="loot.itemAttackValue > 0" class="TooltipText">Attack Value:
+                                <a class="tooltipTitle">{{loot.itemName}}<br></a>
+                                <a *ngIf="loot.itemAttackValue > 0" class="tooltipText">Attack Value:
                                     {{loot.itemAttackValue}}<br></a>
-                                <a *ngIf="loot.itemDefenceValue > 0" class="TooltipText">Defence Value:
+                                <a *ngIf="loot.itemDefenceValue > 0" class="tooltipText">Defence Value:
                                     {{loot.itemDefenceValue}}<br></a>
-                                <a class="TooltipDesc">"{{loot.itemDescription}}"</a>
+                                <a class="tooltipDesc">"{{loot.itemDescription}}"</a>
                             </div>
                         </div>
                     </div>
@@ -244,6 +282,7 @@
 
         <!-- FIRE -->
         <div class="avatar-column" *ngIf="this.RoomEventService.roomType === 'fire'">
+            <div class="status-box"> </div>
             <img class="fire" src="../../../assets/images/misc/Fire.png">
         </div>
 
@@ -288,7 +327,7 @@
         <div class="stat-container">
             <div *ngIf="this.RoomEventService.monsterHealthValue > 0" class="stat-box">
                 <span class="iconify" color="grey" data-icon="mdi:sword" data-inline="false"></span>
-                <span class="stat-text"> {{this.RoomEventService.monsterTurnValue}}</span>
+                <span class="stat-text"> {{this.RoomEventService.monsterAttackValue}}</span>
             </div>
             <div class="stat-box">
             </div>
@@ -296,8 +335,13 @@
                 <div class="stat-box">
                     <span class="iconify" color="red" data-icon="ant-design:heart-filled" data-inline="false"></span>
                     <span class="stat-text"> {{this.RoomEventService.monsterHealthValue}}</span>
-                    <div *ngIf="this.RoomEventService.isMonsterTakeDamage === true " class="health-neg">
-                        -{{ this.PlayerInventoryService.playerAttack }}
+                    <div *ngIf="this.RoomEventService.isMonsterTakeDamage === true 
+                    && this.RoomEventService.isHandgunInUse === false" class="health-neg">
+                        -{{ this.RoomEventService.monsterHealthChangeValue }}
+                    </div>
+                    <div *ngIf="this.RoomEventService.isMonsterTakeDamage === true 
+                    && this.RoomEventService.isHandgunInUse === true" class="health-neg">
+                        -1
                     </div>
                 </div>
             </div>

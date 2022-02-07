@@ -303,7 +303,7 @@ export class DungeonPathService {
     this.LevelNo = 1;
     this.maxRmThisLevel = 1;
     this.maxRmNextLevel = 1;
-    this.PlayerInventoryService.setAvatar()
+    // this.PlayerInventoryService.setAvatar()
 
     // ========================= create levels =========================
     while (this.LevelNo <= this.mapSize) {

@@ -17,15 +17,18 @@ export class PlayerInventoryService {
   playerHealth: number = 5;
   playerDefence: number = 0;
   playerBlockAmount: number = 0;
+  // PlayerAvoidChance: number = 0;
   playerAvatar: string = "../../assets/images/avatars/Avatar1.png";
+
+  isGodmodeOn: boolean = true;
 
   lootPool: Item[] = [];
 
   constructor() { }
 
-  setAvatar() {
-    return "../../assets/images/avatars/Avatar1.png";
-  }
+  // setAvatar() {
+  //   return "../../assets/images/avatars/Avatar1.png";
+  // }
 
   populateLootPool() {
 
@@ -45,11 +48,11 @@ export class PlayerInventoryService {
       this.lootPool.push(new Item("weapon", "Meat Cleaver", "For cleaving", 2, 2, 0)),
       this.lootPool.push(new Item("weapon", "Hatchet", "A small hatchet", 2, 2, 0)),
       //t3
-      this.lootPool.push(new Item("weapon", "Swordfish", "This sword is actually a fish... who knows how it got in here", 3, 3, 0)),
+      this.lootPool.push(new Item("weapon", "Swordfish", "This sword is actually a fish... How did it get here?", 3, 3, 0)),
       this.lootPool.push(new Item("weapon", "Claymore", "A two handed greatsword", 3, 3, 0)),
-      this.lootPool.push(new Item("weapon", "Great Axe", "A two handed greataxe", 3, 3, 0)),
+      // this.lootPool.push(new Item("weapon", "Great Axe", "A two handed greataxe", 3, 3, 0)),
       // t4
-      this.lootPool.push(new Item("weapon", "Lightsaber", "Vrooom!", 4, 4, 0)),
+      this.lootPool.push(new Item("weapon", "Lightsaber", "Has a 25% chance to decapitate. Vrooom!", 4, 3, 0)),
 
       // armour
       this.lootPool.push(new Item("armour", "Potato Sack", "Smells musty", 1, 0, 0)),
@@ -61,7 +64,7 @@ export class PlayerInventoryService {
       this.lootPool.push(new Item("armour", "Plot Armour", "50% chance to avoid attacks.", 4, 0, 0)),
 
       // offhands
-      this.lootPool.push(new Item("offhand", "Wooden Buckler", "small, able to block 1 damage for 1 turn, will stun enemy on successful block", 1, 0, 1)),
+      this.lootPool.push(new Item("offhand", "Wooden Buckler", "Small, able to block 1 damage for 1 turn, will stun enemy on successful block", 1, 0, 1)),
       this.lootPool.push(new Item("offhand", "Tower Shield", "Large Shield, able to block 2 damage for 1 turn, will stun enemy on successful block", 2, 0, 2)),
 
       this.lootPool.push(new Item("offhand", "Handgun", "Allows you to shoot first when entering a room", 4, 0, 0)),
@@ -96,6 +99,8 @@ export class PlayerInventoryService {
     let t1Weps: Item[] = this.lootPool.filter(element => element.itemType === "weapon" && element.itemTier === 1);
     let randomW = Math.floor(Math.random() * t1Weps.length);
     this.weapon = (t1Weps[randomW])
+    this.weapon = this.lootPool.find(element => element.itemName === "Lightsaber")
+    this.playerAttack = this.weapon.itemAttackValue;
     let t1Helms: Item[] = this.lootPool.filter(element => element.itemType === "helm" && element.itemTier === 1);
     let randomH = Math.floor(Math.random() * t1Helms.length);
     this.helm = (t1Helms[randomH])
@@ -103,8 +108,9 @@ export class PlayerInventoryService {
     let randomA = Math.floor(Math.random() * t1Armour.length);
     this.armour = (t1Armour[randomA])
     this.offhand = this.lootPool.find(element => element.itemName === "Wooden Buckler")
+    // this.offhand = this.lootPool.find(element => element.itemName === "Handgun")
   }
-  
+
   gainHealth(heal: number) {
     setTimeout(() => {
       this.playerHealth += heal;
@@ -112,9 +118,23 @@ export class PlayerInventoryService {
   }
 
   takeDamage(damageDealt: number) {
-      setTimeout(() => {
-        this.playerHealth = this.playerHealth - damageDealt;
-      }, 1000);
+    setTimeout(() => {
+      this.playerHealth = this.playerHealth - damageDealt;
+    }, 1000);
+  }
+
+  getPlayerAvoidChance() {
+    let result: number = 0;
+    if (this.offhand.itemName == "Torch") {
+      result += .25
+    }
+    if (this.helm.itemName == "Miners Helmet") {
+      result += .25
+    }
+    if (this.armour.itemName == "Plot Armour") {
+      result += .5
+    }
+    return result;
   }
 
 }

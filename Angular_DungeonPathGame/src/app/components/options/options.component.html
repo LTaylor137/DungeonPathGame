@@ -7,14 +7,14 @@
 
     <div class="OptionButtonsContainer" *ngIf="this.ShowOptions === true">
         
-        <button class="optionButton" (click)="Reset()">Reset All</button>
-        <button class="optionButton" (click)="Generate()">Regenerate Map</button>
+        <button class="optionButton" (click)="resetAll()">Reset All</button>
+        <button class="optionButton" (click)="generate()">Regenerate Map</button>
         <button class="optionButton" (click)="redrawLines()">Redraw Lines</button>
         <button class="optionButton" (click)="resetPlayerPos()">Reset Player Pos</button>
 
-        <button class="optionButton" (click)="GodMode()">Godmode
-            <a *ngIf="this.isGodmodeOn === true" [ngStyle]="{'color': 'lime'}">On</a>
-            <a *ngIf="this.isGodmodeOn === false" [ngStyle]="{'color': 'red'}">Off</a>
+        <button class="optionButton" (click)="godMode()">Godmode
+            <a *ngIf="this.PlayerInventoryService.isGodmodeOn === true" [ngStyle]="{'color': 'lime'}">On</a>
+            <a *ngIf="this.PlayerInventoryService.isGodmodeOn === false" [ngStyle]="{'color': 'red'}">Off</a>
         </button>
 
         <button class="optionButton" (click)="toggleDungeonPath()">Toggle Dungeon
@@ -43,8 +43,8 @@
         <button class="optionButtonHide">Reset Player Pos</button>
 
         <button class="optionButtonHide">Godmode
-            <a *ngIf="this.isGodmodeOn === true" [ngStyle]="{'color': 'lime'}">On</a>
-            <a *ngIf="this.isGodmodeOn === false" [ngStyle]="{'color': 'red'}">Off</a>
+            <a *ngIf="this.PlayerInventoryService.isGodmodeOn === true" [ngStyle]="{'color': 'lime'}">On</a>
+            <a *ngIf="this.PlayerInventoryService.isGodmodeOn === false" [ngStyle]="{'color': 'red'}">Off</a>
         </button>
 
         <button class="optionButtonHide">Toggle Dungeon

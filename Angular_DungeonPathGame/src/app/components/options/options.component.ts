@@ -17,7 +17,7 @@ export class OptionsComponent implements OnInit {
 
   ShowOptions: boolean = true;
   HideOptions: boolean = false;
-  isGodmodeOn: boolean = true;
+ 
 
   toggleOptions() {
     if (this.ShowOptions === true) {
@@ -30,11 +30,11 @@ export class OptionsComponent implements OnInit {
     }
   }
 
-  GodMode() {
-    if (this.isGodmodeOn === true) {
-      this.isGodmodeOn = false;
-    } else if (this.isGodmodeOn === false) {
-      this.isGodmodeOn = true;
+  godMode() {
+    if (this.PlayerInventoryService.isGodmodeOn === true) {
+      this.PlayerInventoryService.isGodmodeOn = false;
+    } else if (this.PlayerInventoryService.isGodmodeOn === false) {
+      this.PlayerInventoryService.isGodmodeOn = true;
     }
   }
 
@@ -50,9 +50,9 @@ export class OptionsComponent implements OnInit {
     this.DungeonPathService.toggleDungeonPath()
   }
 
-  Generate() {
+  generate() {
     this.DungeonPathService.generateMap()
-    this.RoomEventService.setRoom()
+    this.RoomEventService.setupRoom()
   }
 
   redrawLines() {
@@ -65,10 +65,10 @@ export class OptionsComponent implements OnInit {
 
   resetPlayerPos() {
     this.DungeonPathService.resetPlayer()
-    this.RoomEventService.setRoom()
+    this.RoomEventService.setupRoom()
   }
 
-  Reset() {
+  resetAll() {
     this.RoomEventService.isPlayerBlocking = false;
     this.PlayerInventoryService.assignBasicLoot();
     this.PlayerInventoryService.playerAttack = 1;

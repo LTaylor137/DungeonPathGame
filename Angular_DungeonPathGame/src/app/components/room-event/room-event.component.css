@@ -21,7 +21,7 @@
   align-self: center;
 }
 
-/* =============== Cave Background =============== */
+/* ============================================= Cave Background ============================================= */
 
 .cave-background-container {
   position: absolute;
@@ -40,7 +40,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  /* align-items: center; */
 }
 
 .flexcol,
@@ -52,7 +52,7 @@
   height: 100%;
 }
 
-/* =============== equipment =============== */
+/* ============================================= equipment ============================================= */
 
 .equip-column {
   padding: 1.5vw;
@@ -71,6 +71,13 @@
   align-items: center;
   justify-content: center;
   align-items: center;
+}
+
+.slot-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-self: center;
 }
 
 .item-image {
@@ -92,52 +99,6 @@
   cursor: pointer;
 }
 
-/* tooltips */
-.Tooltip {
-  display: none;
-}
-
-.equip-slot:hover + .Tooltip {
-  display: block;
-  padding: 1vw;
-  background-color: rgba(0, 0, 0, 0.75);
-  max-width: 10vw;
-  margin-top: -11.5vh;
-  margin-left: 7vw;
-  position: absolute;
-  color: white;
-  text-align: left;
-}
-
-.TooltipArrow {
-  right: 100%;
-  top: 17.5%;
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-top: 21px solid transparent;
-  border-bottom: 21px solid transparent;
-  border-right: 21px solid rgba(0, 0, 0, 0.75);
-}
-
-.TooltipTitle {
-  text-align: center;
-  font-weight: 600;
-  font-size: large;
-}
-
-.TooltipText {
-  font-weight: 300;
-  line-height: 2.5;
-}
-
-.TooltipDesc {
-  font-weight: 100;
-  font-style: italic;
-  font-size: medium;
-  word-wrap: normal;
-}
-
 @keyframes equipButton {
   0% {
     background-color: rgba(255, 255, 255, 0);
@@ -150,14 +111,54 @@
   }
 }
 
-.slot-row {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  justify-self: center;
+/* ============================================= tooltips ============================================= */
+
+.tooltip {
+  display: none;
 }
 
-/* =============== avatars =============== */
+.equip-slot:hover + .tooltip {
+  display: block;
+  padding: 1vw;
+  background-color: rgba(0, 0, 0, 0.75);
+  max-width: 10vw;
+  margin-top: -11vh;
+  margin-left: 9vw;
+  position: absolute;
+  color: white;
+  text-align: left;
+}
+
+.tooltipArrow {
+  right: 100%;
+  top: 17.5%;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 21px solid transparent;
+  border-bottom: 21px solid transparent;
+  border-right: 21px solid rgba(0, 0, 0, 0.75);
+}
+
+.tooltipTitle {
+  text-align: center;
+  font-weight: 600;
+  font-size: large;
+}
+
+.tooltipText {
+  font-weight: 300;
+  line-height: 2.5;
+}
+
+.tooltipDesc {
+  font-weight: 100;
+  font-style: italic;
+  font-size: medium;
+  word-wrap: normal;
+}
+
+/* ============================================= avatars ============================================= */
 
 .avatar-column {
   display: flex;
@@ -166,29 +167,25 @@
   align-items: center;
 }
 
-.ailment-box {
-  width: 10vw;
+.status-box {
+  width: 100%;
   height: 10vh;
   display: flex;
   flex-direction: row;
   justify-content: center;
   z-index: 0;
+  /* position: absolute; */
 }
-
-.ailment {
-  justify-content: space-around;
-}
-
-/* avatar */
 
 .avatar {
+  /* width: 100%; */
   height: 40vh;
 }
 
 .avatar-attacking {
   height: 40vh;
   animation-name: avatar-attacking;
-  animation-duration: 700ms;
+  animation-duration: 750ms;
   animation-iteration-count: 1;
   position: absolute;
 }
@@ -204,6 +201,14 @@
     right: 40vw;
   }
 }
+
+.avatar-avoiding {
+  left: 30vw;
+  height: 40vh;
+  position: absolute;
+}
+
+/* =============================================  " effects " ============================================= */
 
 .eqiup-attacking,
 .eqiup-attacking-2 {
@@ -252,12 +257,69 @@
   height: 19vh;
   width: 6vw;
   top: 45vh;
+  left: 45vw;
   position: absolute;
+}
+
+.eqiup-handgun {
+  height: 7vw;
+  width: 7vw;
+  transform: rotate(15deg);
+  top: 42vh;
+  left: 45vw;
+  position: absolute;
+  animation-name: eqiup-handgun;
+  animation-duration: 2000ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes eqiup-handgun {
+  0% {
+    transform: rotate(15deg);
+    top: 42vh;
+    left: 45vw;
+  }
+  40% {
+    transform: rotate(15deg);
+    top: 42vh;
+    left: 45vw;
+  }
+  45% {
+    transform: rotate(0deg);
+    top: 35vh;
+    left: 43vw;
+  }
+  100% {
+    transform: rotate(0deg);
+    top: 35vh;
+    left: 43vw;
+  }
+}
+
+.damage-hit {
+  height: 15vh;
+  width: 10vw;
+  top: 45vh;
+  left: 34vw;
+  animation-name: damage-hit;
+  animation-duration: 1500ms;
+  animation-iteration-count: 1;
+  position: absolute;
+}
+
+@keyframes damage-hit {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+  }
 }
 
 .damage-deflect {
   height: 10vh;
   width: 5vw;
+  left: 40vw;
   animation-name: damage-deflect-ani;
   animation-duration: 1500ms;
   animation-iteration-count: 1;
@@ -266,26 +328,79 @@
 
 @keyframes damage-deflect-ani {
   0% {
-    top: 50vh;
+    top: 45vh;
+    left: 37.5vw;
     height: 10vh;
     width: 5vw;
     opacity: 100%;
   }
-  30% {
-    top: 45vh;
+  40% {
+    top: 40vh;
+    left: 35vw;
     height: 20vh;
     width: 10vw;
     opacity: 0%;
   }
   100% {
-    top: 45vh;
+    top: 40vh;
+    left: 37.5vw;
     height: 1vh;
     width: 1vw;
     opacity: 0%;
   }
 }
 
-/* monster  */
+.monster-damage-hit {
+  height: 15vh;
+  width: 10vw;
+  top: 45vh;
+  left: 71vw;
+  animation-name: monster-damage-hit;
+  animation-duration: 1500ms;
+  animation-iteration-count: 1;
+  position: absolute;
+  z-index: 2;
+}
+
+@keyframes monster-damage-hit {
+  0% {
+    opacity: 100%;
+    height: 7.5vh;
+    width: 5vw;
+    top: 47.5vh;
+  left: 73.5vw;
+  }
+  100% {
+    opacity: 0%;
+    height: 15vh;
+    width: 10vw;
+    top: 45vh;
+  left: 71vw;
+  }
+}
+
+.monster-lightsaber-hit {
+  height: 30vh;
+  width: 20vw;
+  top: 40vh;
+  left: 65vw;
+  animation-name: monster-lightsaber-hit;
+  animation-duration: 2000ms;
+  animation-iteration-count: 1;
+  position: absolute;
+  z-index: 2;
+}
+
+@keyframes monster-lightsaber-hit {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+  }
+}
+
+/* =============================================  monster ============================================= */
 
 .monster {
   height: 40vh;
@@ -396,7 +511,7 @@
   }
 }
 
-/* =============== header + footer =============== */
+/* ============================================= header + footer ============================================= */
 
 .stat-row {
   height: 10vh;
@@ -490,20 +605,21 @@
   color: rgb(70, 255, 37);
 }
 
-/* =============== Treasure / Loot =============== */
+/* ============================================= Treasure / Loot ============================================= */
 
 .chest {
   height: 15vh;
   top: 60vh;
   left: 67.5vw;
-  z-index: 1;
+  z-index: 4;
   position: absolute;
 }
 
 .fire {
   height: 25vh;
   left: 65vw;
-  z-index: 1;
+  top: 50vh;
+  z-index: 4;
   position: absolute;
 }
 
@@ -520,9 +636,9 @@
   align-items: center;
   padding: 1vw;
   top: 27.5vh;
-  right: 20vh;
+  right: 16vh;
   background-color: rgba(32, 32, 32, 0.794);
-  z-index: 3;
+  z-index: 5;
   animation-name: loot-container-animation;
   animation-duration: 1300ms;
   animation-iteration-count: 1;
@@ -539,14 +655,14 @@
   100% {
     padding: 1vw;
     top: 27.5vh;
-    right: 20vh;
+    right: 16vh;
     margin-bottom: 0vh;
   }
 }
 
 .loot-card,
 .loot-card-animation {
-  width: 8vw;
+  width: 10vw;
   height: 30vh;
   margin: 1vw;
   align-items: center;
@@ -558,6 +674,7 @@
   animation-name: loot-card-animation;
   animation-duration: 1300ms;
   animation-iteration-count: 1;
+  overflow: hidden;
 }
 
 @keyframes loot-card-animation {
@@ -572,7 +689,7 @@
     color: rgba(0, 0, 0, 0);
   }
   100% {
-    width: 8vw;
+    width: 10vw;
     height: 30vh;
     margin: 1vw;
     padding: 0.5vw;
