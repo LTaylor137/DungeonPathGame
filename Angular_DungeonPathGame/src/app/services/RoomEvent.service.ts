@@ -45,10 +45,6 @@ export class RoomEventService {
   isMonsterTakeDamage: boolean = false;
   isMonsterStunned: boolean = false;
 
-  // isHandgunUsed: boolean = false;
-  // isMonsterDead: boolean = false;
-  // isPlayerDead: boolean = false;
-
   setRoomBackground() {
     let BackgroundImageArray = [
       "../../assets/images/backgrounds/background1.png",
@@ -64,20 +60,19 @@ export class RoomEventService {
   setRoomImage(roomType: string) {
     switch (roomType) {
       case "start":
-        return "assets/images/monsters/monster1.png";
+        // return "assets/images/monsters/monster1.png";
       case "treasure":
-        return "assets/images/monsters/monster1.png";
+        // return "assets/images/monsters/monster1.png";
       case "fire":
-        return "assets/images/monsters/monster1.png";
+        // return "assets/images/monsters/monster1.png";
       case "monster":
-        let x = Math.floor((Math.random() * 7))
+        let x = Math.floor((Math.random() * 6))
         return "assets/images/monsters/monster" + x + ".png";
       case "boss":
-        let y = Math.floor((Math.random() * 7))
+        let y = Math.floor((Math.random() * 6))
         return "assets/images/monsters/monster" + y + ".png";
       case "finalboss":
-        let z = Math.floor((Math.random() * 7))
-        return "assets/images/monsters/monster" + z + ".png";
+        return "assets/images/monsters/monster6";
     }
   }
 
@@ -155,20 +150,20 @@ export class RoomEventService {
     // attack
     setTimeout(() => {
       // drop monster instantly
-      if (this.monsterHealthValue <= this.PlayerInventoryService.playerAttack) {
+      if (this.monsterHealthValue <= this.PlayerInventoryService.weapon.itemAttackValue) {
         this.isMonsterTakeDamage = true;
-          this.monsterHealthValue = (this.monsterHealthValue - this.monsterHealthValue)
+        this.monsterHealthValue = (this.monsterHealthValue - this.monsterHealthValue)
       } else {
         if (this.PlayerInventoryService.weapon.itemName === "Lightsaber" && Math.random() < 0.25) {
           console.log("lightsaber perk activated")
           this.isMonsterTakeDamage = true;
           this.monsterHealthChangeValue = this.monsterHealthValue
-            this.monsterHealthValue = 0
+          this.monsterHealthValue = 0
         } else {
           this.isMonsterTakeDamage = true;
-          this.monsterHealthChangeValue = this.PlayerInventoryService.playerAttack
+          this.monsterHealthChangeValue = this.PlayerInventoryService.weapon.itemAttackValue
           setTimeout(() => {
-            this.monsterHealthValue = (this.monsterHealthValue - this.PlayerInventoryService.playerAttack)
+            this.monsterHealthValue = (this.monsterHealthValue - this.PlayerInventoryService.weapon.itemAttackValue)
           }, 500);
         }
       }
@@ -177,7 +172,7 @@ export class RoomEventService {
     //move back
     setTimeout(() => {
       this.isPlayerAttacking = false;
-      console.log("player hit enemy for " + this.PlayerInventoryService.playerAttack + " damage, taking health down to " + this.monsterHealthValue);
+      console.log("player hit enemy for " + this.PlayerInventoryService.weapon.itemAttackValue + " damage, taking health down to " + this.monsterHealthValue);
     }, 1000);
 
     // change to monster turn
@@ -267,6 +262,13 @@ export class RoomEventService {
               // will this damage kill player?
               if (damage >= this.PlayerInventoryService.playerHealth) {
                 // console.log("attack killed player" + damage + this.PlayerInventoryService.playerHealth)
+                // play death animation here 
+                // transition to game over screen
+                setTimeout(() => {
+                  this.PlayerInventoryService.isPlayerDead = true
+                  this.DungeonPathService.showDungeonPath = false;
+                  this.DungeonPathService.showRoom = false;
+                }, 2000);
               }
               this.healthChangeValue = - damage;
               this.PlayerInventoryService.takeDamage(damage);
@@ -350,12 +352,12 @@ export class RoomEventService {
     console.log(itemGained);
     if (itemGained.itemType === "weapon") {
       this.PlayerInventoryService.weapon = itemGained;
-      this.PlayerInventoryService.playerAttack = itemGained.itemAttackValue;
+      this.PlayerInventoryService.weapon.itemAttackValue = itemGained.itemAttackValue;
     }
     if (itemGained.itemType === "offhand") {
       this.PlayerInventoryService.offhand = itemGained;
       if (itemGained.itemAttackValue > 0) {
-        this.PlayerInventoryService.playerAttack = itemGained.itemAttackValue;
+        this.PlayerInventoryService.weapon.itemAttackValue = itemGained.itemAttackValue;
       }
     }
     if (itemGained.itemType === "helm") {

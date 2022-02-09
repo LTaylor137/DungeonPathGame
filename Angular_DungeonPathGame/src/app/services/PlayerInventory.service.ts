@@ -13,22 +13,18 @@ export class PlayerInventoryService {
   helm: Item;
   armour: Item;
 
-  playerAttack: number = 1;
   playerHealth: number = 5;
   playerDefence: number = 0;
   playerBlockAmount: number = 0;
-  // PlayerAvoidChance: number = 0;
   playerAvatar: string = "../../assets/images/avatars/Avatar1.png";
 
   isGodmodeOn: boolean = true;
+  isPlayerDead: boolean = false;
+  isPlayerWon: boolean = false;
 
   lootPool: Item[] = [];
 
   constructor() { }
-
-  // setAvatar() {
-  //   return "../../assets/images/avatars/Avatar1.png";
-  // }
 
   populateLootPool() {
 
@@ -99,8 +95,7 @@ export class PlayerInventoryService {
     let t1Weps: Item[] = this.lootPool.filter(element => element.itemType === "weapon" && element.itemTier === 1);
     let randomW = Math.floor(Math.random() * t1Weps.length);
     this.weapon = (t1Weps[randomW])
-    this.weapon = this.lootPool.find(element => element.itemName === "Lightsaber")
-    this.playerAttack = this.weapon.itemAttackValue;
+    // this.weapon = this.lootPool.find(element => element.itemName === "Lightsaber")
     let t1Helms: Item[] = this.lootPool.filter(element => element.itemType === "helm" && element.itemTier === 1);
     let randomH = Math.floor(Math.random() * t1Helms.length);
     this.helm = (t1Helms[randomH])

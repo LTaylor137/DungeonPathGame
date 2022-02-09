@@ -1,0 +1,197 @@
+/* <!-- title screen --> */
+
+/* <!-- game over screen --> */
+
+.title-container {
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.466),
+    rgba(141, 141, 141, 0.164),
+    rgba(0, 0, 0, 0.466)
+  );
+  width: 88.2vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.cave-background-image {
+  top: 5vh;
+  height: 190vh;
+  width: 110vw;
+  left: -15vw;
+  position: relative;
+  animation-name: cave-background-image;
+  animation-duration: 5000ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes cave-background-image {
+  0% {
+    top: -20vh;
+    height: 200vh;
+    width: 140vw;
+    left: -30vw;
+  }
+  100% {
+    top: 5vh;
+    height: 190vh;
+    width: 110vw;
+    left: -15vw;
+  }
+}
+
+.youDiedDialog {
+  background-color: rgba(0, 0, 0, 0.808);
+  color: rgb(189, 0, 0);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 10vh;
+  text-align: center;
+  height: 15vh;
+  width: 88.2vw;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  position: absolute;
+  justify-content: center;
+  z-index: 5;
+  animation-name: youDiedDialog;
+  animation-duration: 5000ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes youDiedDialog {
+  0% {
+    opacity: 0%;
+  }
+  40% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.avatarDead {
+  top: 65vh;
+  left: 35vw;
+  width: 30vw;
+  z-index: 1;
+  position: absolute;
+  animation-name: avatarDead;
+  animation-duration: 5000ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes avatarDead {
+  0% {
+    top: 40vh;
+    left: 32vw;
+    width: 40vw;
+  }
+  100% {
+    top: 65vh;
+    left: 35vw;
+    width: 30vw;
+  }
+}
+
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    position: absolute;
+    top: 50vh;
+  }
+
+.restart-button {
+  width: 15vh;
+  height: 6vh;
+  background-color: rgba(216, 216, 216, 0.76);
+  color: rgb(31, 31, 31);
+  font-weight: 600;
+  font-size: 3vh;
+  border-radius: 1vw;
+  border-style: none;
+  margin: 1vw;
+  cursor: pointer;
+  z-index: 4;
+  position: absolute;
+  animation-name: restart-button;
+  animation-duration: 5000ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes restart-button {
+  0% {
+    opacity: 0%;
+  }
+  90% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+/* <!-- winner screen --> */
+
+
+.youWonDialog {
+  background-color: rgba(0, 0, 0, 0.808);
+  color: rgb(16, 189, 0);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 10vh;
+  text-align: center;
+  height: 15vh;
+  width: 88.2vw;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  position: absolute;
+  justify-content: center;
+  z-index: 5;
+  animation-name: youWonDialog;
+  animation-duration: 5000ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes youWonDialog {
+  0% {
+    opacity: 0%;
+  }
+  40% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.avatarWon {
+  top: 20vh;
+  left: 45vw;
+  width: 7.5vw;
+  z-index: 1;
+  position: absolute;
+  animation-name: avatarWon;
+  animation-duration: 5000ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes avatarWon {
+  0% {
+    top: -6vh;
+    left: 47.5vw;
+    width: 8vw;
+  }
+  100% {
+    top: 20vh;
+    left: 45vw;
+    width: 7.5vw;
+  }
+}

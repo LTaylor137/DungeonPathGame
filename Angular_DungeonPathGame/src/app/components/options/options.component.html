@@ -1,12 +1,14 @@
 <div class="OptionsWrapper">
 
     <div>
-        <img *ngIf="this.ShowOptions === true" class="showOptionsButton" (click)="toggleOptions()" src="../../../assets/images/misc/gear.png" />
-        <img *ngIf="this.ShowOptions === false" class="hideOptionsButton" (click)="toggleOptions()" src="../../../assets/images/misc/gear.png" />
+        <img *ngIf="this.OptionsService.ShowOptions === true" class="showOptionsButton" (click)="toggleOptions()"
+            src="../../../assets/images/misc/gear.png" />
+        <img *ngIf="this.OptionsService.ShowOptions === false" class="hideOptionsButton" (click)="toggleOptions()"
+            src="../../../assets/images/misc/gear.png" />
     </div>
 
-    <div class="OptionButtonsContainer" *ngIf="this.ShowOptions === true">
-        
+    <div class="OptionButtonsContainer" *ngIf="this.OptionsService.ShowOptions === true">
+
         <button class="optionButton" (click)="resetAll()">Reset All</button>
         <button class="optionButton" (click)="generate()">Regenerate Map</button>
         <button class="optionButton" (click)="redrawLines()">Redraw Lines</button>
@@ -34,9 +36,8 @@
 
     </div>
 
-    
-    <div class="OptionButtonsContainer" *ngIf="this.HideOptions === true">
-        
+    <div class="OptionButtonsContainer" *ngIf="this.OptionsService.HideOptions === true">
+
         <button class="optionButtonHide">Reset All</button>
         <button class="optionButtonHide">Regenerate Map</button>
         <button class="optionButtonHide">Redraw Lines</button>
@@ -59,10 +60,6 @@
             <a *ngIf="this.DungeonPathService.showDevInfo === false" [ngStyle]="{'color': 'red'}">Off</a>
         </button>
 
-        <!-- <button class="optionButton" (click)="toggleRoomGaps()">Toggle Room Gaps</button> -->
-        <!-- <input id="mapLengthInput" placeholder="Enter map length here..."> -->
-
     </div>
-
 
 </div>

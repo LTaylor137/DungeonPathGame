@@ -44,6 +44,7 @@ export class DungeonPathService {
   showDevInfo: boolean = false;
   showRoomGaps: boolean = true;
   showDungeonPath: boolean = true;
+  showRoom: boolean = false;
 
 
   constructor(@Inject(DOCUMENT) private document, public PlayerInventoryService: PlayerInventoryService) {
@@ -80,9 +81,11 @@ export class DungeonPathService {
   toggleDungeonPath() {
     if (this.showDungeonPath === false) {
       this.showDungeonPath = true;
+      this.showRoom = false;
       this.makeConnections();
       this.generateLeaderLines();
     } else {
+      this.showRoom = true;
       this.showDungeonPath = false;
       this.deleteLeaderLines();
     }

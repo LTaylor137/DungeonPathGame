@@ -9,6 +9,7 @@ import { OptionsComponent } from './components/options/options.component';
 import { PlayerInventoryService } from "./services/PlayerInventory.service";
 import { DungeonPathService } from './services/DungeonPath.service';
 import { RoomEventService } from './services/RoomEvent.service';
+import { TitleComponent } from './components/title/title.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { RoomEventService } from './services/RoomEvent.service';
     AppComponent,
     DungeonPathComponent,
     RoomEventComponent,
-    OptionsComponent
+    OptionsComponent,
+    TitleComponent
    
   ],
   imports: [

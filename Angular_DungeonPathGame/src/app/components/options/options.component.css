@@ -13,6 +13,7 @@
   animation-name: ShowOptionsButton-animation;
   animation-duration: 500ms;
   animation-iteration-count: 1;
+  cursor: pointer;
 }
 
 @keyframes ShowOptionsButton-animation {
@@ -58,6 +59,7 @@
   animation-name: button-animation;
   animation-duration: 500ms;
   animation-iteration-count: 1;
+  cursor: pointer;
 }
 
 @keyframes button-animation {
@@ -83,6 +85,7 @@
 .optionButtonHide {
   animation-name: buttonHide-animation;
   animation-duration: 500ms;
+  user-select: none;
 }
 
 @keyframes buttonHide-animation {

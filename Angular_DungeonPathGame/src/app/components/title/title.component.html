@@ -1,0 +1,40 @@
+<!-- title screen -->
+
+<!-- game over screen -->
+<div *ngIf="this.PlayerInventoryService.isPlayerDead === true" class="title-container">
+
+    <div class="youDiedDialog">
+        YOU DIED
+    </div>
+
+    <div class="flexrow">
+        <button class="restart-button" (click)="resetAll()">Restart</button>
+    </div>
+
+    <div>
+        <img class="avatarDead" src="../../../assets/images/avatars/AvatarDead.png" />
+    </div>
+
+    <img class="cave-background-image" src="../../../assets/images/backgrounds/background2.png" />
+
+</div>
+
+
+<!-- winner screen -->
+<div *ngIf="this.PlayerInventoryService.isPlayerWon === true" class="title-container">
+
+    <div class="youWonDialog">
+        YOU WON
+    </div>
+
+    <div class="flexrow">
+        <button class="restart-button" (click)="resetAll()">Restart</button>
+    </div>
+
+    <div>
+        <img class="avatarWon" src="../../../assets/images/avatars/AvatarWon.png" />
+    </div>
+
+    <img class="cave-background-image" src="../../../assets/images/backgrounds/background2.png" />
+
+</div>
