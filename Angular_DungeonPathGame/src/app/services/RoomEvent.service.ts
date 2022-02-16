@@ -60,11 +60,11 @@ export class RoomEventService {
   setRoomImage(roomType: string) {
     switch (roomType) {
       case "start":
-        // return "assets/images/monsters/monster1.png";
+      // return "assets/images/monsters/monster1.png";
       case "treasure":
-        // return "assets/images/monsters/monster1.png";
+      // return "assets/images/monsters/monster1.png";
       case "fire":
-        // return "assets/images/monsters/monster1.png";
+      // return "assets/images/monsters/monster1.png";
       case "monster":
         let x = Math.floor((Math.random() * 6))
         return "assets/images/monsters/monster" + x + ".png";
@@ -72,7 +72,7 @@ export class RoomEventService {
         let y = Math.floor((Math.random() * 6))
         return "assets/images/monsters/monster" + y + ".png";
       case "finalboss":
-        return "assets/images/monsters/monster6";
+        return "assets/images/monsters/monster6.png";
     }
   }
 
@@ -81,7 +81,7 @@ export class RoomEventService {
       level.roomList.forEach(room => {
         this.roomBackground = this.setRoomBackground();
         if (room.roomID === this.DungeonPathService.posID) {
-          console.log(room.roomType);
+          // console.log(room.roomType);
           this.roomType = room.roomType
           this.currentLevel = room.levelNo
           this.currentRoom = room.roomNo
@@ -155,7 +155,7 @@ export class RoomEventService {
         this.monsterHealthValue = (this.monsterHealthValue - this.monsterHealthValue)
       } else {
         if (this.PlayerInventoryService.weapon.itemName === "Lightsaber" && Math.random() < 0.25) {
-          console.log("lightsaber perk activated")
+          // console.log("lightsaber perk activated")
           this.isMonsterTakeDamage = true;
           this.monsterHealthChangeValue = this.monsterHealthValue
           this.monsterHealthValue = 0
@@ -172,7 +172,7 @@ export class RoomEventService {
     //move back
     setTimeout(() => {
       this.isPlayerAttacking = false;
-      console.log("player hit enemy for " + this.PlayerInventoryService.weapon.itemAttackValue + " damage, taking health down to " + this.monsterHealthValue);
+      // console.log("player hit enemy for " + this.PlayerInventoryService.weapon.itemAttackValue + " damage, taking health down to " + this.monsterHealthValue);
     }, 1000);
 
     // change to monster turn
@@ -203,7 +203,7 @@ export class RoomEventService {
 
   playerUsesHandgun() {
 
-    console.log("handgun used")
+    // console.log("handgun used")
     this.isMonsterTakeDamage = false;
     this.isHandgunInUse = true;
 
@@ -228,7 +228,7 @@ export class RoomEventService {
 
     if (this.isPlayerTurn === false && this.monsterHealthValue > 0) {
       if (this.isMonsterStunned === true) {
-        // console.log(" monster is stunned");
+        // // console.log(" monster is stunned");
         setTimeout(() => {
           this.isMonsterStunned = false;
         }, 500);
@@ -239,12 +239,12 @@ export class RoomEventService {
 
         // calculate if player avoids attack
         let avoidChance = this.PlayerInventoryService.getPlayerAvoidChance();
-        console.log("player avoidchance = " + avoidChance)
+        // console.log("player avoidchance = " + avoidChance)
         let random = Math.random()
-        console.log("random no = " + random)
+        // console.log("random no = " + random)
         if (avoidChance > random) {
           // monster attack misses
-          console.log("player avoided attack")
+          // console.log("player avoided attack")
           this.isAttackAvoided = true;
         } else {
 
@@ -254,16 +254,13 @@ export class RoomEventService {
             let damage = this.monsterAttackValue;
             damage = damage - (this.PlayerInventoryService.playerDefence + this.PlayerInventoryService.playerBlockAmount);
             if (damage <= 0) {
-              // console.log("attack did not break armour")
+              // // console.log("attack did not break armour")
               this.isDamageNegated = true;
             } else if (damage > 0) {
-              // console.log("attack did " + damage + " damage.")
+              // // console.log("attack did " + damage + " damage.")
               this.isPlayerTakeDamage = true;
               // will this damage kill player?
-              if (damage >= this.PlayerInventoryService.playerHealth) {
-                // console.log("attack killed player" + damage + this.PlayerInventoryService.playerHealth)
-                // play death animation here 
-                // transition to game over screen
+              if (damage >= this.PlayerInventoryService.playerHealth && this.PlayerInventoryService.isGodmodeOn === false) {
                 setTimeout(() => {
                   this.PlayerInventoryService.isPlayerDead = true
                   this.DungeonPathService.showDungeonPath = false;
@@ -281,21 +278,24 @@ export class RoomEventService {
           }, 500);
         }
       }
+
+      // move monster back
+      setTimeout(() => {
+        this.isAttackAvoided = false;
+        this.isMonsterAttacking = false;
+      }, 1000);
+      // end monsters turn
+      setTimeout(() => {
+        this.healthChangeValue = 0;
+        this.isDamageNegated = false;
+        this.isPlayerTakeDamage = false;
+        if (this.PlayerInventoryService.playerHealth > 0 || this.PlayerInventoryService.isGodmodeOn === true) {
+          this.isPlayerTurn = true;
+        }
+        this.isPlayerBlocking = false;
+        this.PlayerInventoryService.playerDefence = (this.PlayerInventoryService.helm.itemDefenceValue + this.PlayerInventoryService.armour.itemDefenceValue)
+      }, 2000);
     }
-    // move monster back
-    setTimeout(() => {
-      this.isAttackAvoided = false;
-      this.isMonsterAttacking = false;
-    }, 1000);
-    // end monsters turn
-    setTimeout(() => {
-      this.healthChangeValue = 0;
-      this.isDamageNegated = false;
-      this.isPlayerTakeDamage = false;
-      this.isPlayerTurn = true;
-      this.isPlayerBlocking = false;
-      this.PlayerInventoryService.playerDefence = (this.PlayerInventoryService.helm.itemDefenceValue + this.PlayerInventoryService.armour.itemDefenceValue)
-    }, 2000);
   }
 
   getHealthFromFire() {
@@ -332,13 +332,13 @@ export class RoomEventService {
     // select only 3 items from that list.
     while (this.roomLootList.length <= 2) {
       let randomItem = Math.floor(Math.random() * templist.length);
-      console.log("the item chosen is = " + randomItem, templist[randomItem])
+      // console.log("the item chosen is = " + randomItem, templist[randomItem])
       // only add the item if it's not already in the list of items offered.
       if (this.roomLootList.includes(templist[randomItem])) {
         // do not add
       } else if (currentlyEquipped.includes(templist[randomItem]) === true) {
         // do not add
-        console.log(templist[randomItem].itemName + "was found in list of equipped items. And was skipped.")
+        // console.log(templist[randomItem].itemName + "was found in list of equipped items. And was skipped.")
       } else {
         this.roomLootList.push(templist[randomItem])
       }
@@ -349,7 +349,7 @@ export class RoomEventService {
     let itemGained: Item = this.PlayerInventoryService.lootPool.find(obj => {
       return obj.itemName === itemName
     })
-    console.log(itemGained);
+    // console.log(itemGained);
     if (itemGained.itemType === "weapon") {
       this.PlayerInventoryService.weapon = itemGained;
       this.PlayerInventoryService.weapon.itemAttackValue = itemGained.itemAttackValue;
@@ -375,8 +375,15 @@ export class RoomEventService {
     this.isLootTaken = true;
 
     setTimeout(() => {
-      this.isPlayerBlocking = false;
-      this.DungeonPathService.toggleDungeonPath();
+      if (this.roomType === "finalboss") {
+        // console.log("final boss line 379 fdsfsdfsd")
+        this.PlayerInventoryService.isPlayerWon = true;
+        this.DungeonPathService.showDungeonPath = false;
+        this.DungeonPathService.showRoom = false;
+      } else {
+        this.isPlayerBlocking = false;
+        this.DungeonPathService.toggleDungeonPath();
+      }
     }, 1000);
 
   }

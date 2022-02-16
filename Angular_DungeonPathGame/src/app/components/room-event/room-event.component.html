@@ -1,22 +1,4 @@
-<!-- Display if player health < 0  -->
-<div *ngIf="this.PlayerInventoryService.playerHealth <= 0 &&
-    this.PlayerInventoryService.isGodmodeOn === false" class="flexrow">
-
-    <div class="room-event-container">
-
-        <div class="cave-background-container">
-            <img class="cave-background-image" src="{{ this.RoomEventService.roomBackground }}" />
-        </div>
-
-        you died
-
-    </div>
-
-</div>
-
-<!-- Display if player health > 0  -->
-<div *ngIf="this.PlayerInventoryService.playerHealth >= 1 ||
-    this.PlayerInventoryService.isGodmodeOn === true" class="room-event-container">
+<div class="room-event-container">
 
     <div class="cave-background-container">
         <img class="cave-background-image" src="{{ this.RoomEventService.roomBackground }}" />
@@ -124,7 +106,13 @@
                 <div *ngIf="this.RoomEventService.roomType === 'fire'"> Resting </div>
             </div>
 
-            <div id="playerAvatar" class="avatar">
+            <div
+                *ngIf="this.PlayerInventoryService.playerHealth <= 0 && this.PlayerInventoryService.isGodmodeOn === false">
+                <img class="player-dead" src="{{ this.PlayerInventoryService.playerAvatar }}" />
+            </div>
+
+            <div *ngIf="this.PlayerInventoryService.playerHealth > 0 || this.PlayerInventoryService.isGodmodeOn === true"
+                id="playerAvatar" class="avatar">
 
                 <div class="equip-in-use"></div>
 
@@ -188,11 +176,11 @@
             <!-- monster hit effect persists outside of monsters life -->
             <img *ngIf="this.RoomEventService.isMonsterTakeDamage === true && 
             this.PlayerInventoryService.weapon.itemName != 'Lightsaber'" class="monster-damage-hit"
-            src="../../../assets/images/effects/Monster Hit Effect.png">
+                src="../../../assets/images/effects/Monster Hit Effect.png">
             <img *ngIf="this.RoomEventService.isMonsterTakeDamage === true && 
             this.PlayerInventoryService.weapon.itemName === 'Lightsaber' &&
             this.RoomEventService.isPlayerTurn === true" class="monster-lightsaber-hit"
-            src="../../../assets/images/effects/Lightsaber Effect.png">
+                src="../../../assets/images/effects/Lightsaber Effect.png">
 
             <!-- monster loot -->
             <div class="avatar-column">
@@ -211,8 +199,10 @@
                                     <a class="tooltipTitle">{{loot.itemName}}<br></a>
                                     <a *ngIf="loot.itemAttackValue > 0" class="tooltipText">Attack Value:
                                         {{loot.itemAttackValue}}<br></a>
-                                    <a *ngIf="loot.itemDefenceValue > 0" class="tooltipText">Defence Value:
+                                    <a *ngIf="loot.itemType === 'armour' || loot.itemType === 'helm'"
+                                        class="tooltipText">Defence Value:
                                         {{loot.itemDefenceValue}}<br></a>
+                                    <a *ngIf="loot.itemType === 'food'" class="tooltipText">Heals 1 Health<br></a>
                                     <a class="tooltipDesc">"{{loot.itemDescription}}"</a>
                                 </div>
                             </div>
@@ -257,6 +247,7 @@
                                     {{loot.itemAttackValue}}<br></a>
                                 <a *ngIf="loot.itemDefenceValue > 0" class="tooltipText">Defence Value:
                                     {{loot.itemDefenceValue}}<br></a>
+                                <a *ngIf="loot.itemType === 'food'" class="tooltipText">Heals 1 Health<br></a>
                                 <a class="tooltipDesc">"{{loot.itemDescription}}"</a>
                             </div>
                         </div>

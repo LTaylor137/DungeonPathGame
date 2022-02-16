@@ -67,12 +67,11 @@ export class OptionsService {
   }
 
   resetAll() {
-    console.log("reset clicked.")
     this.RoomEventService.isPlayerBlocking = false;
     this.PlayerInventoryService.assignBasicLoot();
     this.PlayerInventoryService.playerDefence = 0;
     this.PlayerInventoryService.playerBlockAmount = 0;
-    this.PlayerInventoryService.playerHealth = 5;
+    this.PlayerInventoryService.playerHealth = 1;
     this.RoomEventService.roomLootList = []
     this.DungeonPathService.showDungeonPath = true;
     this.DungeonPathService.showRoom = false;

@@ -1,7 +1,5 @@
 /* <!-- title screen --> */
 
-/* <!-- game over screen --> */
-
 .title-container {
   background-image: linear-gradient(
     to right,
@@ -17,6 +15,105 @@
   overflow: hidden;
   position: relative;
 }
+
+.title {
+  background-color: rgba(0, 0, 0, 0.493);
+  color: rgb(235, 235, 235);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 8vh;
+  text-align: center;
+ width: 100%;
+ height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  justify-content: center;
+  z-index: 5;
+  animation-name: titleDialog;
+  animation-duration: 5000ms;
+  animation-iteration-count: 1;
+  cursor: pointer;
+}
+
+.titleDialog {
+  background-color: rgba(0, 0, 0, 0.657);
+  color: rgb(235, 235, 235);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 4vh;
+  text-align: center;
+  padding: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  position: absolute;
+  justify-content: center;
+  z-index: 5;
+  animation-name: titleDialog;
+  animation-duration: 5000ms;
+  animation-iteration-count: 1;
+  cursor: pointer;
+}
+
+@keyframes titleDialog {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+
+.avatarTitle {
+  top: 35vh;
+  left: 52vw;
+  width: 15vw;
+  z-index: 1;
+  position: absolute;
+  animation-name: avatarTitle;
+  animation-duration: 10000ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes avatarTitle {
+  0% {
+    top: 45vh;
+    left: 65vw;
+    width: 40vw;
+  }
+  100% {
+    top: 35vh;
+    left: 52vw;
+    width: 15vw;
+  }
+}
+
+.cave-entrance-image {
+  /* top: -20vh; */
+  height: 80vh;
+  width: 90vw;
+  /* left: -15vw; */
+  position: relative;
+  /* animation-name: cave-entrance-image;
+  animation-duration: 5000ms;
+  animation-iteration-count: 1; */
+}
+
+@keyframes cave-entrance-image {
+  0% {
+    top: -20vh;
+    height: 200vh;
+    width: 140vw;
+    left: -30vw;
+  }
+  100% {
+    top: 5vh;
+    height: 190vh;
+    width: 110vw;
+    left: -15vw;
+  }
+}
+
+/* <!-- game over screen --> */
 
 .cave-background-image {
   top: 5vh;
@@ -43,6 +140,7 @@
     left: -15vw;
   }
 }
+
 
 .youDiedDialog {
   background-color: rgba(0, 0, 0, 0.808);
@@ -173,8 +271,8 @@
 }
 
 .avatarWon {
-  top: 20vh;
-  left: 45vw;
+  top: 40vh;
+  left: 15vw;
   width: 7.5vw;
   z-index: 1;
   position: absolute;
@@ -185,13 +283,13 @@
 
 @keyframes avatarWon {
   0% {
-    top: -6vh;
-    left: 47.5vw;
-    width: 8vw;
+    top: 15vh;
+    left: 9vw;
+    width: 9vw;
   }
   100% {
-    top: 20vh;
-    left: 45vw;
+    top: 40vh;
+    left: 15vw;
     width: 7.5vw;
   }
 }

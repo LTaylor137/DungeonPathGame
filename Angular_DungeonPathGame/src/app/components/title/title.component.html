@@ -1,4 +1,23 @@
 <!-- title screen -->
+<div *ngIf="this.DungeonPathService.showTitleScreen === true" class="title-container">
+
+    <div  *ngIf="this.isTitleDismissed === false" class="title" (click)="dismissTitle()">
+        The Dungeon Path
+    </div>
+
+    <div *ngIf="this.isTitleDismissed === true" class="titleDialog" (click)="startGame()">
+        You stumble away from the party <br> to get some air and clear your head <br> <br>
+        coming across a cave entrance <br> you see no harm in taking a look inside... <br> <br>
+        click to begin.
+    </div>
+
+    <div *ngIf="this.isTitleDismissed === true" >
+        <img class="avatarTitle" src="../../../assets/images/avatars/AvatarWon.png" />
+    </div>
+
+    <img class="cave-entrance-image" src="../../../assets/images/backgrounds/backgroundentrance.png" />
+
+</div>
 
 <!-- game over screen -->
 <div *ngIf="this.PlayerInventoryService.isPlayerDead === true" class="title-container">
@@ -35,6 +54,6 @@
         <img class="avatarWon" src="../../../assets/images/avatars/AvatarWon.png" />
     </div>
 
-    <img class="cave-background-image" src="../../../assets/images/backgrounds/background2.png" />
+    <img class="cave-background-image" src="../../../assets/images/backgrounds/backgroundexit.png" />
 
 </div>

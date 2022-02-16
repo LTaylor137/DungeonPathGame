@@ -18,7 +18,7 @@ export class PlayerInventoryService {
   playerBlockAmount: number = 0;
   playerAvatar: string = "../../assets/images/avatars/Avatar1.png";
 
-  isGodmodeOn: boolean = true;
+  isGodmodeOn: boolean = false;
   isPlayerDead: boolean = false;
   isPlayerWon: boolean = false;
 
@@ -29,22 +29,22 @@ export class PlayerInventoryService {
   populateLootPool() {
 
     //foods
-    this.lootPool.push(new Item("food", "Painkillers", "You're in a computer game, Max... - Heals for 1 health", 0, 0, 1,)),
-      this.lootPool.push(new Item("food", "Heart Container", "Hey, Listen! - Heals for 1 health", 0, 0, 1)),
-      this.lootPool.push(new Item("food", "Mushroom", "Wahoo! - Heals for 1 health", 0, 0, 1)),
-      this.lootPool.push(new Item("food", "Rations", "Do you think love can bloom, even on a battlefield? - Heals for 1 health", 0, 0, 1)),
+    this.lootPool.push(new Item("food", "Painkillers", "You are in a computer game, Max.", 0, 0, 1,)),
+      this.lootPool.push(new Item("food", "Heart Container", "Hey, Listen!", 0, 0, 1)),
+      this.lootPool.push(new Item("food", "Mushroom", "Wahoo!", 0, 0, 1)),
+      this.lootPool.push(new Item("food", "Rations", "Do you think love can bloom, even on a battlefield?", 0, 0, 1)),
 
       // weapons
       // t1
       this.lootPool.push(new Item("weapon", "Fist", "Just wail on 'em", 1, 1, 0)),
-      this.lootPool.push(new Item("weapon", "Splade", "Is it splade, or spork?", 1, 1, 0)),
+      this.lootPool.push(new Item("weapon", "Bottle", "An empty beer bottle", 1, 1, 0)),
       this.lootPool.push(new Item("weapon", "Rock", "A rock you found on the floor", 1, 1, 0)),
       // t2
       this.lootPool.push(new Item("weapon", "Baseball Bat", "Swing the nail bit at the enemy", 2, 2, 0)),
       this.lootPool.push(new Item("weapon", "Meat Cleaver", "For cleaving", 2, 2, 0)),
       this.lootPool.push(new Item("weapon", "Hatchet", "A small hatchet", 2, 2, 0)),
       //t3
-      this.lootPool.push(new Item("weapon", "Swordfish", "This sword is actually a fish... How did it get here?", 3, 3, 0)),
+      this.lootPool.push(new Item("weapon", "Swordfish", "How did this get in here?", 3, 3, 0)),
       this.lootPool.push(new Item("weapon", "Claymore", "A two handed greatsword", 3, 3, 0)),
       // this.lootPool.push(new Item("weapon", "Great Axe", "A two handed greataxe", 3, 3, 0)),
       // t4
@@ -60,8 +60,8 @@ export class PlayerInventoryService {
       this.lootPool.push(new Item("armour", "Plot Armour", "50% chance to avoid attacks.", 4, 0, 0)),
 
       // offhands
-      this.lootPool.push(new Item("offhand", "Wooden Buckler", "Small, able to block 1 damage for 1 turn, will stun enemy on successful block", 1, 0, 1)),
-      this.lootPool.push(new Item("offhand", "Tower Shield", "Large Shield, able to block 2 damage for 1 turn, will stun enemy on successful block", 2, 0, 2)),
+      this.lootPool.push(new Item("offhand", "Wooden Buckler", "A small buckler that blocks 1 damage and stuns enemies on a successful block", 1, 0, 1)),
+      this.lootPool.push(new Item("offhand", "Tower Shield", "A large shield that blocks 2 damage and stuns enemies on a successful block", 2, 0, 2)),
 
       this.lootPool.push(new Item("offhand", "Handgun", "Allows you to shoot first when entering a room", 4, 0, 0)),
       this.lootPool.push(new Item("offhand", "Torch", "25% chance to dazzle an emeny causing them to miss", 4, 0, 0)),
@@ -113,9 +113,13 @@ export class PlayerInventoryService {
   }
 
   takeDamage(damageDealt: number) {
-    setTimeout(() => {
+    if (damageDealt >= this.playerHealth) {
       this.playerHealth = this.playerHealth - damageDealt;
-    }, 1000);
+    } else {
+      setTimeout(() => {
+        this.playerHealth = this.playerHealth - damageDealt;
+      }, 1000);
+    }
   }
 
   getPlayerAvoidChance() {

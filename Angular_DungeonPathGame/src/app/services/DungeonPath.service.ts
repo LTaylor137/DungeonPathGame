@@ -41,9 +41,10 @@ export class DungeonPathService {
   nextID2: string;
 
   // options
+  showTitleScreen: boolean = true;
   showDevInfo: boolean = false;
   showRoomGaps: boolean = true;
-  showDungeonPath: boolean = true;
+  showDungeonPath: boolean = false;
   showRoom: boolean = false;
 
 
@@ -112,17 +113,17 @@ export class DungeonPathService {
 
   updateMoveOptions() {
     if (this.posID !== "101") {
-      console.log("posid78341798431 = " + this.posID)
+      // // console.log("posid78341798431 = " + this.posID)
       let x = this.connectionsList.filter(conx => conx.start === this.posID)
       this.nextID1 = x[0].end
-      console.log(this.nextID1);
+      // // console.log(this.nextID1);
       if (x.length > 1) {
         this.nextID2 = x[1].end
-        console.log(this.nextID2);
+        // // console.log(this.nextID2);
       }
-      console.log(x);
+      // // console.log(x);
     } else {
-      console.log("final room reached.")
+      // // console.log("final room reached.")
     }
   }
 
@@ -311,7 +312,7 @@ export class DungeonPathService {
     // ========================= create levels =========================
     while (this.LevelNo <= this.mapSize) {
 
-      console.log(" ******** The start of level number " + this.LevelNo)
+      // // console.log(" ******** The start of level number " + this.LevelNo)
 
       let thislevel: Level = new Level(this.LevelNo)
       var roomNo: number = 1;
@@ -323,9 +324,9 @@ export class DungeonPathService {
       // ========================= grow =========================
       while (roomNo <= this.maxRmThisLevel && (this.LevelNo <= this.mapSize - 4)) {
 
-        console.log("grow mode")
-        console.log("LevelNo  " + this.LevelNo + " RoomNo = " + roomNo)
-        console.log("this.maxRmThisLevel " + this.maxRmThisLevel)
+        // // console.log("grow mode")
+        // // console.log("LevelNo  " + this.LevelNo + " RoomNo = " + roomNo)
+        // // console.log("this.maxRmThisLevel " + this.maxRmThisLevel)
 
         // create a gap 
         if (roomNo === 1 && this.LevelNo <= this.mapSize / 3 && this.showRoomGaps === true) {
@@ -392,9 +393,9 @@ export class DungeonPathService {
       // ========================= shrink =========================
       while (this.maxRmThisLevel > 0 && (this.LevelNo > this.mapSize - 4)) {
 
-        console.log("shrink mode")
-        console.log("LevelNo  " + this.LevelNo + " RoomNo = " + roomNo)
-        console.log("this.maxRmThisLevel " + this.maxRmThisLevel)
+        // // console.log("shrink mode")
+        // // console.log("LevelNo  " + this.LevelNo + " RoomNo = " + roomNo)
+        // // console.log("this.maxRmThisLevel " + this.maxRmThisLevel)
 
         let NumGapsAfterL: number = 0;
 
@@ -428,7 +429,7 @@ export class DungeonPathService {
         // create a gap after last rooms of final levels.
         if (this.maxRmThisLevel === 1 && this.LevelNo >= this.mapSize / 2 && this.showRoomGaps === true) {
           for (let i = ((this.mapSize / 4) - roomNo + 1); i >= 0; i--) {
-            console.log("i1 =  " + i);
+            // // console.log("i1 =  " + i);
             thislevel.roomList.push(new Room(this.LevelNo, 0, 0, 0, "gap", "GAP4", ""));
           }
         }
@@ -437,10 +438,10 @@ export class DungeonPathService {
 
       }
 
-      console.log(" ******** the end of level number " + this.LevelNo)
-      console.log(this.levelList)
-      console.log("this.maxRmThisLevel " + this.maxRmThisLevel)
-      console.log("this.roomNo " + roomNo)
+      // console.log(" ******** the end of level number " + this.LevelNo)
+      // console.log(this.levelList)
+      // console.log("this.maxRmThisLevel " + this.maxRmThisLevel)
+      // console.log("this.roomNo " + roomNo)
 
       this.LevelNo += 1;
       this.levelList.push(thislevel);
@@ -448,19 +449,19 @@ export class DungeonPathService {
 
 
       // for(let i = 0; i <= 5; i++){
-      //   console.log("this index =      " + i)
+      //   // console.log("this index =      " + i)
       //         let x = this.rmBlockList.find(number => number === i)
-      //         console.log("x =      " + x)
+      //         // console.log("x =      " + x)
       //         this.rmBlockList.splice(x);
-      //         console.log(this.rmBlockList)
+      //         // console.log(this.rmBlockList)
       //       }
 
 
 
     }
 
-    console.log("================ end of map draw ================")
-    console.log(this.levelList)
+    // console.log("================ end of map draw ================")
+    // console.log(this.levelList)
     this.makeConnections();
     this.updateMoveOptions();
 

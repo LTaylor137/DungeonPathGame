@@ -20,8 +20,23 @@ export class TitleComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isTitleDismissed: boolean = false;
+
   resetAll() {
     this.OptionsService.resetAll()
+  }
+
+  dismissTitle(){
+    this.isTitleDismissed = true;
+  }
+
+  startGame() {
+    console.log("start clicked.")
+    this.DungeonPathService.generateMap();
+    this.PlayerInventoryService.populateLootPool();
+    this.PlayerInventoryService.assignBasicLoot();
+    this.DungeonPathService.showTitleScreen = false;
+    this.DungeonPathService.showDungeonPath = true;
   }
 
 }

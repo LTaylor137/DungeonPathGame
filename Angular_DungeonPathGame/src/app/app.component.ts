@@ -14,9 +14,6 @@ export class AppComponent {
   constructor(public DungeonPathService: DungeonPathService, public PlayerInventoryService: PlayerInventoryService) { }
 
   ngOnInit(): void {
-    this.DungeonPathService.generateMap();
-    this.PlayerInventoryService.populateLootPool();
-    this.PlayerInventoryService.assignBasicLoot()
   }
 
 }

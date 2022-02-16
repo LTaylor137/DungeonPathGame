@@ -20,9 +20,10 @@
             <app-dungeon-path> </app-dungeon-path>
         </div>
 
-         <!-- if player dies  -->
+         <!-- if title shown  -->
          <div *ngIf="this.PlayerInventoryService.isPlayerDead === true || 
-         this.PlayerInventoryService.isPlayerWon === true">
+         this.PlayerInventoryService.isPlayerWon === true ||
+         this.DungeonPathService.showTitleScreen === true">
              <app-title></app-title>
         </div>
 
