@@ -2,9 +2,9 @@
 
     <div>
         <img *ngIf="this.OptionsService.ShowOptions === true" class="showOptionsButton" (click)="toggleOptions()"
-            src="assets/images/misc/gear.png" />
+            src="../assets/images/misc/gear.png" />
         <img *ngIf="this.OptionsService.ShowOptions === false" class="hideOptionsButton" (click)="toggleOptions()"
-            src="assets/images/misc/gear.png" />
+            src="../assets/images/misc/gear.png" />
     </div>
 
     <div class="OptionButtonsContainer" *ngIf="this.OptionsService.ShowOptions === true">
