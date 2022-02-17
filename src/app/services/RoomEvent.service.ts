@@ -76,6 +76,7 @@ export class RoomEventService {
     }
   }
 
+  
   setupRoom() {
     this.DungeonPathService.levelList.forEach(level => {
       level.roomList.forEach(room => {
