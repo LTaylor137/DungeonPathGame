@@ -922,11 +922,11 @@ class RoomEventService {
     }
     setRoomBackground() {
         let BackgroundImageArray = [
-            "/assets/images/backgrounds/background1.png",
-            "/assets/images/backgrounds/background2.png",
-            "/assets/images/backgrounds/background3.png",
-            "/assets/images/backgrounds/background4.png",
-            "/assets/images/backgrounds/background5.png"
+            "assets/images/backgrounds/background1.png",
+            "assets/images/backgrounds/background2.png",
+            "assets/images/backgrounds/background3.png",
+            "assets/images/backgrounds/background4.png",
+            "assets/images/backgrounds/background5.png"
         ];
         let random = BackgroundImageArray[Math.floor(Math.random() * BackgroundImageArray.length)];
         return random;
@@ -1905,7 +1905,7 @@ class OptionsComponent {
     }
 }
 OptionsComponent.ɵfac = function OptionsComponent_Factory(t) { return new (t || OptionsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_options_service__WEBPACK_IMPORTED_MODULE_1__["OptionsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_DungeonPath_service__WEBPACK_IMPORTED_MODULE_2__["DungeonPathService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_PlayerInventory_service__WEBPACK_IMPORTED_MODULE_3__["PlayerInventoryService"])); };
-OptionsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OptionsComponent, selectors: [["app-options"]], decls: 6, vars: 4, consts: [[1, "OptionsWrapper"], ["class", "showOptionsButton", "src", "assets/images/misc/gear.png", 3, "click", 4, "ngIf"], ["class", "hideOptionsButton", "src", "assets/images/misc/gear.png", 3, "click", 4, "ngIf"], ["class", "OptionButtonsContainer", 4, "ngIf"], ["src", "assets/images/misc/gear.png", 1, "showOptionsButton", 3, "click"], ["src", "assets/images/misc/gear.png", 1, "hideOptionsButton", 3, "click"], [1, "OptionButtonsContainer"], [1, "optionButton", 3, "click"], [3, "ngStyle", 4, "ngIf"], [3, "ngStyle"], [1, "optionButtonHide"]], template: function OptionsComponent_Template(rf, ctx) { if (rf & 1) {
+OptionsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OptionsComponent, selectors: [["app-options"]], decls: 6, vars: 4, consts: [[1, "OptionsWrapper"], ["class", "showOptionsButton", "src", "DungeonPathGame/assets/images/misc/gear.png", 3, "click", 4, "ngIf"], ["class", "hideOptionsButton", "src", "DungeonPathGame/assets/images/misc/gear.png", 3, "click", 4, "ngIf"], ["class", "OptionButtonsContainer", 4, "ngIf"], ["src", "DungeonPathGame/assets/images/misc/gear.png", 1, "showOptionsButton", 3, "click"], ["src", "DungeonPathGame/assets/images/misc/gear.png", 1, "hideOptionsButton", 3, "click"], [1, "OptionButtonsContainer"], [1, "optionButton", 3, "click"], [3, "ngStyle", 4, "ngIf"], [3, "ngStyle"], [1, "optionButtonHide"]], template: function OptionsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, OptionsComponent_img_2_Template, 1, 0, "img", 1);
