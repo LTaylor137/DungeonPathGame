@@ -922,11 +922,11 @@ class RoomEventService {
     }
     setRoomBackground() {
         let BackgroundImageArray = [
-            "../../assets/images/backgrounds/background1.png",
-            "../../assets/images/backgrounds/background2.png",
-            "../../assets/images/backgrounds/background3.png",
-            "../../assets/images/backgrounds/background4.png",
-            "../../assets/images/backgrounds/background5.png"
+            "/assets/images/backgrounds/background1.png",
+            "/assets/images/backgrounds/background2.png",
+            "/assets/images/backgrounds/background3.png",
+            "/assets/images/backgrounds/background4.png",
+            "/assets/images/backgrounds/background5.png"
         ];
         let random = BackgroundImageArray[Math.floor(Math.random() * BackgroundImageArray.length)];
         return random;
