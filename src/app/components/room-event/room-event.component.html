@@ -39,7 +39,7 @@
             <div class="equip-slot"
                 [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.helm.itemTier)">
                 <img class="item-image"
-                    src="assets/images/equipment/{{this.PlayerInventoryService.helm.itemName}}.png">
+                    src="DungeonPathGame/assets/images/equipment/{{this.PlayerInventoryService.helm.itemName}}.png">
             </div>
             <div class="tooltip">
                 <div class="tooltipArrow"></div>
@@ -52,7 +52,7 @@
             <div class="equip-slot"
                 [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.armour.itemTier)">
                 <img class="item-image"
-                    src="assets/images/equipment/{{this.PlayerInventoryService.armour.itemName}}.png">
+                    src="DungeonPathGame/assets/images/equipment/{{this.PlayerInventoryService.armour.itemName}}.png">
             </div>
             <div class="tooltip">
                 <div class="tooltipArrow"></div>
@@ -65,7 +65,7 @@
             <div class="equip-slot"
                 [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.offhand.itemTier)">
                 <img class="item-image"
-                    src="assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
+                    src="DungeonPathGame/assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
                 <button class="equip-button" (click)="Offhand()" *ngIf="this.RoomEventService.isPlayerTurn === true 
                 && this.PlayerInventoryService.offhand.itemTier < 4">
                 </button>
@@ -84,7 +84,7 @@
             <div class="equip-slot"
                 [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.weapon.itemTier)">
                 <img class="item-image"
-                    src="assets/images/equipment/{{this.PlayerInventoryService.weapon.itemName}}.png">
+                    src="DungeonPathGame/assets/images/equipment/{{this.PlayerInventoryService.weapon.itemName}}.png">
                 <button class="equip-button" (click)="Attack()" *ngIf="this.RoomEventService.isPlayerTurn === true">
                 </button>
             </div>
@@ -130,19 +130,19 @@
                 <div>
                     <img *ngIf="this.RoomEventService.isPlayerBlocking === true && 
                                 this.RoomEventService.isPlayerAttacking === false" class="eqiup-blocking"
-                        src="assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
+                        src="DungeonPathGame/assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
                     <img *ngIf="this.RoomEventService.isPlayerAttacking === true &&
                         this.PlayerInventoryService.weapon.itemTier < 3" class="eqiup-attacking"
-                        src="assets/images/equipment/{{this.PlayerInventoryService.weapon.itemName}}.png">
+                        src="DungeonPathGame/assets/images/equipment/{{this.PlayerInventoryService.weapon.itemName}}.png">
                     <img *ngIf="this.RoomEventService.isPlayerAttacking === true &&
                         this.PlayerInventoryService.weapon.itemTier >= 3" class="eqiup-attacking-2"
-                        src="assets/images/equipment/{{this.PlayerInventoryService.weapon.itemName}}.png">
+                        src="DungeonPathGame/assets/images/equipment/{{this.PlayerInventoryService.weapon.itemName}}.png">
                     <img *ngIf="this.RoomEventService.isDamageNegated === true" class="damage-deflect"
-                        src="assets/images/effects/Block Effect.png">
+                        src="DungeonPathGame/assets/images/effects/Block Effect.png">
                     <img *ngIf="this.RoomEventService.isPlayerTakeDamage === true" class="damage-hit"
-                        src="assets/images/effects/Hit Effect.png">
+                        src="DungeonPathGame/assets/images/effects/Hit Effect.png">
                     <img *ngIf="this.RoomEventService.isHandgunInUse === true" class="eqiup-handgun"
-                        src="assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
+                        src="DungeonPathGame/assets/images/equipment/{{this.PlayerInventoryService.offhand.itemName}}.png">
                 </div>
 
             </div>
@@ -168,7 +168,7 @@
                     <img class="monster-attacking" *ngIf="this.RoomEventService.isMonsterAttacking === true"
                         src="{{ this.RoomEventService.roomImage }}" />
                     <img class="monster-claw-attacking" *ngIf="this.RoomEventService.isMonsterAttacking === true"
-                        src="assets/images/effects/Monster Claw.png" />
+                        src="DungeonPathGame/assets/images/effects/Monster Claw.png" />
                 </div>
 
             </div>
@@ -176,11 +176,11 @@
             <!-- monster hit effect persists outside of monsters life -->
             <img *ngIf="this.RoomEventService.isMonsterTakeDamage === true && 
             this.PlayerInventoryService.weapon.itemName != 'Lightsaber'" class="monster-damage-hit"
-                src="assets/images/effects/Monster Hit Effect.png">
+                src="DungeonPathGame/assets/images/effects/Monster Hit Effect.png">
             <img *ngIf="this.RoomEventService.isMonsterTakeDamage === true && 
             this.PlayerInventoryService.weapon.itemName === 'Lightsaber' &&
             this.RoomEventService.isPlayerTurn === true" class="monster-lightsaber-hit"
-                src="assets/images/effects/Lightsaber Effect.png">
+                src="DungeonPathGame/assets/images/effects/Lightsaber Effect.png">
 
             <!-- monster loot -->
             <div class="avatar-column">
@@ -195,7 +195,7 @@
                                     [style.background-color]="this.PlayerInventoryService.getItemColour(loot.itemTier)"
                                     (click)="takeLoot(loot.itemName)">
                                     <img class="loot-image"
-                                        src="assets/images/equipment/{{loot.itemName}}.png">
+                                        src="DungeonPathGame/assets/images/equipment/{{loot.itemName}}.png">
                                     <a class="tooltipTitle">{{loot.itemName}}<br></a>
                                     <a *ngIf="loot.itemAttackValue > 0" class="tooltipText">Attack Value:
                                         {{loot.itemAttackValue}}<br></a>
@@ -241,7 +241,7 @@
                             <div class="loot-card"
                                 [style.background-color]="this.PlayerInventoryService.getItemColour(loot.itemTier)"
                                 (click)="takeLoot(loot.itemName)">
-                                <img class="loot-image" src="assets/images/equipment/{{loot.itemName}}.png">
+                                <img class="loot-image" src="DungeonPathGame/assets/images/equipment/{{loot.itemName}}.png">
                                 <a class="tooltipTitle">{{loot.itemName}}<br></a>
                                 <a *ngIf="loot.itemAttackValue > 0" class="tooltipText">Attack Value:
                                     {{loot.itemAttackValue}}<br></a>
@@ -265,7 +265,7 @@
             <!-- chest image -->
             <div class="flexrow">
                 <div *ngIf="this.RoomEventService.roomType === 'treasure'">
-                    <img id="treasure" class="chest" src="assets/images/misc/ChestClosed.png">
+                    <img id="treasure" class="chest" src="DungeonPathGame/assets/images/misc/ChestClosed.png">
                 </div>
             </div>
 
@@ -274,7 +274,7 @@
         <!-- FIRE -->
         <div class="avatar-column" *ngIf="this.RoomEventService.roomType === 'fire'">
             <div class="status-box"> </div>
-            <img class="fire" src="assets/images/misc/Fire.png">
+            <img class="fire" src="DungeonPathGame/assets/images/misc/Fire.png">
         </div>
 
     </div>
