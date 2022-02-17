@@ -32,7 +32,7 @@ class Item {
         this.itemDefenceValue = _itemDefenceValue;
     }
     getItemImage(itemName) {
-        return "../../../assets/images/equipment/" + itemName + ".png";
+        return "assets/images/equipment/" + itemName + ".png";
     }
 }
 
@@ -213,19 +213,19 @@ function RoomEventComponent_div_67_img_6_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "img", 50);
 } if (rf & 2) {
     const ctx_r29 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "DungeonPathGame/assets/images/equipment/", ctx_r29.PlayerInventoryService.offhand.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "assets/images/equipment/", ctx_r29.PlayerInventoryService.offhand.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 } }
 function RoomEventComponent_div_67_img_7_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "img", 51);
 } if (rf & 2) {
     const ctx_r30 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "DungeonPathGame/assets/images/equipment/", ctx_r30.PlayerInventoryService.weapon.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "assets/images/equipment/", ctx_r30.PlayerInventoryService.weapon.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 } }
 function RoomEventComponent_div_67_img_8_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "img", 52);
 } if (rf & 2) {
     const ctx_r31 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "DungeonPathGame/assets/images/equipment/", ctx_r31.PlayerInventoryService.weapon.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "assets/images/equipment/", ctx_r31.PlayerInventoryService.weapon.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 } }
 function RoomEventComponent_div_67_img_9_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "img", 53);
@@ -237,7 +237,7 @@ function RoomEventComponent_div_67_img_11_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "img", 55);
 } if (rf & 2) {
     const ctx_r34 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "DungeonPathGame/assets/images/equipment/", ctx_r34.PlayerInventoryService.offhand.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "assets/images/equipment/", ctx_r34.PlayerInventoryService.offhand.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
 } }
 function RoomEventComponent_div_67_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 36);
@@ -373,7 +373,7 @@ function RoomEventComponent_div_68_div_5_div_3_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleProp"]("background-color", ctx_r44.PlayerInventoryService.getItemColour(loot_r45.itemTier));
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "DungeonPathGame/assets/images/equipment/", loot_r45.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "assets/images/equipment/", loot_r45.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](loot_r45.itemName);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
@@ -487,7 +487,7 @@ function RoomEventComponent_div_69_div_2_div_2_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleProp"]("background-color", ctx_r57.PlayerInventoryService.getItemColour(loot_r58.itemTier));
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "DungeonPathGame/assets/images/equipment/", loot_r58.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "assets/images/equipment/", loot_r58.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](loot_r58.itemName);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
@@ -660,7 +660,7 @@ class RoomEventComponent {
     }
 }
 RoomEventComponent.ɵfac = function RoomEventComponent_Factory(t) { return new (t || RoomEventComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_DungeonPath_service__WEBPACK_IMPORTED_MODULE_1__["DungeonPathService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_RoomEvent_service__WEBPACK_IMPORTED_MODULE_2__["RoomEventService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_PlayerInventory_service__WEBPACK_IMPORTED_MODULE_3__["PlayerInventoryService"])); };
-RoomEventComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: RoomEventComponent, selectors: [["app-room-event"]], decls: 93, vars: 48, consts: [[1, "room-event-container"], [1, "cave-background-container"], [1, "cave-background-image", 3, "src"], ["class", "dev-info", 4, "ngIf"], [1, "stat-row"], [1, "stat-row-spacer"], [1, "stat-container"], ["class", "stat-text", 4, "ngIf"], [1, "flexrow"], [1, "equip-column"], [1, "equip-slot"], [1, "item-image", 3, "src"], [1, "tooltip"], [1, "tooltipArrow"], [1, "tooltipTitle"], [1, "tooltipText"], [1, "tooltipDesc"], ["class", "equip-button", 3, "click", 4, "ngIf"], ["class", "tooltipText", 4, "ngIf"], [1, "avatar-column"], [1, "status-box"], [4, "ngIf"], ["id", "playerAvatar", "class", "avatar", 4, "ngIf"], ["class", "avatar-column", 4, "ngIf"], [1, "stat-box"], [1, "stat-text"], ["color", "grey", "data-icon", "mdi:sword", "data-inline", "false", 1, "iconify"], ["class", "stat-text-green", 4, "ngIf"], ["color", "grey", "data-icon", "bx-bxs-shield", "data-inline", "false", 1, "iconify"], ["color", "red", "data-icon", "ant-design:heart-filled", "data-inline", "false", 1, "iconify"], ["class", "health-pos", 4, "ngIf"], ["class", "health-neg", 4, "ngIf"], ["class", "stat-box", 4, "ngIf"], [1, "dev-info"], [1, "equip-button", 3, "click"], [1, "player-dead", 3, "src"], ["id", "playerAvatar", 1, "avatar"], [1, "equip-in-use"], ["class", "avatar-attacking", 3, "src", 4, "ngIf"], ["class", "avatar", 3, "src", 4, "ngIf"], ["class", "avatar-avoiding", 3, "src", 4, "ngIf"], ["class", "eqiup-blocking", 3, "src", 4, "ngIf"], ["class", "eqiup-attacking", 3, "src", 4, "ngIf"], ["class", "eqiup-attacking-2", 3, "src", 4, "ngIf"], ["class", "damage-deflect", "src", "DungeonPathGame/assets/images/effects/Block Effect.png", 4, "ngIf"], ["class", "damage-hit", "src", "DungeonPathGame/assets/images/effects/Hit Effect.png", 4, "ngIf"], ["class", "eqiup-handgun", 3, "src", 4, "ngIf"], [1, "avatar-attacking", 3, "src"], [1, "avatar", 3, "src"], [1, "avatar-avoiding", 3, "src"], [1, "eqiup-blocking", 3, "src"], [1, "eqiup-attacking", 3, "src"], [1, "eqiup-attacking-2", 3, "src"], ["src", "DungeonPathGame/assets/images/effects/Block Effect.png", 1, "damage-deflect"], ["src", "DungeonPathGame/assets/images/effects/Hit Effect.png", 1, "damage-hit"], [1, "eqiup-handgun", 3, "src"], ["class", "monster-damage-hit", "src", "DungeonPathGame/assets/images/effects/Monster Hit Effect.png", 4, "ngIf"], ["class", "monster-lightsaber-hit", "src", "DungeonPathGame/assets/images/effects/Lightsaber Effect.png", 4, "ngIf"], [1, "monster"], ["class", "monster", 3, "src", 4, "ngIf"], ["class", "monster-attacking", 3, "src", 4, "ngIf"], ["class", "monster-claw-attacking", "src", "DungeonPathGame/assets/images/effects/Monster Claw.png", 4, "ngIf"], [1, "monster", 3, "src"], [1, "monster-attacking", 3, "src"], ["src", "DungeonPathGame/assets/images/effects/Monster Claw.png", 1, "monster-claw-attacking"], ["src", "DungeonPathGame/assets/images/effects/Monster Hit Effect.png", 1, "monster-damage-hit"], ["src", "DungeonPathGame/assets/images/effects/Lightsaber Effect.png", 1, "monster-lightsaber-hit"], [1, "loot-container"], [4, "ngFor", "ngForOf"], [1, "forgo-loot-button", 3, "click"], [1, "loot-card", 3, "click"], [1, "loot-image", 3, "src"], [1, "monster-dead", 3, "src"], ["class", "loot-container", 4, "ngIf"], ["id", "treasure", "src", "DungeonPathGame/assets/images/misc/ChestClosed.png", 1, "chest"], ["src", "DungeonPathGame/assets/images/misc/Fire.png", 1, "fire"], [1, "stat-text-green"], [1, "health-pos"], [1, "health-neg"]], template: function RoomEventComponent_Template(rf, ctx) { if (rf & 1) {
+RoomEventComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: RoomEventComponent, selectors: [["app-room-event"]], decls: 93, vars: 48, consts: [[1, "room-event-container"], [1, "cave-background-container"], [1, "cave-background-image", 3, "src"], ["class", "dev-info", 4, "ngIf"], [1, "stat-row"], [1, "stat-row-spacer"], [1, "stat-container"], ["class", "stat-text", 4, "ngIf"], [1, "flexrow"], [1, "equip-column"], [1, "equip-slot"], [1, "item-image", 3, "src"], [1, "tooltip"], [1, "tooltipArrow"], [1, "tooltipTitle"], [1, "tooltipText"], [1, "tooltipDesc"], ["class", "equip-button", 3, "click", 4, "ngIf"], ["class", "tooltipText", 4, "ngIf"], [1, "avatar-column"], [1, "status-box"], [4, "ngIf"], ["id", "playerAvatar", "class", "avatar", 4, "ngIf"], ["class", "avatar-column", 4, "ngIf"], [1, "stat-box"], [1, "stat-text"], ["color", "grey", "data-icon", "mdi:sword", "data-inline", "false", 1, "iconify"], ["class", "stat-text-green", 4, "ngIf"], ["color", "grey", "data-icon", "bx-bxs-shield", "data-inline", "false", 1, "iconify"], ["color", "red", "data-icon", "ant-design:heart-filled", "data-inline", "false", 1, "iconify"], ["class", "health-pos", 4, "ngIf"], ["class", "health-neg", 4, "ngIf"], ["class", "stat-box", 4, "ngIf"], [1, "dev-info"], [1, "equip-button", 3, "click"], [1, "player-dead", 3, "src"], ["id", "playerAvatar", 1, "avatar"], [1, "equip-in-use"], ["class", "avatar-attacking", 3, "src", 4, "ngIf"], ["class", "avatar", 3, "src", 4, "ngIf"], ["class", "avatar-avoiding", 3, "src", 4, "ngIf"], ["class", "eqiup-blocking", 3, "src", 4, "ngIf"], ["class", "eqiup-attacking", 3, "src", 4, "ngIf"], ["class", "eqiup-attacking-2", 3, "src", 4, "ngIf"], ["class", "damage-deflect", "src", "assets/images/effects/Block Effect.png", 4, "ngIf"], ["class", "damage-hit", "src", "assets/images/effects/Hit Effect.png", 4, "ngIf"], ["class", "eqiup-handgun", 3, "src", 4, "ngIf"], [1, "avatar-attacking", 3, "src"], [1, "avatar", 3, "src"], [1, "avatar-avoiding", 3, "src"], [1, "eqiup-blocking", 3, "src"], [1, "eqiup-attacking", 3, "src"], [1, "eqiup-attacking-2", 3, "src"], ["src", "assets/images/effects/Block Effect.png", 1, "damage-deflect"], ["src", "assets/images/effects/Hit Effect.png", 1, "damage-hit"], [1, "eqiup-handgun", 3, "src"], ["class", "monster-damage-hit", "src", "assets/images/effects/Monster Hit Effect.png", 4, "ngIf"], ["class", "monster-lightsaber-hit", "src", "assets/images/effects/Lightsaber Effect.png", 4, "ngIf"], [1, "monster"], ["class", "monster", 3, "src", 4, "ngIf"], ["class", "monster-attacking", 3, "src", 4, "ngIf"], ["class", "monster-claw-attacking", "src", "assets/images/effects/Monster Claw.png", 4, "ngIf"], [1, "monster", 3, "src"], [1, "monster-attacking", 3, "src"], ["src", "assets/images/effects/Monster Claw.png", 1, "monster-claw-attacking"], ["src", "assets/images/effects/Monster Hit Effect.png", 1, "monster-damage-hit"], ["src", "assets/images/effects/Lightsaber Effect.png", 1, "monster-lightsaber-hit"], [1, "loot-container"], [4, "ngFor", "ngForOf"], [1, "forgo-loot-button", 3, "click"], [1, "loot-card", 3, "click"], [1, "loot-image", 3, "src"], [1, "monster-dead", 3, "src"], ["class", "loot-container", 4, "ngIf"], ["id", "treasure", "src", "assets/images/misc/ChestClosed.png", 1, "chest"], ["src", "assets/images/misc/Fire.png", 1, "fire"], [1, "stat-text-green"], [1, "health-pos"], [1, "health-neg"]], template: function RoomEventComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "img", 2);
@@ -802,7 +802,7 @@ RoomEventComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleProp"]("background-color", ctx.PlayerInventoryService.getItemColour(ctx.PlayerInventoryService.helm.itemTier));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "DungeonPathGame/assets/images/equipment/", ctx.PlayerInventoryService.helm.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "assets/images/equipment/", ctx.PlayerInventoryService.helm.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.PlayerInventoryService.helm.itemName);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
@@ -812,7 +812,7 @@ RoomEventComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleProp"]("background-color", ctx.PlayerInventoryService.getItemColour(ctx.PlayerInventoryService.armour.itemTier));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "DungeonPathGame/assets/images/equipment/", ctx.PlayerInventoryService.armour.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "assets/images/equipment/", ctx.PlayerInventoryService.armour.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx.PlayerInventoryService.armour.itemName);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
@@ -822,7 +822,7 @@ RoomEventComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleProp"]("background-color", ctx.PlayerInventoryService.getItemColour(ctx.PlayerInventoryService.offhand.itemTier));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "DungeonPathGame/assets/images/equipment/", ctx.PlayerInventoryService.offhand.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "assets/images/equipment/", ctx.PlayerInventoryService.offhand.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.RoomEventService.isPlayerTurn === true && ctx.PlayerInventoryService.offhand.itemTier < 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
@@ -836,7 +836,7 @@ RoomEventComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefin
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleProp"]("background-color", ctx.PlayerInventoryService.getItemColour(ctx.PlayerInventoryService.weapon.itemTier));
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "DungeonPathGame/assets/images/equipment/", ctx.PlayerInventoryService.weapon.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpropertyInterpolate1"]("src", "assets/images/equipment/", ctx.PlayerInventoryService.weapon.itemName, ".png", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵsanitizeUrl"]);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ctx.RoomEventService.isPlayerTurn === true);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
@@ -1905,7 +1905,7 @@ class OptionsComponent {
     }
 }
 OptionsComponent.ɵfac = function OptionsComponent_Factory(t) { return new (t || OptionsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_options_service__WEBPACK_IMPORTED_MODULE_1__["OptionsService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_DungeonPath_service__WEBPACK_IMPORTED_MODULE_2__["DungeonPathService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_PlayerInventory_service__WEBPACK_IMPORTED_MODULE_3__["PlayerInventoryService"])); };
-OptionsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OptionsComponent, selectors: [["app-options"]], decls: 6, vars: 4, consts: [[1, "OptionsWrapper"], ["class", "showOptionsButton", "src", "DungeonPathGame/assets/images/misc/gear.png", 3, "click", 4, "ngIf"], ["class", "hideOptionsButton", "src", "DungeonPathGame/assets/images/misc/gear.png", 3, "click", 4, "ngIf"], ["class", "OptionButtonsContainer", 4, "ngIf"], ["src", "DungeonPathGame/assets/images/misc/gear.png", 1, "showOptionsButton", 3, "click"], ["src", "DungeonPathGame/assets/images/misc/gear.png", 1, "hideOptionsButton", 3, "click"], [1, "OptionButtonsContainer"], [1, "optionButton", 3, "click"], [3, "ngStyle", 4, "ngIf"], [3, "ngStyle"], [1, "optionButtonHide"]], template: function OptionsComponent_Template(rf, ctx) { if (rf & 1) {
+OptionsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: OptionsComponent, selectors: [["app-options"]], decls: 6, vars: 4, consts: [[1, "OptionsWrapper"], ["class", "showOptionsButton", "src", "assets/images/misc/gear.png", 3, "click", 4, "ngIf"], ["class", "hideOptionsButton", "src", "assets/images/misc/gear.png", 3, "click", 4, "ngIf"], ["class", "OptionButtonsContainer", 4, "ngIf"], ["src", "assets/images/misc/gear.png", 1, "showOptionsButton", 3, "click"], ["src", "assets/images/misc/gear.png", 1, "hideOptionsButton", 3, "click"], [1, "OptionButtonsContainer"], [1, "optionButton", 3, "click"], [3, "ngStyle", 4, "ngIf"], [3, "ngStyle"], [1, "optionButtonHide"]], template: function OptionsComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](2, OptionsComponent_img_2_Template, 1, 0, "img", 1);
@@ -2610,7 +2610,7 @@ class PlayerInventoryService {
         this.playerHealth = 5;
         this.playerDefence = 0;
         this.playerBlockAmount = 0;
-        this.playerAvatar = "../../assets/images/avatars/Avatar1.png";
+        this.playerAvatar = "assets/images/avatars/Avatar1.png";
         this.isGodmodeOn = false;
         this.isPlayerDead = false;
         this.isPlayerWon = false;

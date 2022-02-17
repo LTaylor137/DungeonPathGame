@@ -16,7 +16,7 @@ export class PlayerInventoryService {
   playerHealth: number = 5;
   playerDefence: number = 0;
   playerBlockAmount: number = 0;
-  playerAvatar: string = "../../assets/images/avatars/Avatar1.png";
+  playerAvatar: string = "assets/images/avatars/Avatar1.png";
 
   isGodmodeOn: boolean = false;
   isPlayerDead: boolean = false;

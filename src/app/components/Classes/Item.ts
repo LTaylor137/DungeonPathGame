@@ -25,7 +25,7 @@ export class Item {
 
 getItemImage(itemName){
 
-     return "../../../assets/images/equipment/" + itemName + ".png"
+     return "assets/images/equipment/" + itemName + ".png"
 
 }
 
