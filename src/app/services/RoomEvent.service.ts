@@ -110,7 +110,7 @@ export class RoomEventService {
           if (room.roomType === "treasure") {
             this.AssignRoomLoot()
             setTimeout(() => {
-              document.getElementById('treasure').setAttribute('src', "../../assets/images/misc/ChestOpen.png");
+              document.getElementById('treasure').setAttribute('src', "assets/images/misc/ChestOpen.png");
             }, 300);
           }
 
