@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+
+  background-color: rgb(32, 32, 32);
+  color: white;
+
+  }
+
+
+
+
+
+
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0eWxlcy5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsOEVBQThFOztBQUU5RTtFQUNFLFVBQVU7RUFDVixTQUFTO0FBQ1g7O0FBRUE7O0VBRUUsaUNBQWlDO0VBQ2pDLFlBQVk7O0VBRVoiLCJmaWxlIjoic3R5bGVzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFlvdSBjYW4gYWRkIGdsb2JhbCBzdHlsZXMgdG8gdGhpcyBmaWxlLCBhbmQgYWxzbyBpbXBvcnQgb3RoZXIgc3R5bGUgZmlsZXMgKi9cclxuXHJcbioge1xyXG4gIHBhZGRpbmc6IDA7XHJcbiAgbWFyZ2luOiAwO1xyXG59XHJcblxyXG5odG1sIHtcclxuXHJcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiKDMyLCAzMiwgMzIpO1xyXG4gIGNvbG9yOiB3aGl0ZTtcclxuXHJcbiAgfVxyXG5cclxuXHJcblxyXG5cclxuXHJcbiJdfQ== */
+
+/*# sourceMappingURL=styles.css.map*/
