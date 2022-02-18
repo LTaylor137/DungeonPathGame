@@ -328,7 +328,7 @@ export class RoomEventService {
         }
         this.isPlayerBlocking = false;
         this.PlayerInventoryService.playerDefence = (this.PlayerInventoryService.helm.itemDefenceValue + this.PlayerInventoryService.armour.itemDefenceValue)
-      }, 2000);
+      }, 1000);
     }
   }
 
