@@ -394,9 +394,6 @@ export class RoomEventService {
     }
     if (itemGained.itemType === "offhand") {
       this.PlayerInventoryService.offhand = itemGained;
-      if (itemGained.itemAttackValue > 0) {
-        this.PlayerInventoryService.weapon.itemAttackValue = itemGained.itemAttackValue;
-      }
     }
     if (itemGained.itemType === "helm") {
       this.PlayerInventoryService.helm = itemGained;

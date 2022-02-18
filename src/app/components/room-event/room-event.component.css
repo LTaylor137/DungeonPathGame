@@ -127,6 +127,22 @@
   position: absolute;
   color: white;
   text-align: left;
+  animation-name: equip-tooltip-ani;
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+  position: absolute;
+}
+
+@keyframes equip-tooltip-ani {
+  0% {
+    opacity: 0%;
+  }
+  30% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 
 .tooltipArrow {
@@ -143,7 +159,7 @@
 .tooltipTitle {
   text-align: center;
   font-weight: 600;
-  font-size: 2vh;;
+  font-size: 2vh;
 }
 
 .tooltipText {
@@ -157,6 +173,46 @@
   font-style: italic;
   font-size: 1.8vh;
   word-wrap: normal;
+}
+
+.specialDiv {
+  margin-top: 1vh;
+  height: 1px;
+  width: 10px;
+}
+
+/* lootcard tooltips */
+
+.loot-card-tooltip {
+  display: none;
+}
+
+.loot-card:hover + .loot-card-tooltip {
+  display: block;
+  padding: 1vw;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 9vw;
+  margin-top: -13.4vh;
+  margin-left: 1vw;
+  position: absolute;
+  color: white;
+  text-align: center;
+  animation-name: loot-tooltip-ani;
+  animation-duration: 1000ms;
+  animation-iteration-count: 1;
+  position: absolute;
+}
+
+@keyframes loot-tooltip-ani {
+  0% {
+    opacity: 0%;
+  }
+  30% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
+  }
 }
 
 /* ============================================= avatars ============================================= */
@@ -209,9 +265,8 @@
   position: absolute;
 }
 
-
 .player-dead {
- height: 40vh; 
+  height: 40vh;
   animation-name: player-death-ani;
   animation-duration: 2000ms;
   animation-iteration-count: 1;
@@ -234,7 +289,7 @@
     top: 32vh;
     left: 29.7vw;
     transform: rotate(-93deg);
-  } 
+  }
   50% {
     top: 52vh;
     left: 28vw;
@@ -246,7 +301,6 @@
     transform: rotate(-100deg);
   }
 }
-
 
 /* =============================================  " effects " ============================================= */
 
@@ -408,14 +462,14 @@
     height: 7.5vh;
     width: 5vw;
     top: 47.5vh;
-  left: 73.5vw;
+    left: 73.5vw;
   }
   100% {
     opacity: 0%;
     height: 15vh;
     width: 10vw;
     top: 45vh;
-  left: 71vw;
+    left: 71vw;
   }
 }
 

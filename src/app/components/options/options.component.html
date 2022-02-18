@@ -10,15 +10,12 @@
     <div class="OptionButtonsContainer" *ngIf="this.OptionsService.ShowOptions === true">
 
         <button class="optionButton" (click)="resetAll()">Reset All</button>
-        <button class="optionButton" (click)="generate()">Regenerate Map</button>
-        <button class="optionButton" (click)="redrawLines()">Redraw Lines</button>
-        <button class="optionButton" (click)="resetPlayerPos()">Reset Player Pos</button>
 
         <button class="optionButton" (click)="toggleSound()">Sound
             <a *ngIf="this.RoomEventService.isSoundOn === true" [ngStyle]="{'color': 'lime'}">On</a>
             <a *ngIf="this.RoomEventService.isSoundOn === false" [ngStyle]="{'color': 'red'}">Off</a>
         </button>
-        
+
         <button class="optionButton" (click)="godMode()">Godmode
             <a *ngIf="this.PlayerInventoryService.isGodmodeOn === true" [ngStyle]="{'color': 'lime'}">On</a>
             <a *ngIf="this.PlayerInventoryService.isGodmodeOn === false" [ngStyle]="{'color': 'red'}">Off</a>
@@ -31,13 +28,19 @@
             <a *ngIf="this.DungeonPathService.showDungeonPath === false" [ngStyle]="{'color': 'lime'}">Room</a>
         </button>
 
-        <button class="optionButton" (click)="toggleDevInfo()">Dev Info
+        <button class="optionButton" (click)="toggleDevInfo()">Show Dev Info
             <a *ngIf="this.DungeonPathService.showDevInfo === true" [ngStyle]="{'color': 'lime'}">On</a>
             <a *ngIf="this.DungeonPathService.showDevInfo === false" [ngStyle]="{'color': 'red'}">Off</a>
         </button>
 
-        <!-- <button class="optionButton" (click)="toggleRoomGaps()">Toggle Room Gaps</button> -->
-        <!-- <input id="mapLengthInput" placeholder="Enter map length here..."> -->
+        <button *ngIf="this.DungeonPathService.showDevInfo === true" class="optionButton"
+            (click)="generate()">Regenerate Map</button>
+        <button *ngIf="this.DungeonPathService.showDevInfo === true" class="optionButton" (click)="redrawLines()">Redraw
+            Lines</button>
+        <button *ngIf="this.DungeonPathService.showDevInfo === true" class="optionButton"
+            (click)="resetPlayerPos()">Reset Player Pos</button>
+        <button *ngIf="this.DungeonPathService.showDevInfo === true" class="optionButton"
+            (click)="toggleRoomGaps()">Toggle Room Gaps</button>
 
     </div>
 

@@ -63,15 +63,15 @@ export class PlayerInventoryService {
       this.lootPool.push(new Item("offhand", "Wooden Buckler", "A small buckler that blocks 1 damage and stuns enemies on a successful block", 1, 0, 1)),
       this.lootPool.push(new Item("offhand", "Tower Shield", "A large shield that blocks 2 damage and stuns enemies on a successful block", 2, 0, 2)),
 
-      this.lootPool.push(new Item("offhand", "Handgun", "Allows you to shoot first when entering a room", 4, 0, 0)),
-      this.lootPool.push(new Item("offhand", "Torch", "25% chance to dazzle an emeny causing them to miss", 4, 0, 0)),
+      this.lootPool.push(new Item("offhand", "Handgun", "Passive: Shoot first when entering a room", 4, 1, 0)),
+      this.lootPool.push(new Item("offhand", "Torch", "Passive: 25% chance to dazzle an emeny causing them to miss", 4, 0, 0)),
 
       // helms
       this.lootPool.push(new Item("helm", "Beanie", "keeps you warm, has a pom-pom", 1, 0, 0)),
       this.lootPool.push(new Item("helm", "Plastic Viking Helmet", "It's a bit too small. Made of plastic", 1, 0, 0)),
       this.lootPool.push(new Item("helm", "Christmas Hat", "It had little flashing lights but the batteries have died", 1, 0, 0)),
 
-      this.lootPool.push(new Item("helm", "Soup Pot", "It covers your whole skull! Adds +1 Defence", 2, 0, 1)),
+      this.lootPool.push(new Item("helm", "Soup Pot", "It covers your whole skull!", 2, 0, 1)),
       this.lootPool.push(new Item("helm", "Miners Helmet", "25% chance to dazzle an emeny causing them to miss", 4, 0, 1))
 
   }

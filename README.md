@@ -10,7 +10,7 @@ It is a simple game where the goal is to choose the optimal path to survive the 
 
 Collect loot along the way, heal at campfires, and be ready to face tougher monsters.
 
-See the options wheel at the top if you want to enable "god mode" or disable sound effects.
+Hover over items to see tooltips. See the options wheel at the top if you want to enable "god mode" or disable sound effects.
 
 
 This was mostly tested at a resolution of 1920 x 1080, but the app should scale to different resolutions.
