@@ -19,11 +19,14 @@
         </div>
 
         <div class="stat-container">
-            <p *ngIf="this.RoomEventService.isPlayerTurn === true" class="stat-text"> Player Turn </p>
+            <p *ngIf="this.RoomEventService.isPlayerTurn === true 
+            && this.RoomEventService.roomType != 'treasure' 
+            && this.RoomEventService.roomType != 'fire'" class="stat-text"> Player Turn </p>
         </div>
 
         <div class="stat-container">
-            <p *ngIf="this.RoomEventService.isPlayerTurn === false && this.RoomEventService.monsterHealthValue > 0"
+            <p *ngIf="this.RoomEventService.isPlayerTurn === false && this.RoomEventService.monsterHealthValue > 0 
+                && this.RoomEventService.roomType != 'treasure' && this.RoomEventService.roomType != 'fire'"
                 class="stat-text"> Monster Turn </p>
         </div>
 
@@ -185,7 +188,7 @@
             <!-- monster loot -->
             <div class="avatar-column">
                 <div
-                    *ngIf="this.RoomEventService.monsterHealthValue <= 0 && this.RoomEventService.isLootTaken === false">
+                    *ngIf="this.RoomEventService.monsterHealthValue <= 0 && this.RoomEventService.isLootTaken === false && this.RoomEventService.roomType != 'finalboss'">
 
                     <div class="loot-container">
 

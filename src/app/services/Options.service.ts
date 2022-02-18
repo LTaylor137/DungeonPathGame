@@ -28,6 +28,14 @@ export class OptionsService {
     }
   }
 
+  toggleSound() {
+    if (this.RoomEventService.isSoundOn === true) {
+      this.RoomEventService.isSoundOn = false;
+    } else if (this.RoomEventService.isSoundOn === false) {
+      this.RoomEventService.isSoundOn = true;
+    }
+  }
+
   godMode() {
     if (this.PlayerInventoryService.isGodmodeOn === true) {
       this.PlayerInventoryService.isGodmodeOn = false;

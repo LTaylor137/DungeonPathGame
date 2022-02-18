@@ -7,6 +7,7 @@ import { Item } from '../components/Classes/Item';
 import { Connection } from '../components/Classes/Connection';
 import { DungeonPathService } from "../services/DungeonPath.service";
 import { PlayerInventoryService } from "./PlayerInventory.service";
+import { OptionsService } from "./Options.service";
 import { element } from 'protractor';
 
 @Injectable({
@@ -17,33 +18,41 @@ export class RoomEventService {
 
   constructor(public DungeonPathService: DungeonPathService, public PlayerInventoryService: PlayerInventoryService) { }
 
+  // rooom setup
   currentLevel: number | null;
   currentRoom: number | null;
   roomType: string | null;
   roomBackground: string | null;
   roomImage: string | null;
-
   roomLootList: Item[] = [];
-  isLootTaken: boolean = false;
 
+  // combat
   monsterAttackValue: number | null;
   monsterHealthValue: number | null;
-
   healAmount: number = 0;
   healthChangeValue: number = 0;
   monsterHealthChangeValue: number = 0;
 
+  // triggers
+  isLootTaken: boolean = false;
   isPlayerTurn: boolean = false;
   isPlayerAttacking: boolean = false;
   isPlayerBlocking: boolean = false;
   isHandgunInUse: boolean = false;
   isMonsterAttacking: boolean = false;
-
   isDamageNegated: boolean = false;
   isAttackAvoided: boolean = false;
   isPlayerTakeDamage: boolean = false;
   isMonsterTakeDamage: boolean = false;
   isMonsterStunned: boolean = false;
+  isSoundOn: boolean = true;
+
+  playAudio(sound) {
+    let audio = new Audio();
+    audio.src = "../../assets/sounds/" + sound + ".wav";
+    audio.load();
+    audio.play();
+  }
 
   setRoomBackground() {
     let BackgroundImageArray = [
@@ -59,12 +68,6 @@ export class RoomEventService {
 
   setRoomImage(roomType: string) {
     switch (roomType) {
-      case "start":
-      // return "assets/images/monsters/monster1.png";
-      case "treasure":
-      // return "assets/images/monsters/monster1.png";
-      case "fire":
-      // return "assets/images/monsters/monster1.png";
       case "monster":
         let x = Math.floor((Math.random() * 6))
         return "assets/images/monsters/monster" + x + ".png";
@@ -76,7 +79,6 @@ export class RoomEventService {
     }
   }
 
-  
   setupRoom() {
     this.DungeonPathService.levelList.forEach(level => {
       level.roomList.forEach(room => {
@@ -95,7 +97,9 @@ export class RoomEventService {
             this.isMonsterStunned = false;
             this.isPlayerTurn = false;
             this.AssignRoomLoot();
-
+            if (this.isSoundOn === true && this.PlayerInventoryService.offhand.itemName != 'Handgun') {
+              this.playAudio("monster-hiss");
+            }
             // use players handgun here
             if (this.PlayerInventoryService.offhand.itemName === 'Handgun') {
               this.playerUsesHandgun()
@@ -103,18 +107,22 @@ export class RoomEventService {
             } else {
               setTimeout(() => { this.monsterTurn(); }, 1000);
             }
-
           }
           if (room.roomType === "fire") {
+            if (this.isSoundOn === true) {
+              this.playAudio("campfire");
+            }
             setTimeout(() => { this.getHealthFromFire(); }, 500);
           }
           if (room.roomType === "treasure") {
             this.AssignRoomLoot()
+            if (this.isSoundOn === true) {
+              this.playAudio("chest-creak");
+            }
             setTimeout(() => {
               document.getElementById('treasure').setAttribute('src', "assets/images/misc/ChestOpen.png");
             }, 300);
           }
-
         }
       });
     });
@@ -147,9 +155,17 @@ export class RoomEventService {
   playerAttack() {
     this.isPlayerBlocking = false;
     this.isPlayerAttacking = true;
-
     // attack
     setTimeout(() => {
+      if (this.isSoundOn === true && this.PlayerInventoryService.weapon.itemTier === 1 && this.PlayerInventoryService.weapon.itemName != "Lightsaber") {
+        this.playAudio("monster-hit1");
+      }
+      if (this.isSoundOn === true && this.PlayerInventoryService.weapon.itemTier > 1 && this.PlayerInventoryService.weapon.itemName != "Lightsaber") {
+        this.playAudio("monster-hit2");
+      }
+      if (this.isSoundOn === true && this.PlayerInventoryService.weapon.itemName === "Lightsaber") {
+        this.playAudio("lightsaber-swing");
+      }
       // drop monster instantly
       if (this.monsterHealthValue <= this.PlayerInventoryService.weapon.itemAttackValue) {
         this.isMonsterTakeDamage = true;
@@ -169,13 +185,11 @@ export class RoomEventService {
         }
       }
     }, 250);
-
     //move back
     setTimeout(() => {
       this.isPlayerAttacking = false;
       // console.log("player hit enemy for " + this.PlayerInventoryService.weapon.itemAttackValue + " damage, taking health down to " + this.monsterHealthValue);
     }, 1000);
-
     // change to monster turn
     if (this.monsterHealthValue > 0) {
       setTimeout(() => {
@@ -193,7 +207,6 @@ export class RoomEventService {
       this.PlayerInventoryService.helm.itemDefenceValue +
       this.PlayerInventoryService.armour.itemDefenceValue +
       this.PlayerInventoryService.offhand.itemDefenceValue;
-
     if (this.monsterHealthValue > 0) {
       setTimeout(() => {
         this.isPlayerTurn = false
@@ -203,29 +216,35 @@ export class RoomEventService {
   }
 
   playerUsesHandgun() {
-
     // console.log("handgun used")
     this.isMonsterTakeDamage = false;
     this.isHandgunInUse = true;
-
     // monster take damage
     setTimeout(() => {
+      if (this.isSoundOn === true) {
+        this.playAudio("gunshot");
+      }
       this.isMonsterTakeDamage = true;
     }, 1000);
-
     setTimeout(() => {
       this.monsterHealthValue = (this.monsterHealthValue - 1)
     }, 1500);
-
     //wrapup
     setTimeout(() => {
       this.isHandgunInUse = false;
       this.isMonsterTakeDamage = false;
     }, 2000);
-
   }
 
   monsterTurn() {
+
+    if (this.monsterHealthValue <= 0 && this.roomType === "finalboss") {
+      setTimeout(() => {
+        this.PlayerInventoryService.isPlayerWon = true;
+        this.DungeonPathService.showDungeonPath = false;
+        this.DungeonPathService.showRoom = false;
+      }, 1000);
+    }
 
     if (this.isPlayerTurn === false && this.monsterHealthValue > 0) {
       if (this.isMonsterStunned === true) {
@@ -234,10 +253,8 @@ export class RoomEventService {
           this.isMonsterStunned = false;
         }, 500);
       } else {
-
         // monster attacks
         this.isMonsterAttacking = true;
-
         // calculate if player avoids attack
         let avoidChance = this.PlayerInventoryService.getPlayerAvoidChance();
         // console.log("player avoidchance = " + avoidChance)
@@ -246,9 +263,11 @@ export class RoomEventService {
         if (avoidChance > random) {
           // monster attack misses
           // console.log("player avoided attack")
+          if (this.isSoundOn === true) {
+            this.playAudio("attack-miss");
+          }
           this.isAttackAvoided = true;
         } else {
-
           // monster attack hits
           setTimeout(() => {
             //calculate damage done
@@ -256,12 +275,21 @@ export class RoomEventService {
             damage = damage - (this.PlayerInventoryService.playerDefence + this.PlayerInventoryService.playerBlockAmount);
             if (damage <= 0) {
               // // console.log("attack did not break armour")
+              if (this.isSoundOn === true) {
+                this.playAudio("metal-hit");
+              }
               this.isDamageNegated = true;
             } else if (damage > 0) {
               // // console.log("attack did " + damage + " damage.")
+              if (this.isSoundOn === true) {
+                this.playAudio("player-hit");
+              }
               this.isPlayerTakeDamage = true;
               // will this damage kill player?
               if (damage >= this.PlayerInventoryService.playerHealth && this.PlayerInventoryService.isGodmodeOn === false) {
+                if (this.isSoundOn === true) {
+                  this.playAudio("player-death");
+                }
                 setTimeout(() => {
                   this.PlayerInventoryService.isPlayerDead = true
                   this.DungeonPathService.showDungeonPath = false;
@@ -273,6 +301,11 @@ export class RoomEventService {
             }
             // stun monster if player block active
             if (this.isPlayerBlocking === true) {
+
+              if (this.isSoundOn === true) {
+                this.playAudio("shield-block");
+              }
+
               this.isMonsterStunned = true;
               this.isDamageNegated = true;
             }
@@ -374,19 +407,10 @@ export class RoomEventService {
       this.healthChangeValue = itemGained.itemDefenceValue;
     }
     this.isLootTaken = true;
-
     setTimeout(() => {
-      if (this.roomType === "finalboss") {
-        // console.log("final boss line 379 fdsfsdfsd")
-        this.PlayerInventoryService.isPlayerWon = true;
-        this.DungeonPathService.showDungeonPath = false;
-        this.DungeonPathService.showRoom = false;
-      } else {
-        this.isPlayerBlocking = false;
-        this.DungeonPathService.toggleDungeonPath();
-      }
+      this.isPlayerBlocking = false;
+      this.DungeonPathService.toggleDungeonPath();
     }, 1000);
-
   }
 
 }

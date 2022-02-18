@@ -1,3 +1,7 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aclonica&display=swap" rel="stylesheet">
+
 <!-- title screen -->
 <div *ngIf="this.DungeonPathService.showTitleScreen === true" class="title-container">
 
@@ -6,9 +10,8 @@
     </div>
 
     <div *ngIf="this.isTitleDismissed === true" class="titleDialog" (click)="startGame()">
-        You stumble away from the party <br> to get some air and clear your head <br> <br>
-        coming across a cave entrance <br> you see no harm in taking a look inside... <br> <br>
-        click to begin.
+        You stumble away from the party to get some air and clear your head <br>
+        coming across a cave entrance you see no harm in taking a look inside...
     </div>
 
     <div *ngIf="this.isTitleDismissed === true" >

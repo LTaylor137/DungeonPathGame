@@ -11,13 +11,17 @@ import { OptionsService } from "../../services/options.service";
 })
 export class OptionsComponent implements OnInit {
 
-  constructor(public OptionsService: OptionsService, public DungeonPathService: DungeonPathService, public PlayerInventoryService: PlayerInventoryService) { }
+  constructor(public OptionsService: OptionsService, public RoomEventService: RoomEventService, public DungeonPathService: DungeonPathService, public PlayerInventoryService: PlayerInventoryService) { }
 
   ngOnInit(): void {
   }
 
   toggleOptions() {
     this.OptionsService.toggleOptions()
+  }
+
+  toggleSound() {
+    this.OptionsService.toggleSound()
   }
 
   godMode() {

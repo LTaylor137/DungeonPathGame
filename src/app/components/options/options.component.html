@@ -14,6 +14,11 @@
         <button class="optionButton" (click)="redrawLines()">Redraw Lines</button>
         <button class="optionButton" (click)="resetPlayerPos()">Reset Player Pos</button>
 
+        <button class="optionButton" (click)="toggleSound()">Sound
+            <a *ngIf="this.RoomEventService.isSoundOn === true" [ngStyle]="{'color': 'lime'}">On</a>
+            <a *ngIf="this.RoomEventService.isSoundOn === false" [ngStyle]="{'color': 'red'}">Off</a>
+        </button>
+        
         <button class="optionButton" (click)="godMode()">Godmode
             <a *ngIf="this.PlayerInventoryService.isGodmodeOn === true" [ngStyle]="{'color': 'lime'}">On</a>
             <a *ngIf="this.PlayerInventoryService.isGodmodeOn === false" [ngStyle]="{'color': 'red'}">Off</a>
