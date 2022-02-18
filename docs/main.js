@@ -1106,6 +1106,7 @@ class RoomEventService {
         }, 2000);
     }
     monsterTurn() {
+        // if final boss killed then end game and show win screen.
         if (this.monsterHealthValue <= 0 && this.roomType === "finalboss") {
             setTimeout(() => {
                 if (this.isSoundOn === true) {
