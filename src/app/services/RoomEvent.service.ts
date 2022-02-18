@@ -240,6 +240,9 @@ export class RoomEventService {
 
     if (this.monsterHealthValue <= 0 && this.roomType === "finalboss") {
       setTimeout(() => {
+        if (this.isSoundOn === true) {
+          this.playAudio("player-win2");
+        }
         this.PlayerInventoryService.isPlayerWon = true;
         this.DungeonPathService.showDungeonPath = false;
         this.DungeonPathService.showRoom = false;
