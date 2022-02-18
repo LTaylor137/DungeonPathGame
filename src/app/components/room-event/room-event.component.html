@@ -41,8 +41,7 @@
             <!-- helm -->
             <div class="equip-slot"
                 [style.background-color]="this.PlayerInventoryService.getItemColour(this.PlayerInventoryService.helm.itemTier)">
-                <img class="item-image"
-                    src="assets/images/equipment/{{this.PlayerInventoryService.helm.itemName}}.png">
+                <img class="item-image" src="assets/images/equipment/{{this.PlayerInventoryService.helm.itemName}}.png">
             </div>
             <div class="tooltip">
                 <div class="tooltipArrow"></div>
@@ -197,16 +196,36 @@
                                 <div class="loot-card"
                                     [style.background-color]="this.PlayerInventoryService.getItemColour(loot.itemTier)"
                                     (click)="takeLoot(loot.itemName)">
-                                    <img class="loot-image"
-                                        src="assets/images/equipment/{{loot.itemName}}.png">
+                                    <img class="loot-image" src="assets/images/equipment/{{loot.itemName}}.png">
                                     <a class="tooltipTitle">{{loot.itemName}}<br></a>
+                                    <div *ngIf="loot.itemAttackValue === 0 && loot.itemDefenceValue === 0 || 
+                                    loot.itemName === 'Wooden Buckler' || 
+                                    loot.itemName === 'Tower Shield'" class="specialDiv"><br></div>
                                     <a *ngIf="loot.itemAttackValue > 0" class="tooltipText">Attack Value:
                                         {{loot.itemAttackValue}}<br></a>
-                                    <a *ngIf="loot.itemType === 'armour' || loot.itemType === 'helm'"
+                                    <a *ngIf="loot.itemType === 'armour' || loot.itemType === 'helm' || loot.itemName === 'shield'"
                                         class="tooltipText">Defence Value:
                                         {{loot.itemDefenceValue}}<br></a>
                                     <a *ngIf="loot.itemType === 'food'" class="tooltipText">Heals 1 Health<br></a>
                                     <a class="tooltipDesc">"{{loot.itemDescription}}"</a>
+                                </div>
+                                <div *ngIf="loot.itemType != 'food'" class="loot-card-tooltip">
+                                    <a>Replace<br></a>
+                                    <div class="specialDiv"></div>
+                                    <a *ngIf="loot.itemType === 'helm'"
+                                        class="tooltipTitle">{{this.PlayerInventoryService.helm.itemName}}<br></a>
+                                    <a *ngIf="loot.itemType === 'armour'"
+                                        class="tooltipTitle">{{this.PlayerInventoryService.armour.itemName}}<br></a>
+                                    <a *ngIf="loot.itemType === 'offhand'"
+                                        class="tooltipTitle">{{this.PlayerInventoryService.offhand.itemName}}<br></a>
+                                    <a *ngIf="loot.itemType === 'weapon'"
+                                        class="tooltipTitle">{{this.PlayerInventoryService.weapon.itemName}}<br></a>
+                                    <!-- <a *ngIf="loot.itemType === 'helm'" class="tooltipText"><a>Defence value:
+                                        </a>{{this.PlayerInventoryService.helm.itemDefenceValue}}<br></a>
+                                    <a *ngIf="loot.itemType === 'armour'" class="tooltipText"><a>Defence value:
+                                        </a>{{this.PlayerInventoryService.armour.itemDefenceValue}}<br></a>
+                                    <a *ngIf="loot.itemType === 'weapon'" class="tooltipText"><a>Attack value:
+                                        </a>{{this.PlayerInventoryService.weapon.itemAttackValue}}<br></a> -->
                                 </div>
                             </div>
                         </div>
@@ -246,12 +265,33 @@
                                 (click)="takeLoot(loot.itemName)">
                                 <img class="loot-image" src="assets/images/equipment/{{loot.itemName}}.png">
                                 <a class="tooltipTitle">{{loot.itemName}}<br></a>
+                                <div *ngIf="loot.itemAttackValue === 0 && loot.itemDefenceValue === 0 && 
+                            loot.itemType != 'armour' && loot.itemType != 'helm'" class="specialDiv"><br></div>
                                 <a *ngIf="loot.itemAttackValue > 0" class="tooltipText">Attack Value:
                                     {{loot.itemAttackValue}}<br></a>
-                                <a *ngIf="loot.itemDefenceValue > 0" class="tooltipText">Defence Value:
+                                <a *ngIf="loot.itemType === 'armour' || loot.itemType === 'helm' || loot.itemName === 'shield'"
+                                    class="tooltipText">Defence Value:
                                     {{loot.itemDefenceValue}}<br></a>
                                 <a *ngIf="loot.itemType === 'food'" class="tooltipText">Heals 1 Health<br></a>
                                 <a class="tooltipDesc">"{{loot.itemDescription}}"</a>
+                            </div>
+                            <div *ngIf="loot.itemType != 'food'" class="loot-card-tooltip">
+                                <a>Replace<br></a>
+                                <div class="specialDiv"></div>
+                                <a *ngIf="loot.itemType === 'helm'"
+                                    class="tooltipTitle">{{this.PlayerInventoryService.helm.itemName}}<br></a>
+                                <a *ngIf="loot.itemType === 'armour'"
+                                    class="tooltipTitle">{{this.PlayerInventoryService.armour.itemName}}<br></a>
+                                <a *ngIf="loot.itemType === 'offhand'"
+                                    class="tooltipTitle">{{this.PlayerInventoryService.offhand.itemName}}<br></a>
+                                <a *ngIf="loot.itemType === 'weapon'"
+                                    class="tooltipTitle">{{this.PlayerInventoryService.weapon.itemName}}<br></a>
+                                <!-- <a *ngIf="loot.itemType === 'helm'" class="tooltipText"><a>Defence value:
+                                </a>{{this.PlayerInventoryService.helm.itemDefenceValue}}<br></a>
+                            <a *ngIf="loot.itemType === 'armour'" class="tooltipText"><a>Defence value:
+                                </a>{{this.PlayerInventoryService.armour.itemDefenceValue}}<br></a>
+                            <a *ngIf="loot.itemType === 'weapon'" class="tooltipText"><a>Attack value:
+                                </a>{{this.PlayerInventoryService.weapon.itemAttackValue}}<br></a> -->
                             </div>
                         </div>
                     </div>

@@ -238,8 +238,12 @@ export class RoomEventService {
 
   monsterTurn() {
 
+    // if final boss killed then end game and show win screen.
     if (this.monsterHealthValue <= 0 && this.roomType === "finalboss") {
       setTimeout(() => {
+        if (this.isSoundOn === true) {
+          this.playAudio("player-win2");
+        }
         this.PlayerInventoryService.isPlayerWon = true;
         this.DungeonPathService.showDungeonPath = false;
         this.DungeonPathService.showRoom = false;
@@ -390,9 +394,6 @@ export class RoomEventService {
     }
     if (itemGained.itemType === "offhand") {
       this.PlayerInventoryService.offhand = itemGained;
-      if (itemGained.itemAttackValue > 0) {
-        this.PlayerInventoryService.weapon.itemAttackValue = itemGained.itemAttackValue;
-      }
     }
     if (itemGained.itemType === "helm") {
       this.PlayerInventoryService.helm = itemGained;
