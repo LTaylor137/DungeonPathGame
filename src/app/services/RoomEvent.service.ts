@@ -49,7 +49,7 @@ export class RoomEventService {
 
   playAudio(sound) {
     let audio = new Audio();
-    audio.src = "../../assets/sounds/" + sound + ".wav";
+    audio.src = "assets/sounds/" + sound + ".wav";
     audio.load();
     audio.play();
   }
