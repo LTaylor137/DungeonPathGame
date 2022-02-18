@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { DungeonPathComponent } from './components/DungeonPath/dungeon-path.component';
 
 const routes: Routes = [
-  { path: "DungeonPathComponent", component: DungeonPathComponent },
-  { path: "**", redirectTo: "DungeonPathComponent" }
+  // { path: "DungeonPathComponent", component: DungeonPathComponent },
+  // { path: "**", redirectTo: "TitleComponent" }
 ];
 
 @NgModule({
