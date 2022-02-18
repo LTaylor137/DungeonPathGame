@@ -635,7 +635,7 @@ function RoomEventComponent_div_69_div_2_div_2_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](loot_r65.itemName);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", loot_r65.itemAttackValue === 0 && loot_r65.itemDefenceValue === 0 && loot_r65.itemType != "armour" && loot_r65.itemType != "helm");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", loot_r65.itemAttackValue === 0 && loot_r65.itemDefenceValue === 0 || loot_r65.itemName === "Wooden Buckler" || loot_r65.itemName === "Tower Shield");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", loot_r65.itemAttackValue > 0);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
