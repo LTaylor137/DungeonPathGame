@@ -65,7 +65,7 @@
   height: 4vw;
   width: 4vw;
   border-radius: 60px;
-  border-width: 10px;
+  border-width: 0.5vw;
   border-style: solid;
   border-color: rgb(0, 0, 0);
   color: aliceblue;
@@ -121,19 +121,23 @@
 @keyframes roomSelect {
   0% {
     border-color: rgb(255, 255, 255);
+    border-width: 0.1vw;
+    transform: scale(1);
   }
   50% {
     border-color: rgb(255, 255, 255);
     border-width: 0.5vw;
-    transform: scale(1.23);
+    transform: scale(1.2);
   }
   100% {
     border-color: rgb(255, 255, 255);
+    border-width: 0.1vw;
+    transform: scale(1);
   }
 }
 
 .rmButton:hover {
-  border-width: 7.5px;
+  border-width: 0.5vw;
   border-style: solid;
   border-color: rgb(255, 255, 255);
   background-color: rgba(0, 0, 0, 0);

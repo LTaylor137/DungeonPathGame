@@ -36,6 +36,7 @@ export class RoomEventService {
   // triggers
   isLootTaken: boolean = false;
   isPlayerTurn: boolean = false;
+  isPlayerActionSubmitted: Boolean = false;
   isPlayerAttacking: boolean = false;
   isPlayerBlocking: boolean = false;
   isHandgunInUse: boolean = false;
@@ -329,10 +330,11 @@ export class RoomEventService {
         this.isPlayerTakeDamage = false;
         if (this.PlayerInventoryService.playerHealth > 0 || this.PlayerInventoryService.isGodmodeOn === true) {
           this.isPlayerTurn = true;
+          this.isPlayerActionSubmitted = false;
         }
         this.isPlayerBlocking = false;
         this.PlayerInventoryService.playerDefence = (this.PlayerInventoryService.helm.itemDefenceValue + this.PlayerInventoryService.armour.itemDefenceValue)
-      }, 1000);
+      }, 1500);
     }
   }
 

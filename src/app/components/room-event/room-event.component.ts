@@ -23,10 +23,12 @@ export class RoomEventComponent implements OnInit {
   }
 
   Attack() {
+    this.RoomEventService.isPlayerActionSubmitted = true;
     this.RoomEventService.playerAttack();
   }
 
   Offhand() {
+    this.RoomEventService.isPlayerActionSubmitted = true;
     if (this.PlayerInventoryService.offhand.itemName === "Handgun") {
       console.log("do Handgun stuff")
     } else if (this.PlayerInventoryService.offhand.itemName === "Torch") {

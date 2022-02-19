@@ -20,7 +20,7 @@ export class TitleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  isTitleDismissed: boolean = false;
+  isTitleDismissed: boolean = true;
 
   resetAll() {
     this.OptionsService.resetAll()

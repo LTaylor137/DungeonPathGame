@@ -259,7 +259,7 @@
 }
 
 .avatarWon {
-  top: 40vh;
+  top: 25vh;
   left: 15vw;
   width: 7.5vw;
   z-index: 1;
@@ -276,8 +276,34 @@
     width: 9vw;
   }
   100% {
-    top: 40vh;
+    top: 25vh;
     left: 15vw;
     width: 7.5vw;
+  }
+}
+
+.cave-win-image {
+  top: -10vh;
+  height: 190vh;
+  width: 110vw;
+  left: -15vw;
+  position: relative;
+  animation-name: cave-win-image;
+  animation-duration: 5000ms;
+  animation-iteration-count: 1;
+}
+
+@keyframes cave-win-image {
+  0% {
+    top: -20vh;
+    height: 200vh;
+    width: 140vw;
+    left: -30vw;
+  }
+  100% {
+    top: -10vh;
+    height: 190vh;
+    width: 110vw;
+    left: -15vw;
   }
 }
