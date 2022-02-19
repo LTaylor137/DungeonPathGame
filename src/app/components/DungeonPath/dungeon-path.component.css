@@ -121,8 +121,8 @@
 @keyframes roomSelect {
   0% {
     border-color: rgb(255, 255, 255);
-    border-width: 0.1vw;
-    transform: scale(1);
+    border-width: 0.101vw;
+    transform: scale(1.01);
   }
   50% {
     border-color: rgb(255, 255, 255);
