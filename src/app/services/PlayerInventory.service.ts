@@ -37,11 +37,11 @@ export class PlayerInventoryService {
       // weapons
       // t1
       this.lootPool.push(new Item("weapon", "Fist", "Just wail on 'em", 1, 1, 0)),
-      this.lootPool.push(new Item("weapon", "Bottle", "An empty beer bottle", 1, 1, 0)),
+      this.lootPool.push(new Item("weapon", "Bottle", "The empty beer bottle you brought with you", 1, 1, 0)),
       this.lootPool.push(new Item("weapon", "Rock", "A rock you found on the floor", 1, 1, 0)),
       // t2
-      this.lootPool.push(new Item("weapon", "Baseball Bat", "Swing the nail bit at the enemy", 2, 2, 0)),
-      this.lootPool.push(new Item("weapon", "Meat Cleaver", "For cleaving", 2, 2, 0)),
+      this.lootPool.push(new Item("weapon", "Baseball Bat", "Hey, batter batter!", 2, 2, 0)),
+      this.lootPool.push(new Item("weapon", "Meat Cleaver", "For cleaving meat", 2, 2, 0)),
       this.lootPool.push(new Item("weapon", "Hatchet", "A small hatchet", 2, 2, 0)),
       //t3
       this.lootPool.push(new Item("weapon", "Swordfish", "How did this get in here?", 3, 3, 0)),
@@ -56,7 +56,7 @@ export class PlayerInventoryService {
       this.lootPool.push(new Item("armour", "Shirtless", "As nature intended", 1, 0, 0)),
 
       this.lootPool.push(new Item("armour", "Leather Armour", "Reduces damage taken by 1", 2, 0, 1)),
-      this.lootPool.push(new Item("armour", "Steel Plate", "reduces damage taken by 2", 3, 0, 2)),
+      this.lootPool.push(new Item("armour", "Steel Plate", "Reduces damage taken by 2", 3, 0, 2)),
       this.lootPool.push(new Item("armour", "Plot Armour", "50% chance to avoid attacks.", 4, 0, 0)),
 
       // offhands
@@ -64,16 +64,15 @@ export class PlayerInventoryService {
       this.lootPool.push(new Item("offhand", "Tower Shield", "A large shield that blocks 2 damage and stuns enemies on a successful block", 2, 0, 2)),
 
       this.lootPool.push(new Item("offhand", "Handgun", "Passive: Shoot first when entering a room", 4, 1, 0)),
-      this.lootPool.push(new Item("offhand", "Torch", "Passive: 25% chance to dazzle an emeny causing them to miss", 4, 0, 0)),
+      this.lootPool.push(new Item("offhand", "Torch", "Passive: 25% chance to dazzle an enemy causing them to miss", 4, 0, 0)),
 
       // helms
-      this.lootPool.push(new Item("helm", "Beanie", "keeps you warm, has a pom-pom", 1, 0, 0)),
+      this.lootPool.push(new Item("helm", "Beanie", "Keeps you warm, has a pom-pom", 1, 0, 0)),
       this.lootPool.push(new Item("helm", "Plastic Viking Helmet", "It's a bit too small. Made of plastic", 1, 0, 0)),
-      this.lootPool.push(new Item("helm", "Christmas Hat", "It had little flashing lights but the batteries have died", 1, 0, 0)),
+      this.lootPool.push(new Item("helm", "Christmas Hat", "It had flashing lights but the batteries have died", 1, 0, 0)),
 
-      this.lootPool.push(new Item("helm", "Soup Pot", "It covers your whole skull!", 2, 0, 1)),
+      this.lootPool.push(new Item("helm", "Soup Pot", "It almost covers your head", 2, 0, 1)),
       this.lootPool.push(new Item("helm", "Miners Helmet", "25% chance to dazzle an emeny causing them to miss", 4, 0, 1))
-
   }
 
   getItemColour(tier) {
@@ -95,7 +94,6 @@ export class PlayerInventoryService {
     let t1Weps: Item[] = this.lootPool.filter(element => element.itemType === "weapon" && element.itemTier === 1);
     let randomW = Math.floor(Math.random() * t1Weps.length);
     this.weapon = (t1Weps[randomW])
-    // this.weapon = this.lootPool.find(element => element.itemName === "Lightsaber")
     let t1Helms: Item[] = this.lootPool.filter(element => element.itemType === "helm" && element.itemTier === 1);
     let randomH = Math.floor(Math.random() * t1Helms.length);
     this.helm = (t1Helms[randomH])
@@ -103,7 +101,6 @@ export class PlayerInventoryService {
     let randomA = Math.floor(Math.random() * t1Armour.length);
     this.armour = (t1Armour[randomA])
     this.offhand = this.lootPool.find(element => element.itemName === "Wooden Buckler")
-    // this.offhand = this.lootPool.find(element => element.itemName === "Handgun")
   }
 
   gainHealth(heal: number) {
