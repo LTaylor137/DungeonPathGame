@@ -272,13 +272,9 @@
 @keyframes avatarWon {
   0% {
     top: 15vh;
-    left: 9vw;
-    width: 9vw;
   }
   100% {
     top: 25vh;
-    left: 15vw;
-    width: 7.5vw;
   }
 }
 
@@ -296,14 +292,8 @@
 @keyframes cave-win-image {
   0% {
     top: -20vh;
-    height: 200vh;
-    width: 140vw;
-    left: -30vw;
   }
   100% {
     top: -10vh;
-    height: 190vh;
-    width: 110vw;
-    left: -15vw;
   }
 }
